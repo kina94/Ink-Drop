@@ -1,0 +1,14 @@
+footer{
+    width:100%;
+    background-color:white;
+    text-align:center;
+
+}
+
+.info{
+    color:grey;
+    font-size:11px;
+    word-break:keep-all;
+    text-align:center;
+    margin-top:5px;
+}

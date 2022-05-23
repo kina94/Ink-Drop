@@ -1,0 +1,85 @@
+@value makerBlack, makerViolet from  '../../../common/css/colors.css';
+
+.search-input {
+    z-index:3;
+    background-color: #ededf4;
+    height:60px;
+    display:flex;
+    align-items:center;
+    position:fixed;
+    width:100%;
+    padding: 0px 200px 0px 0px;
+}
+
+.search-icon{
+    display:flex;
+    align-items:center;
+    margin-left:10px;
+    padding-left:15px;
+    background-color:white;
+    height:40px;
+    border-top-left-radius:5px;
+    border-bottom-left-radius:5px;
+    color:#a593e0;
+}
+
+.search input{
+    width:100%;
+    height:40px;
+    padding:10px 10px 10px 15px;
+    margin:10px 10px 10px 0;
+    border:none;
+    border-top-right-radius:5px;
+    border-bottom-right-radius:5px;
+}
+
+.search input:focus{
+    outline:none;
+}
+
+.search ul{
+    list-style:none;
+    padding-top: 70px;
+    text-align:left;
+    margin:0;
+}
+
+.search li{
+    cursor:pointer;
+    display:flex;
+    padding:30px;
+    border-bottom:1px solid lightgrey;
+}
+
+.search li div {
+    margin-left:30px;
+}
+
+
+/*모달창*/
+.book-info {
+    animation : fadein 1s forwards;
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(255, 255, 255, 0.5);
+  }
+
+
+.book-info .content-wrapper {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #fff;
+    border: 1px solid #ff8b8b;
+    border-radius: 5px;
+    font-size:1.5vh;
+    padding:0 15px 0px 15px;
+}
+
+.button-container .active{
+    background-color:red;
+}

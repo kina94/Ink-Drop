@@ -1,21 +1,22 @@
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import './App.css';
+import Login from './components/login/Login';
+import '@fortawesome/fontawesome-free/js/all.js'
+import MainContainer from './components/contents/MainContainer';
 
-function App() {
+function App({ userRepository, authService}) {
   return (
-    <div className="App">
-      <header className="App-header">
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className='app'>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<Login authService={authService}/>}/>
+          <Route path="/home/*" element={<MainContainer
+          authService={authService}
+          userRepository={userRepository}
+          />}>
+          </Route>
+        </Routes>
+      </BrowserRouter>
     </div>
   );
 }
