@@ -19,7 +19,9 @@ function BookInfo(props) {
           <p>{authors} / {publisher}</p>
           <hr></hr>
           <p>책 소개</p>
-          <p>{contents}</p>
+          <p>{contents}
+          <a href={url} target='_blank'>더 보러가기</a>
+          </p>
         </section>
         <section className='button-container'>
           <button id='complete'
