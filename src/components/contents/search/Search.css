@@ -58,7 +58,7 @@
 
 /*모달창*/
 .book-info {
-    animation : fadein 1s forwards;
+    animation : fadein 0.5s forwards;
     position: fixed;
     left: 0;
     top: 0;
@@ -83,3 +83,12 @@
 .button-container .active{
     background-color:red;
 }
+
+@keyframes fadein {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
