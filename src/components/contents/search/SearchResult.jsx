@@ -45,8 +45,14 @@ function BookResult(props) {
     return (
         <>
             <span>{props.message}</span>
-            <BookList books={props.books} alertMessage='검색 결과가 없습니다.'
-                clickEvent={onClickBook}></BookList>
+            {
+                props.books.length===0 ? <p>없어</p> :
+                Object.keys(props.books).map((key,index)=>{
+                    return <BookList book={props.books[key]} index={index}
+                    clickEvent={onClickBook}></BookList>
+                })
+            }
+
             {
                 isToggle ?
                     <div className='book-info'>

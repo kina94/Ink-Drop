@@ -29,8 +29,8 @@ function LibraryContainer(props) {
         processedBooks = Object.keys(books).filter(key => books[key].type === category)
           .map(key => books[key])
       }
-      setSavedBooks(processedBooks)
     }
+    setSavedBooks(processedBooks)
     setIsLoading(false)
   }
 

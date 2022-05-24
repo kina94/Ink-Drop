@@ -5,20 +5,15 @@ function BookList(props) {
     return (
         <ul className='book-list'>
             {
-                props.books.length === 0 ? props.alertMessage :
-                    props.books.map((book, index) => {
-                        return (
-                            <li key={index} id={index} onClick={props.clickEvent}>
-                                <img src={book.thumbnail}></img>
-                                <div>
-                                    <p>{book.title}</p>
-                                    <p>{book.authors}</p>
-                                    <p>{book.publisher} / {book.price}원</p>
-                                    <p>{book.contents}</p>
-                                </div>
-                            </li>
-                        )
-                    })
+                <li key={props.index} id={props.index} onClick={props.clickEvent}>
+                    <img src={props.book.thumbnail}></img>
+                    <div>
+                        <p>{props.book.title}</p>
+                        <p>{props.book.authors}</p>
+                        <p>{props.book.publisher} / {props.book.price}원</p>
+                        <p>{props.book.contents}</p>
+                    </div>
+                </li>
             }
         </ul>
     )
