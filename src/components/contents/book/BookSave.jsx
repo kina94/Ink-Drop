@@ -25,6 +25,26 @@ function BookSave(props) {
         setSaveBook({ ...saveBook, [e.target.id]: e.target.value })
     }
 
+    /* 저장된 책 목록의 키값과 선택된 책의 키값을 비교 중복되지 않을 경우 저장
+    함수 분리 필요*/
+    const onClickSaveBook = () => {
+        let bookKey = Object.keys(savedBooks).find(key => key === props.selectedBook.isbn)
+        if (bookKey) {
+            alert(`이미 저장된 책이에요. ${option[savedBooks[bookKey].type]}을 확인해보세요.`)
+        } else {
+            const newBook = { ...saveBook, 'type': selectedOption }
+            BookService.saveBook(props.userInfo.userId, props.selectedBook.isbn, newBook)
+            alert('책이 저장됐어요.')
+            getSavedBooks()
+        }
+    }
+
+    // 저장된 책 리스트 불러오기
+    const getSavedBooks = async () => {
+        const savedBookList = await BookService.syncBooks(props.userInfo.userId)
+        setSavedBooks(savedBookList)
+    }
+
     //선택된 옵션(읽은, 안 읽은, 읽고싶은)에 따른 하위 컨텐츠 리턴
     const selectedOptionContent = () => {
         switch (selectedOption) {
@@ -55,26 +75,6 @@ function BookSave(props) {
                     </>
                 )
         }
-    }
-
-    /* 저장된 책 목록의 키값과 선택된 책의 키값을 비교 중복되지 않을 경우 저장
-    함수 분리 필요*/
-    const onClickSaveBook = () => {
-        let bookKey = Object.keys(savedBooks).find(key => key === props.selectedBook.isbn)
-        if (bookKey) {
-            alert(`이미 저장된 책이에요. ${option[savedBooks[bookKey].type]}을 확인해보세요.`)
-        } else {
-            const newBook = { ...saveBook, 'type': selectedOption }
-            BookService.saveBook(props.userInfo.userId, props.selectedBook.isbn, newBook)
-            alert('책이 저장됐어요.')
-            getSavedBooks()
-        }
-    }
-
-    // 저장된 책 리스트 불러오기
-    const getSavedBooks = async () => {
-        const savedBookList = await BookService.syncBooks(props.userInfo.userId)
-        setSavedBooks(savedBookList)
     }
 
     useEffect(() => {
