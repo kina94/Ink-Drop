@@ -12,7 +12,7 @@ const Sidebar = () => {
       <ul className={styles.ul}>
         <li className={styles.li} onClick={()=>navigate('/home/search')}>
           <i className="fa-solid fa-house" id={styles.icon}></i>책 검색하기</li>
-        <li className={styles.li} onClick={()=>navigate('/home/task')}>
+        <li className={styles.li} onClick={()=>navigate('/home/library')}>
           <i className="fa-solid fa-list-check" id={styles.icon} ></i>내 서재</li>
         <li className={styles.li} onClick={()=>navigate('/home/calendar')}>
           <i className="fa-solid fa-calendar-days" id={styles.icon} ></i>독서 기록</li>
