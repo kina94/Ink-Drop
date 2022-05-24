@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from 'react'
-import { Navigate, Route, Routes, useLocation, useNavigate } from 'react-router-dom'
+import {Route, Routes, useNavigate } from 'react-router-dom'
 import Navbar from '../components/contents/navbar/Navbar'
 import SearchContainer from './SearchContainer'
 import Sidebar from '../components/contents/sidebar/Sidebar'
-import './MainContainer.css'
+import LibraryContainer from './LibraryContainer'
+import './Container.css'
 
 function MainContainer(props) {
-    const location = useLocation();
     const navigate = useNavigate();
 
     // 첫 로그인 시 유저 정보를 세팅합니다.
@@ -37,6 +37,7 @@ function MainContainer(props) {
             <section className='content'>
             <Routes>
                 <Route exact={true} path='search/*' element={<SearchContainer userInfo={userInfo}/>}/>
+                <Route exact={true} path='library/*' element={<LibraryContainer userInfo={userInfo}/>}/>
             </Routes>
             </section>
         </section>

@@ -43,7 +43,7 @@ function BookResult(props) {
     }, [])
 
     return (
-        <ul>
+        <>
             <span>{props.message}</span>
             <BookList books={props.books} alertMessage='검색 결과가 없습니다.'
                 clickEvent={onClickBook}></BookList>
@@ -56,7 +56,7 @@ function BookResult(props) {
                         </div>
                     </div> : null
             }
-        </ul>
+        </>
     )
 }
 export default BookResult
