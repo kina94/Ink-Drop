@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { BookService } from '../../../service/book_service'
 import SaveOptionButton from '../search/SaveOptionButton'
+import { option } from '../../../common/utils/common_var'
 
 
 //책 저장
@@ -8,12 +9,7 @@ function BookSave(props) {
     const [selectedOption, setSelectedOption] = useState('complete')
     const [saveBook, setSaveBook] = useState(props.selectedBook)
     const [savedBooks, setSavedBooks] = useState()
-    const option = {
-        'complete': '읽은 책',
-        'reading': '읽고 있는 책',
-        'want': '읽고 싶은 책'
-    }
-
+    
     // 옵션 선택
     const onClickOption = (e) => {
         const id = e.target.id === selectedOption ? selectedOption : e.target.id
@@ -86,6 +82,7 @@ function BookSave(props) {
             <section className='button-container'>
                 {
                     Object.keys(option).map((key, index) => {
+                        if(key==='all') return
                         return (
                             <SaveOptionButton key={index} option={key} name={option[key]}
                                 onClick={onClickOption} selectedOption={selectedOption} />
