@@ -1,13 +1,14 @@
 import React from 'react'
 import { useParams } from 'react-router-dom'
+import BookList from '../book/BookList'
 
 function CategoryContents(props) {
+  console.log(props.savedBooks)
   return (
     <div>
       {
-        props.savedBooks && Object.keys(props.savedBooks).map(item=>{
-          return props.savedBooks[item].type
-        })
+        props.savedBooks && 
+        <BookList books={props.savedBooks} alertMessage='저장된 책이 없습니다.'></BookList>
       }
     </div>
   )

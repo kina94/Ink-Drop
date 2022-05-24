@@ -21,19 +21,22 @@ function LibraryContainer(props) {
   const getSavedBooks = async () => {
     setIsLoading(true)
     const books = await BookService.syncBooks(props.userInfo.userId)
-    if (category === 'all') {
-      setSavedBooks(books)
-    } else {
-      const filteredBooks = Object.keys(books).filter(key => books[key].type === category)
-        .map(key => books[key])
-      setSavedBooks(filteredBooks)
+    let processedBooks = null
+    if (books != null) {
+      if (category === 'all') {
+        processedBooks = Object.keys(books).map(key => books[key]) // 키-밸류 객체를 배열 형태로 변환
+      } else {
+        processedBooks = Object.keys(books).filter(key => books[key].type === category)
+          .map(key => books[key])
+      }
+      setSavedBooks(processedBooks)
     }
     setIsLoading(false)
   }
 
   useEffect(() => {
-    category && getSavedBooks(category)
-  }, [category])
+    getSavedBooks(category)
+  }, [params])
 
   return (
     <section className='library'>
