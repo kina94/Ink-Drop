@@ -1,12 +1,12 @@
 import React, { useState } from 'react'
 import { Navigate, Route, Routes, useNavigate } from 'react-router-dom'
-import SearchResult from './SearchResult'
-import BeforeSearch from './BeforeSearch'
-import BookInfo from './BookInfo'
-import { BookService } from '../../../service/book_service'
-import LoadingSpinner from '../../../common/utils/LoadingSpinner'
+import BeforeSearch from '../components/contents/search/BeforeSearch'
+import { BookService } from '../service/book_service'
+import LoadingSpinner from '../common/utils/LoadingSpinner'
+import SearchResult from '../components/contents/search/SearchResult'
+import SearchInput from '../components/contents/search/SearchInput'
 
-function Search() {
+function SearchContainer(props) {
   const navigate = useNavigate()
   const [isLoading, setIsLoading] = useState(false)
   const [books, setBooks] = useState([])
@@ -35,19 +35,15 @@ function Search() {
       {
         isLoading && <LoadingSpinner></LoadingSpinner>
       }
-      <section className='search-input'>
-        <div className='search-icon'>
-          <i className="fa-solid fa-magnifying-glass"></i>
-        </div>
-        <input type='text' placeholder='도서명, 저자명으로 검색해보세요.' onChange={onChange}
-          onKeyPress={handleSearch} />
-      </section>
+      <SearchInput onChange={onChange} handleSearch={handleSearch}></SearchInput>
       <Routes>
         <Route exact={true} path='/' element={<BeforeSearch />} />
-        <Route path=':keyword' element={<SearchResult books={books} />} />
+        <Route path=':keyword' element={<SearchResult books={books} 
+        userInfo={props.userInfo}
+        message={`${keyword}에 대한 검색 결과 ${books.length}건`}/>} />
       </Routes>
     </section>
   )
 }
 
-export default Search
+export default SearchContainer

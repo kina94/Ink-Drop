@@ -1,6 +1,6 @@
 import React from 'react'
 
-function OptionButton(props) {
+function SaveOptionButton(props) {
     return (
         <button id={props.option}
             className={props.selectedOption === props.option ? 'active' : ''}
@@ -8,4 +8,4 @@ function OptionButton(props) {
     )
 }
 
-export default OptionButton
+export default SaveOptionButton

@@ -1,0 +1,55 @@
+/*책 리스트*/
+.book-list{
+  list-style:none;
+  padding-top: 70px;
+  text-align:left;
+  margin:0;
+}
+
+.book-list li{
+  cursor:pointer;
+  display:flex;
+  padding:30px;
+  border-bottom:1px solid lightgrey;
+}
+
+.book-list li div {
+  margin-left:30px;
+}
+
+/*모달창*/
+.book-info {
+    animation : fadein 0.5s forwards;
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(255, 255, 255, 0.5);
+  }
+
+
+.book-info .content-wrapper {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #fff;
+    border: 1px solid #ff8b8b;
+    border-radius: 5px;
+    font-size:1.5vh;
+    padding:0 15px 0px 15px;
+}
+
+.button-container .active{
+    background-color:red;
+}
+
+@keyframes fadein {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }

@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import { Navigate, Route, Routes, useLocation, useNavigate } from 'react-router-dom'
-import Navbar from './navbar/Navbar'
-import Search from './search/Search'
-import Sidebar from './sidebar/Sidebar'
+import Navbar from '../components/contents/navbar/Navbar'
+import SearchContainer from './SearchContainer'
+import Sidebar from '../components/contents/sidebar/Sidebar'
 import './MainContainer.css'
 
 function MainContainer(props) {
@@ -36,7 +36,7 @@ function MainContainer(props) {
             <Sidebar></Sidebar>
             <section className='content'>
             <Routes>
-                <Route exact={true} path='search/*' element={<Search />}/>
+                <Route exact={true} path='search/*' element={<SearchContainer userInfo={userInfo}/>}/>
             </Routes>
             </section>
         </section>
