@@ -2,8 +2,8 @@ import React, { useState } from 'react'
 import './Book.css'
 
 // 책 기본 정보 보여주기
-function BookInfo(props) {
-  const { thumbnail, authors, contents, publisher, sale_price, title, url } = props.selectedBook
+function BookBasicInfo(props) {
+  const { thumbnail, authors, contents, publisher, title, url } = props.selectedBook
 
   return (
     <>
@@ -24,4 +24,4 @@ function BookInfo(props) {
   )
 }
 
-export default BookInfo
+export default BookBasicInfo

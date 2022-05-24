@@ -25,6 +25,10 @@ export const BookService = {
         firebaseDatabase.ref(`${userId}/books/${ISBN}`).set(book)
     },
 
+    deleteBook : (userId, ISBN) => {
+        firebaseDatabase.ref(`${userId}/books/${ISBN}`).remove()
+    },
+
     syncBooks : async(userId) => {
         return await firebaseDatabase.ref(`${userId}/books`).once('value').then((snapshot) => {
             return snapshot.val() && snapshot.val()

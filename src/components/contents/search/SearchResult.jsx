@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import BookInfo from '../book/BookInfo'
+import BookBasicInfo from '../book/BookBasicInfo'
 import BookList from '../book/BookList'
 import BookSave from '../book/BookSave'
 
@@ -57,7 +57,7 @@ function BookResult(props) {
                 isToggle ?
                     <div className='book-info'>
                         <div className='content-wrapper'>
-                            <BookInfo selectedBook={selectedBook} />
+                            <BookBasicInfo selectedBook={selectedBook} />
                             <BookSave userInfo={props.userInfo} selectedBook={selectedBook}></BookSave>
                         </div>
                     </div> : null
