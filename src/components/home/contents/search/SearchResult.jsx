@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react'
+import ShowMessage from '../../common/alert/ShowMessage'
 import BookBasicInfo from '../../common/book/BookBasicInfo'
 import BookList from '../../common/book/BookList'
 import BookSave from '../../common/book/BookSave'
+import animationData from '../../../../assets/animation/85557-empty.json'
 
 function BookResult(props) {
     const [isToggle, setIsToggle] = useState(false)
@@ -44,13 +46,23 @@ function BookResult(props) {
 
     return (
         <>
-            <span>{props.message}</span>
             {
-                props.books.length===0 ? <p>없어</p> :
-                Object.keys(props.books).map((key,index)=>{
-                    return <BookList book={props.books[key]} index={index}
-                    clickEvent={onClickBook}></BookList>
-                })
+                props.books.length === 0 ?
+                    <ShowMessage animationData={animationData} width='400px' height='300px'
+                        value='검색 결과를 찾을 수 없어요.'
+                    /> :
+                    <section className='show-search-result'>
+                        <span>{props.message}</span>
+                        {
+                            Object.keys(props.books).map((key, index) => {
+                                return (
+
+                                    <BookList book={props.books[key]} index={index}
+                                        clickEvent={onClickBook}></BookList>
+                                )
+                            })
+                        }
+                    </section>
             }
 
             {

@@ -8,10 +8,10 @@ function BookList(props) {
                 <li key={props.index} id={props.index} onClick={props.clickEvent}>
                     <img src={props.book.thumbnail}></img>
                     <div>
-                        <p>{props.book.title}</p>
-                        <p>{props.book.authors}</p>
-                        <p>{props.book.publisher} / {props.book.price}원</p>
-                        <p>{props.book.contents}</p>
+                        <p className='title'>{props.book.title}</p>
+                        <p className='authors'>{props.book.authors}</p>
+                        <p className='infos'>{props.book.publisher} / {props.book.price}원</p>
+                        <p className='contents'>{props.book.contents}</p>
                     </div>
                 </li>
             }

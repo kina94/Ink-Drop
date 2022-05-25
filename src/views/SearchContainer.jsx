@@ -1,9 +1,10 @@
 import React, { useState } from 'react'
 import {Route, Routes, useNavigate } from 'react-router-dom'
-import BeforeSearch from '../components/home/contents/search/BeforeSearch'
+import ShowMessage from '../components/home/common/alert/ShowMessage'
 import SearchResult from '../components/home/contents/search/SearchResult'
 import SearchInput from '../components/home/contents/search/SearchInput'
 import LoadingSpinner from '../common/utils/LoadingSpinner'
+import animationData from '../assets/animation/72170-books.json'
 import { BookService } from '../service/book_service'
 import './Container.css'
 
@@ -40,10 +41,10 @@ function SearchContainer(props) {
       }
       <SearchInput onChange={onChange} handleSearch={handleSearch}></SearchInput>
       <Routes>
-        <Route exact={true} path='/' element={<BeforeSearch userInfo={props.userInfo}/>} />
+        <Route exact={true} path='/' element={<ShowMessage animationData={animationData} width='300px' height='300px' value='원하는 책을 검색하고 저장해보세요.'/>} />
         <Route path=':keyword' element={<SearchResult books={books} 
         userInfo={props.userInfo}
-        message={`${keyword}에 대한 검색 결과 ${books.length}건`}/>} />
+        message={`'${keyword}'에 대한 검색 결과`}/>} />
       </Routes>
     </section>
   )

@@ -12,9 +12,10 @@ function BookBasicInfo(props) {
         <button className='close'><i className="fas fa-times"></i></button>
       </section>
       <section className='information'>
-        <img src={thumbnail}></img>
-        <p>{authors} / {publisher}</p>
-        <hr></hr>
+        <section>
+          <img src={thumbnail}></img>
+          <p>{authors} / {publisher}</p>
+        </section>
         <p>책 소개</p>
         <p>{contents}
           <a href={url} target='_blank'>더 보러가기</a>
