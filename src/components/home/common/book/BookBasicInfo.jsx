@@ -7,7 +7,7 @@ function BookBasicInfo(props) {
   return (
     <>
       <section className='title'>
-        <span>{title}</span>
+          <span>{title}</span>
         <button className='close'><i className="fas fa-times"></i></button>
       </section>
       <section className='information'>
@@ -19,7 +19,7 @@ function BookBasicInfo(props) {
           <p>책 소개</p>
           <p id='contents'>{contents}</p>
           <p><a id='link' href={url} target='_blank'>더 보러가기</a></p>
-          
+
         </section>
 
       </section>

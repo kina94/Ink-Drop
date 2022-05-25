@@ -49,14 +49,14 @@ function BookSave(props) {
         if (savedBooks) {
             bookKey = Object.keys(savedBooks).find(key => key === props.selectedBook.isbn)
         }
-        
+
         if (bookKey) {
             alert(`이미 저장된 책이에요. ${option[savedBooks[bookKey].type]}을 확인해보세요.`)
         } else {
             const newBook = { ...saveBook, 'type': selectedOption }
             BookService.saveBook(props.userInfo.userId, props.selectedBook.isbn, newBook)
             alert('저장을 완료했어요.')
-            if(props.isModify){
+            if (props.isModify) {
                 props.updateBookContents(newBook)
                 props.onClickModify()
             }
@@ -66,49 +66,73 @@ function BookSave(props) {
 
     //선택된 옵션(읽은, 안 읽은, 읽고싶은)에 따른 하위 컨텐츠 리턴
     const selectedOptionContent = () => {
+        const dateValue = new Date().toISOString().substring(0, 10)
+        console.log(dateValue)
         switch (selectedOption) {
             case 'complete':
                 return (
                     <form>
-                        '독서기간'
-                        시작일 <input type='date' id='startDate' onChange={handleOptionInput}
-                            value={saveBook.startDate || ''}
-                        />
-                        종료일 <input type='date' id='endDate' onChange={handleOptionInput}
-                            value={saveBook.endDate || ''}
-                        />
-                        후기
-                        <input type='text' id='review' onChange={handleOptionInput}
-                            value={saveBook.review || ''}
-                            autoFocus />
+                        <i id='icon' className="fas fa-calendar-check"></i>
+                        <p>독서기간</p>
+                        <div className='option-container'>
+                            <span>시작일</span>
+                            <input type='date' id='startDate' onChange={handleOptionInput}
+                                value={saveBook.startDate || dateValue} />
+                        </div>
+                        <div className='option-container'>
+                            <span>종료일</span>
+                            <input type='date' id='endDate' onChange={handleOptionInput}
+                                value={saveBook.endDate || dateValue} />
+                        </div>
+                        <i id='icon' className="fas fa-pencil"></i>
+                        <p>후기</p>
+                        <div className='option-container'>
+                            <input type='text' id='review' onChange={handleOptionInput}
+                                value={saveBook.review || ''}
+                                autoFocus />
+                        </div>
                     </form>
                 )
             case 'reading':
                 return (
                     <form>
-                        '독서시작일'
-                        <input type='date' id='startDate' onChange={handleOptionInput}
-                            value={saveBook.startDate || ''}
-                        />
-                        '메모'
-                        <input type='text' id='memo' onChange={handleOptionInput} autoFocus
-                            value={saveBook.memo || ''}
-                        />
+                        <i id='icon' className="fas fa-calendar-check"></i>
+                        <p>독서기간</p>
+                        <div className='option-container'>
+                            <span>시작일</span>
+                            <input type='date' id='startDate' onChange={handleOptionInput}
+                                value={saveBook.startDate || dateValue} />
+                        </div>
+                        <div>
+                        </div>
+                        <i id='icon' className="fas fa-pencil"></i>
+                        <p>후기</p>
+                        <div className='option-container'>
+                            <input type='text' id='review' onChange={handleOptionInput}
+                                value={saveBook.review || ''}
+                                autoFocus />
+                        </div>
                     </form>
                 )
             case 'want':
                 return (
+                    <div>
                     <form>
-                        '메모'
-                        <input type='text' id='memo' onChange={handleOptionInput}
-                            value={saveBook.memo || ''}
-                            autoFocus />
+                        <i id='icon' className="fas fa-pencil"></i>
+                        <p>메모</p>
+                        <div className='option-container'>
+                            <input type='text' id='review' onChange={handleOptionInput}
+                                value={saveBook.review || ''}
+                                autoFocus />
+                        </div>
                     </form>
+                    </div>
                 )
         }
     }
+
     return (
-        <div>
+        <section className='save-contents'>
             <section className='button-container'>
                 {
                     Object.keys(option).map((key, index) => {
@@ -122,9 +146,9 @@ function BookSave(props) {
             </section>
             <section className='selected-display'>
                 {selectedOptionContent()}
+                <button type='submit' onClick={onClickSaveBook}>저장하기</button>
             </section>
-            <button type='submit' onClick={onClickSaveBook}>저장하기</button>
-        </div>
+        </section>
     )
 }
 
