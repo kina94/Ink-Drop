@@ -44,8 +44,9 @@ function ChartView(props) {
     Tooltip,
   );
 
-  const options = { reponsive: true }
+
   const labels = ['01월', '02월', '03월', '04월', '05월', '06월', '07월', '08월', '09월', '10월', '11월', '12월'];
+  
   const chartData = {
     labels,
     datasets: [
@@ -57,6 +58,16 @@ function ChartView(props) {
     ],
   };
 
+  const options = { reponsive: true,
+    scales:{
+      y:{
+        suggestedMax: Math.max(...chartData.datasets[0].data)+1,
+        ticks:{
+          stepSize:1,
+        }
+      }
+    }
+  }
 
 
   return (
