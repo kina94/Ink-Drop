@@ -3,8 +3,7 @@ import './Book.css'
 
 // 책 기본 정보 보여주기
 function BookBasicInfo(props) {
-  const { thumbnail, authors, contents, publisher, title, url } = props.selectedBook
-
+  let { thumbnail, authors, contents, publisher, title, url } = props.selectedBook
   return (
     <>
       <section className='title'>
@@ -14,12 +13,15 @@ function BookBasicInfo(props) {
       <section className='information'>
         <section>
           <img src={thumbnail}></img>
-          <p>{authors} / {publisher}</p>
+          <p>{authors.join(' ')} / {publisher}</p>
         </section>
-        <p>책 소개</p>
-        <p>{contents}
-          <a href={url} target='_blank'>더 보러가기</a>
-        </p>
+        <section>
+          <p>책 소개</p>
+          <p id='contents'>{contents}</p>
+          <p><a id='link' href={url} target='_blank'>더 보러가기</a></p>
+          
+        </section>
+
       </section>
     </>
   )

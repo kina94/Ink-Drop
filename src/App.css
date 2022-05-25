@@ -1,6 +1,7 @@
 
 * {
   box-sizing: border-box;
+  word-break:keep-all;
 }
 
 :root{
@@ -12,7 +13,7 @@
   --color-brown : #5c4127;
   --color-light-brown: #a37556;
   --color-blue : #4f3ccc;
-  --color-black : #444444;
+  --color-black : #464646;
   --color-white: white;
   --color-mint: #8ac3c6;
   --color-lightgrey: #f4f3f2;

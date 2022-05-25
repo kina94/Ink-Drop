@@ -8,7 +8,6 @@
   color:var(--color-black)
 }
 
-
 .book-list li{
   cursor:pointer;
   display:flex;
@@ -41,7 +40,7 @@
 
 .book-list .contents{
   margin-top:5px;
-  color:var
+  line-height:30px;
 }
 
 /*모달창*/
@@ -91,11 +90,6 @@
   border-top-right-radius:10px;
 }
 
-.book-info .information{
-  padding:30px;
-  display:flex;
-}
-
 .book-info .close{
   margin-left: auto;
   background-color : #76A4A6;
@@ -106,8 +100,99 @@
   border-top-right-radius:10px;
 }
 
+.book-info .information{
+  padding: 30px 30px 10px 30px;
+  display:flex;
+  color:var(--color-black)
+}
+
+.book-info img{
+  border: 1px solid whitesmoke;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+}
+
+.information section:first-child{
+  padding-right:50px;
+  text-align:center;
+  font-size:16px;
+}
+
+.information section:first-child p{
+  margin-top:10px;
+  font-weight: bold;
+}
+
+.information section:last-child{
+  font-size:16px;
+}
+
+.information section:last-child p:first-child{
+  font-size:20px;
+  font-weight: bold;
+}
+
+.information section:last-child #contents{
+  line-height:30px;
+}
+
+#link{
+  color:var(--color-blue);
+  text-decoration:none;
+  font-size:16px;
+}
+
+#link:hover{
+  font-weight:bold;
+}
+
+
+.book-info .information{
+  text-align:left;
+}
+
+
+/*BookSave*/
+
+.button-container{
+  display:flex;
+  font-size:16px;
+  border-radius:10px;
+  color:var(--color-black);
+  justify-content:center;
+}
+
+.button-container button{
+  width:150px;
+  margin-right:10px;
+  height:50px;
+  border:none;
+  background-color:whitesmoke;
+  border-radius:10px;
+  color:var(--color-black);
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 3px 0px, rgba(0, 0, 0, 0.06) 0px 1px 2px 0px;
+}
+
+.button-container button:hover{
+  background-color: rgba(0,0,0,0.1);
+}
+
+#icon{
+  padding-right:5px;
+  color:var(--color-hotpink)
+}
+
 .button-container .active{
-    background-color:red;
+    background-color:var(--color-hotpink);
+    color:white;
+}
+
+.button-container .active #icon{
+  color:white;
+}
+
+.button-container .active:hover{
+  background-color:var(--color-hotpink);
+  color:white;
 }
 
 @keyframes fadein {

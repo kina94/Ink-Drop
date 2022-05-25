@@ -9,7 +9,7 @@ function BookList(props) {
                     <img src={props.book.thumbnail}></img>
                     <div>
                         <p className='title'>{props.book.title}</p>
-                        <p className='authors'>{props.book.authors}</p>
+                        <p className='authors'>{props.book.authors.join(' ')}</p>
                         <p className='infos'>{props.book.publisher} / {props.book.price}원</p>
                         <p className='contents'>{props.book.contents}</p>
                     </div>

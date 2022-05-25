@@ -20,7 +20,7 @@ function BookSave(props) {
 
     // 옵션 선택
     const onClickOption = (e) => {
-        const id = e.target.id === selectedOption ? selectedOption : e.target.id
+        const id = e.target.closest('button').id === selectedOption ? selectedOption : e.target.closest('button').id
         setSelectedOption(id)
         setSaveBook({
             ...saveBook,
