@@ -9,6 +9,7 @@ function BookSave(props) {
     const [selectedOption, setSelectedOption] = useState(props.selectedBook.type || 'complete')
     const [saveBook, setSaveBook] = useState(props.selectedBook)
     const [savedBooks, setSavedBooks] = useState(null)
+    const dateValue = new Date().toISOString().substring(0, 10)
 
     useEffect(() => {
         if (props.isModify) { //수정인 경우
@@ -49,11 +50,14 @@ function BookSave(props) {
         if (savedBooks) {
             bookKey = Object.keys(savedBooks).find(key => key === props.selectedBook.isbn)
         }
-
         if (bookKey) {
             alert(`이미 저장된 책이에요. ${option[savedBooks[bookKey].type]}을 확인해보세요.`)
         } else {
-            const newBook = { ...saveBook, 'type': selectedOption }
+            const newBook = { ...saveBook,
+                'type': selectedOption,
+                'endDate' : saveBook.endDate ? saveBook.endDate : dateValue,
+                'startDate' : saveBook.startDate ? saveBook.startDate : dateValue
+            }
             BookService.saveBook(props.userInfo.userId, props.selectedBook.isbn, newBook)
             alert('저장을 완료했어요.')
             if (props.isModify) {
@@ -66,8 +70,6 @@ function BookSave(props) {
 
     //선택된 옵션(읽은, 안 읽은, 읽고싶은)에 따른 하위 컨텐츠 리턴
     const selectedOptionContent = () => {
-        const dateValue = new Date().toISOString().substring(0, 10)
-        console.log(dateValue)
         switch (selectedOption) {
             case 'complete':
                 return (
