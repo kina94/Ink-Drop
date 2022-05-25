@@ -66,20 +66,22 @@ function CalendarView(props) {
         isToggle &&
         <div className='book-info'>
           <div className='content-wrapper'>
+            <ul>
             {
-              selectedDayBook.map(book => {
+              selectedDayBook.map((book,index) => {
                 return (
-                  <>
+                  <li key={index}>
                     <img className='complete-book-img' src={book.thumbnail}></img>
                     <div className='complete-book-contents'>
                       <span>{book.title}</span>
                       <span>{book.authors[0]} / {book.publisher}</span>
                       <span>{book.review}</span>
                     </div>
-                  </>
+                  </li>
                 )
               })
             }
+            </ul>
           </div>
         </div>
       }
