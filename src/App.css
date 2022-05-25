@@ -1,7 +1,21 @@
-@value makerGrey from  './common/css/colors.css';
 
 * {
   box-sizing: border-box;
+}
+
+:root{
+  --color-yellow : #fbda84;
+  --color-light-yellow: #f7f5f0;
+  --color-pink : #fd7576;
+  --color-hotpink : #ea4c89;
+  --color-lightpink : #f5b6c9;
+  --color-brown : #5c4127;
+  --color-light-brown: #a37556;
+  --color-blue : #4f3ccc;
+  --color-black : #444444;
+  --color-white: white;
+  --color-mint: #8ac3c6;
+  --color-lightgrey: #f4f3f2;
 }
 
 .app {

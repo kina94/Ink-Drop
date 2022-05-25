@@ -26,7 +26,7 @@ const Navbar = (props) => {
         }}
         style={{
           fontSize: '16px',
-          color: '#566270',
+          color: 'var(--color-black)',
           fontWeight: 'bold',
           textDecoration: 'none',
           marginLeft: '5px'

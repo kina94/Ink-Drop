@@ -3,7 +3,7 @@ import './Search.css'
 
 function SearchInput(props) {
   return (
-    <section className='search-input'>
+    <section className='search-input-container'>
     <div className='search-icon'>
       <i className="fa-solid fa-magnifying-glass"></i>
     </div>

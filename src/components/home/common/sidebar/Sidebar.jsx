@@ -7,8 +7,8 @@ const Sidebar = () => {
   return (
     <aside className={styles.section}>
       <h1 className={styles.name} onClick={()=>navigate('/home')}>
-        <i className="fa-solid fa-feather-pointed" style={{ color: '#A593E0', paddingRight: '8px' }}></i>
-        InkDrop</h1>
+        <i className="fas fa-book" style={{color:'var(--color-pink)', paddingRight:'8px', fontSize:'35px'}}></i>
+        <span>다독다독</span></h1>
       <ul className={styles.ul}>
         <li className={styles.li} onClick={()=>navigate('/home/search')}>
           <i className="fa-solid fa-house" id={styles.icon}></i>책 검색하기</li>
