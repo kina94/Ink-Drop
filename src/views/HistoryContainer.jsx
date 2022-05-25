@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import { Route, Routes, useLocation, useNavigate } from 'react-router-dom'
 import LoadingSpinner from '../common/utils/LoadingSpinner';
-import CalendarView from '../components/contents/history/CalendarView';
-import HistorySidebar from '../components/contents/history/HistorySidebar'
+import CalendarView from '../components/home/contents/history/CalendarView';
+import HistorySidebar from '../components/home/contents/history/HistorySidebar'
 import ContentsNothing from '../components/contents/library/ContentsNothing';
 import { BookService } from '../service/book_service';
 
