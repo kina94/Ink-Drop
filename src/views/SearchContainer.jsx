@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import {Route, Routes, useNavigate } from 'react-router-dom'
+import {Route, Routes, useNavigate, useParams } from 'react-router-dom'
 import ShowMessage from '../components/home/common/alert/ShowMessage'
 import SearchResult from '../components/home/contents/search/SearchResult'
 import SearchInput from '../components/home/contents/search/SearchInput'
@@ -9,6 +9,7 @@ import { BookService } from '../service/book_service'
 import './Container.css'
 
 function SearchContainer(props) {
+  const params = useParams()
   const navigate = useNavigate()
   const [isLoading, setIsLoading] = useState(false)
   const [books, setBooks] = useState([])
@@ -22,6 +23,7 @@ function SearchContainer(props) {
   //검색 시 키워드로 도서 검색하여 state 저장
   const handleSearch = async (e) => {
     if (e.key === 'Enter') {
+      const searchKeyword = keyword
       setIsLoading(true)
       const params = {
         query: keyword,
@@ -29,7 +31,7 @@ function SearchContainer(props) {
       }
       const response = await BookService.searchBooks(params)
       setBooks(response.data.documents)
-      navigate(`${keyword}`)
+      navigate(`${searchKeyword}`)
     }
     setIsLoading(false)
   }
@@ -44,7 +46,7 @@ function SearchContainer(props) {
         <Route exact={true} path='/' element={<ShowMessage animationData={animationData} width='300px' height='300px' value='원하는 책을 검색하고 저장해보세요.'/>} />
         <Route path=':keyword' element={<SearchResult books={books} 
         userInfo={props.userInfo}
-        message={`'${keyword}'에 대한 검색 결과`}/>} />
+        message={`'${params['*']}'에 대한 검색 결과`}/>} />
       </Routes>
     </section>
   )
