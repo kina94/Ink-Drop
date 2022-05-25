@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
-import BookBasicInfo from '../book/BookBasicInfo'
-import BookList from '../book/BookList'
-import BookSave from '../book/BookSave'
+import BookBasicInfo from '../../common/book/BookBasicInfo'
+import BookList from '../../common/book/BookList'
+import BookSave from '../../common/book/BookSave'
 
 function BookResult(props) {
     const [isToggle, setIsToggle] = useState(false)

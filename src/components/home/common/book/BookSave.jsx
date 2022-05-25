@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { BookService } from '../../../../service/book_service'
-import SaveOptionButton from '../search/SaveOptionButton'
+import SaveOptionButton from '../../contents/search/SaveOptionButton'
 import { option } from '../../../../common/utils/common_var'
-import { Navigate, useNavigate } from 'react-router-dom'
 
 
 //책 저장 및 수정

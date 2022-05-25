@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import Footer from '../footer/Footer';
-import Header from '../header/Header';
+import Footer from './footer/Footer';
+import Header from './header/Header';
 import styles from './Login.module.css';
 import Particles from 'react-tsparticles';
 

@@ -1,6 +1,6 @@
 import React, {useState} from 'react'
-import { option } from '../../../common/utils/common_var'
-import SubSidebar from '../../home/layout/sub_sidebar/SubSidebar'
+import { option } from '../../../../common/utils/common_var'
+import SubSidebar from '../../common/sub_sidebar/SubSidebar'
 
 
 function LibrarySidebar(props) {

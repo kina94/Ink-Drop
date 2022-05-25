@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import BookSave from '../book/BookSave'
+import BookSave from '../../common/book/BookSave'
 
 function SavedBookContents(props) {
     const [modifyMode, setModifyMode] = useState(false)

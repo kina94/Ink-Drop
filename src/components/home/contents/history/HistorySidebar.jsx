@@ -1,5 +1,5 @@
 import React from 'react'
-import SubSidebar from '../../layout/sub_sidebar/SubSidebar'
+import SubSidebar from '../../common/sub_sidebar/SubSidebar'
 
 function HistorySidebar(props) {
     const menu = {

@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react'
 import {Route, Routes, useNavigate } from 'react-router-dom'
-import Navbar from '../components/home/layout/navbar/Navbar'
+import Navbar from '../components/home/common/navbar/Navbar'
 import SearchContainer from './SearchContainer'
 import LibraryContainer from './LibraryContainer'
 import HistoryContainer from './HistoryContainer'
-import Sidebar from '../components/home/layout/sidebar/Sidebar'
+import Sidebar from '../components/home/common/sidebar/Sidebar'
 import './Container.css'
 
 function MainContainer(props) {

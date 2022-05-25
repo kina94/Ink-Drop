@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react'
-import BookList from '../book/BookList'
-import BookBasicInfo from '../book/BookBasicInfo'
+import BookList from '../../common/book/BookList'
+import BookBasicInfo from '../../common/book/BookBasicInfo'
 import SavedBookContents from './SavedBookContents'
 
 // 카테고리에 저장된 책 보여주기

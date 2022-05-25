@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react'
 import { Routes, Route, useNavigate, useLocation, useParams } from 'react-router-dom'
 import LoadingSpinner from '../common/utils/LoadingSpinner'
-import LibrarySidebar from '../components/contents/library/LibrarySidebar'
-import SavedBooksByCategory from '../components/contents/library/SavedBooksByCategory'
-import ContentsNothing from '../components/contents/library/ContentsNothing'
+import ContentsNothing from '../components/home/contents/library/ContentsNothing'
+import LibrarySidebar from '../components/home/contents/library/LibrarySidebar'
+import SavedBooksByCategory from '../components/home/contents/library/SavedBooksByCategory'
+
 import { BookService } from '../service/book_service'
 
 function LibraryContainer(props) {
