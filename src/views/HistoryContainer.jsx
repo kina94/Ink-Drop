@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react'
-import { useLocation, useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import LoadingSpinner from '../common/utils/LoadingSpinner';
 import CalendarView from '../components/home/contents/history/CalendarView';
+import ChartView from '../components/home/contents/history/ChartView';
 import { BookService } from '../service/book_service';
 
 function CalendarContainer(props) {
-  const location = useLocation()
   const [isLoading, setIsLoading] = useState(false)
   const [completeBooks, setCompleteBooks] = useState([])
   const navigate = useNavigate();
@@ -31,6 +31,7 @@ function CalendarContainer(props) {
         isLoading && <LoadingSpinner></LoadingSpinner>
       }
       <CalendarView completeBooks={completeBooks} />
+      <ChartView completeBooks={completeBooks} userInfo={props.userInfo}/>
     </section>
   )
 }

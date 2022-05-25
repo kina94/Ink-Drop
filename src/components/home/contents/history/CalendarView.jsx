@@ -16,6 +16,10 @@ function CalendarView(props) {
   const onClickDate = () => {
     const date = moment(value).format('YYYY-MM-DD')
     const books = props.completeBooks.filter(item => item.endDate === date)
+    if(books.length===0){
+      alert('해당 날짜에 읽으신 책이 없어요.')
+      return
+    }
     setSelectedDayBook(books)
     setIsToggle(true)
   }
