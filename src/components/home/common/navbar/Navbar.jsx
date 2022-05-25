@@ -15,7 +15,7 @@ const Navbar = (props) => {
 
   const InfoToggle = React.forwardRef(({ onClick }, ref) => (
     <div>
-      <p style={{ fontSize: '11px', color: 'grey', margin: '0 5px 0 5px' }}>Admin
+      <p style={{ fontSize: '11px', color: 'var(--color-blue)', margin: '0 5px 0 5px' }}>Admin
       </p>
       <a
         href=""

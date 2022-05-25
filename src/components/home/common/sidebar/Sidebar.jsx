@@ -6,7 +6,7 @@ const Sidebar = () => {
   const navigate=useNavigate();
   return (
     <aside className={styles.section}>
-      <h1 className={styles.name} onClick={()=>navigate('/home')}>
+      <h1 className={styles.name} onClick={()=>navigate('/home/search')}>
         <i className="fas fa-book" style={{color:'var(--color-pink)', paddingRight:'8px', fontSize:'35px'}}></i>
         <span>다독다독</span></h1>
       <ul className={styles.ul}>

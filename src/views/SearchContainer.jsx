@@ -40,7 +40,7 @@ function SearchContainer(props) {
       }
       <SearchInput onChange={onChange} handleSearch={handleSearch}></SearchInput>
       <Routes>
-        <Route exact={true} path='/' element={<BeforeSearch />} />
+        <Route exact={true} path='/' element={<BeforeSearch userInfo={props.userInfo}/>} />
         <Route path=':keyword' element={<SearchResult books={books} 
         userInfo={props.userInfo}
         message={`${keyword}에 대한 검색 결과 ${books.length}건`}/>} />
