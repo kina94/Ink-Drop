@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { Routes, Route, useNavigate, useLocation, useParams } from 'react-router-dom'
 import LoadingSpinner from '../common/utils/LoadingSpinner'
-import Category from '../components/contents/library/Category'
+import LibrarySidebar from '../components/contents/library/LibrarySidebar'
 import SavedBooksByCategory from '../components/contents/library/SavedBooksByCategory'
 import ContentsNothing from '../components/contents/library/ContentsNothing'
 import { BookService } from '../service/book_service'
@@ -59,7 +59,7 @@ function LibraryContainer(props) {
       {
         isLoading && <LoadingSpinner></LoadingSpinner>
       }
-      <Category onClickCategory={onClickCategory}></Category>
+      <LibrarySidebar onClickCategory={onClickCategory}></LibrarySidebar>
       <Routes>
         <Route exact={true} path='/' element={<ContentsNothing />} />
         <Route exact={true} path=':category' element={<SavedBooksByCategory

@@ -2,8 +2,9 @@ import React, { useEffect, useState } from 'react'
 import {Route, Routes, useNavigate } from 'react-router-dom'
 import Navbar from '../components/contents/navbar/Navbar'
 import SearchContainer from './SearchContainer'
-import Sidebar from '../components/contents/sidebar/Sidebar'
 import LibraryContainer from './LibraryContainer'
+import HistoryContainer from './HistoryContainer'
+import Sidebar from '../components/contents/sidebar/Sidebar'
 import './Container.css'
 
 function MainContainer(props) {
@@ -38,6 +39,7 @@ function MainContainer(props) {
             <Routes>
                 <Route exact={true} path='search/*' element={<SearchContainer userInfo={userInfo}/>}/>
                 <Route exact={true} path='library/*' element={<LibraryContainer userInfo={userInfo}/>}/>
+                <Route exact={true} path='history/*' element={<HistoryContainer userInfo={userInfo}/>}/>
             </Routes>
             </section>
         </section>

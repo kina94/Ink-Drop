@@ -1,0 +1,11 @@
+.highlight{
+    background-color:red;
+}
+
+.complete-book-contents{
+    display:none;
+}
+
+.complete-book-img:hover + .complete-book-contents{
+    display:block;
+}

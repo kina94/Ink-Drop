@@ -14,8 +14,3 @@
 .library{
     display:flex;
 }
-
-.library .button-container{
-    display:flex;
-    flex-direction:column;
-}
