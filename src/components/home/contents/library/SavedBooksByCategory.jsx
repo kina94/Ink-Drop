@@ -65,7 +65,8 @@ function SavedBooksByCategory(props) {
           <div className='book-info'>
             <div className='content-wrapper'>
               <BookBasicInfo selectedBook={selectedBook} />
-              <SavedBookContents selectedBook={selectedBook} userInfo={props.userInfo}/>
+              <SavedBookContents onClickUpdate={props.onClickUpdate}
+              selectedBook={selectedBook} userInfo={props.userInfo}/>
             </div>
           </div> : null
       }

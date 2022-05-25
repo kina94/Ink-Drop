@@ -108,10 +108,10 @@ function BookSave(props) {
                         <div>
                         </div>
                         <i id='icon' className="fas fa-pencil"></i>
-                        <p>후기</p>
+                        <p>메모</p>
                         <div className='option-container'>
-                            <input type='text' id='review' onChange={handleOptionInput}
-                                value={saveBook.review || ''}
+                            <input type='text' id='memo' onChange={handleOptionInput}
+                                value={saveBook.memo || ''}
                                 autoFocus />
                         </div>
                     </form>
@@ -123,8 +123,8 @@ function BookSave(props) {
                         <i id='icon' className="fas fa-pencil"></i>
                         <p>메모</p>
                         <div className='option-container'>
-                            <input type='text' id='review' onChange={handleOptionInput}
-                                value={saveBook.review || ''}
+                            <input type='text' id='memo' onChange={handleOptionInput}
+                                value={saveBook.memo || ''}
                                 autoFocus />
                         </div>
                     </form>

@@ -10,50 +10,62 @@ function SavedBookContents(props) {
         switch (type) {
             case 'complete':
                 return (
-                    <div>
-                        <p>독서 기간</p>
-                        <div>
-                            <div>
-                                <span>시작일</span>
-                                <span>{selectedBook.startDate}</span>
-                            </div>
-                            <div>
-                                <span>종료일</span>
-                                <span>{selectedBook.endDate}</span>
-                            </div>
+                    <form>
+                        <i id='icon' className="fas fa-calendar-check"></i>
+                        <p>독서기간</p>
+                        <div className='option-container'>
+                            <span>시작일</span>
+                            <span id='view'>{selectedBook.startDate}</span>
                         </div>
-                        <div>
-                            <p>리뷰</p>
-                            <p>{selectedBook.review}</p>
+                        <div className='option-container'>
+                            <span>종료일</span>
+                            <span id='view'>{selectedBook.endDate}</span>
                         </div>
-                    </div>
+                        <i id='icon' className="fas fa-pencil"></i>
+                        <p>후기</p>
+                        <div className='option-container'>
+                            <span id='view'>{selectedBook.review}</span>
+                        </div>
+                    </form>
                 )
             case 'reading':
-                return (<div>
-                    <p>독서 기간</p>
-                    <div>
-                        <div>
+                return (
+                    <form>
+                        <i id='icon' className="fas fa-calendar-check"></i>
+                        <p>독서기간</p>
+                        <div className='option-container'>
                             <span>시작일</span>
-                            <span>{selectedBook.startDate}</span>
+                            <span id='view'>{selectedBook.startDate}</span>
                         </div>
-                    </div>
-                    <div>
+                        <div>
+                        </div>
+                        <i id='icon' className="fas fa-pencil"></i>
                         <p>메모</p>
-                        <p>{selectedBook.memo}</p>
-                    </div>
-                </div>)
+                        <div className='option-container'>
+                        <span id='view'>{selectedBook.memo}</span>
+                        </div>
+                    </form>
+                )
             case 'want':
                 return (
                     <div>
+                    <form>
+                        <i id='icon' className="fas fa-pencil"></i>
                         <p>메모</p>
-                        <p>{selectedBook.memo}</p>
+                        <div className='option-container'>
+                            <span id='view'>{selectedBook.memo}</span>
+                        </div>
+                    </form>
                     </div>
                 )
         }
     }
 
     const onClickModify = () => setModifyMode(!modifyMode)
-    const updateBookContents = (update) => setSelectedBook(update)
+    const updateBookContents = (update) => {
+        props.onClickUpdate(update)
+        setSelectedBook(update)
+    }
     return (
         <>
             {
@@ -62,10 +74,13 @@ function SavedBookContents(props) {
                     userInfo={props.userInfo}
                     onClickModify={onClickModify}
                     updateBookContents={updateBookContents}
-                /> : viewChangeByType(selectedBook.type)}
-
-            {
-                !modifyMode && <button onClick={onClickModify}>수정</button>
+                /> :
+                    <section className='save-contents'>
+                        <section className='selected-display'>
+                            {viewChangeByType(selectedBook.type)}
+                            <button onClick={onClickModify}>수정</button>
+                        </section>
+                    </section>
             }
         </>
     )

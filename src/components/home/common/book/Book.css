@@ -162,7 +162,7 @@
   border-radius:10px;
   color:var(--color-black);
   justify-content:center;
-  padding: 0 15px 0 25px;
+  padding: 0 15px 10px 25px;
 }
 
 .button-container button{
@@ -195,7 +195,7 @@
 }
 
 .selected-display{
-  padding:30px 30px 10px 30px;
+  padding:0px 30px 10px 30px;
   text-align:left;
   font-size:16px;
   color:var(--color-black);
@@ -221,11 +221,17 @@
 
 .option-container{
   display:flex;
+  height:45px;
   align-items: center;
   border : 1px solid #E9E9E9;
   border-radius:5px;
   margin-bottom:10px;
   padding : 5px 15px 5px 15px;
+}
+
+.option-container #view{
+  color:var(--color-black);
+  font-weight:normal;
 }
 
 
@@ -242,7 +248,7 @@
 }
 
 form p{
-  margin-top:10px;
+  margin-top:20px;
   font-weight:bold;
   margin-bottom:10px;
   display:inline-block;

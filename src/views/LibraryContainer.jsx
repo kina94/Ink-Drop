@@ -34,6 +34,15 @@ function LibraryContainer(props) {
     }
   }
 
+  const onClickUpdate = (newBook) =>{
+    setSavedBooks(book=>{
+      const update = {...book}
+      const id = Object.keys(update).filter(key=>update[key].isbn===newBook.isbn)
+      update[id] = newBook
+      return update
+    })
+  }
+
   // 저장되어 있는 책을 카테고리에 따라 필터링해서 불러오기
   const getSavedBooks = async () => {
     setIsLoading(true)
@@ -66,6 +75,7 @@ function LibraryContainer(props) {
         <Route exact={true} path=':category' element={<SavedBooksByCategory
         userInfo={props.userInfo} savedBooks={savedBooks}
         onClickDelete={onClickDelete}
+        onClickUpdate={onClickUpdate}
         />} />
       </Routes>
     </section>
