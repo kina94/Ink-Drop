@@ -5,8 +5,8 @@ const Header = memo(() => {
   return(
   <header className={styles.header}>
     <h1 className={styles.name}>
-    <i className="fa-solid fa-feather-pointed" style={{color:'#A593E0', paddingRight:'8px'}}></i>
-    InkDrop</h1>
+    <i className="fas fa-book" style={{color:'var(--color-pink)', paddingRight:'8px'}}></i>
+    다독다독</h1>
   </header>
   )
 })
