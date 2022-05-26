@@ -3,7 +3,7 @@
     display:none
 }
 
-@media screen and (max-width: px){ //추후 설정하기
+@media screen and (max-width: 1px){ //추후 설정하기
     *{
         font-size:14px !important;
         line-height:25px !important;
