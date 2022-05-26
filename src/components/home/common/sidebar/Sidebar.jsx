@@ -19,6 +19,8 @@ const Sidebar = () => {
         <li className={styles.li} onClick={()=>navigate('/home/board')}>
           <i className="fa-solid fa-pen-to-square" id={styles.icon} ></i>리뷰</li>
       </ul>
+      <div className={styles.copyright}>
+        <span>Copyright 2022 All rights reserved by KINA</span></div>
     </aside>
   )
 }
