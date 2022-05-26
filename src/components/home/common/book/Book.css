@@ -9,9 +9,10 @@
 }
 
 .book-list li{
+  overflow: scroll;
   cursor:pointer;
   display:flex;
-  padding: 50px 0 30px 0;
+  padding: 30px 20px 30px 20px;
   border-bottom:1px solid lightgrey;
   max-height:250px;
 }
@@ -225,16 +226,27 @@
   flex-direction: column;
 }
 
+.selected-display .button-container{
+  display:flex;
+  justify-content: right;
+  padding:0;
+  margin:30px 0 0 0;
+}
+
 .selected-display button{
   border-radius:5px;
   border: none;
   width:200px;
   height: 50px;
-  margin: 30px 0 0 auto;
   background-color: var(--color-blue);
   color:white;
   font-weight: bold;
   font-size: 18px;
+  margin:0 0 0 6px;
+}
+
+.selected-display .delete{
+  background-color: slategrey;
 }
 
 .selected-display button:hover{

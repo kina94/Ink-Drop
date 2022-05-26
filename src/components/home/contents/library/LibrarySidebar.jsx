@@ -5,7 +5,8 @@ import SubSidebar from '../../common/sub_sidebar/SubSidebar'
 
 function LibrarySidebar(props) {
   return (
-    <>
+    <section className='sub-sidebar-container'>
+    <ul>
         {
           Object.keys(option).map((key, index) => {
             return (
@@ -18,7 +19,8 @@ function LibrarySidebar(props) {
             )
           })
         }
-    </>
+    </ul>
+    </section>
   )
 }
 

@@ -1,0 +1,25 @@
+.saved-book-list{
+    width:100%;
+}
+.saved-book-list-header{
+    background-color: var(--color-hotpink);
+    color: white;
+    font-weight: bold;
+    padding:15px;
+    text-align:center;
+}
+
+.saved-book-list-header .saved-book-back{
+    background-color:transparent;
+    border:none;
+    float:left;
+    transition: .1s all ease-in;
+}
+.saved-book-list-header .saved-book-back:hover{
+    transform: scale(1.3);
+
+}
+
+.saved-book-list-header #icon{
+    color:white;
+}

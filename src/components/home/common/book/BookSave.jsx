@@ -53,10 +53,11 @@ function BookSave(props) {
         if (bookKey) {
             alert(`이미 저장된 책이에요. ${option[savedBooks[bookKey].type]}을 확인해보세요.`)
         } else {
-            const newBook = { ...saveBook,
+            const newBook = {
+                ...saveBook,
                 'type': selectedOption,
-                'endDate' : saveBook.endDate ? saveBook.endDate : dateValue,
-                'startDate' : saveBook.startDate ? saveBook.startDate : dateValue
+                'endDate': saveBook.endDate ? saveBook.endDate : dateValue,
+                'startDate': saveBook.startDate ? saveBook.startDate : dateValue
             }
             BookService.saveBook(props.userInfo.userId, props.selectedBook.isbn, newBook)
             alert('저장을 완료했어요.')
@@ -119,15 +120,15 @@ function BookSave(props) {
             case 'want':
                 return (
                     <div>
-                    <form>
-                        <i id='icon' className="fas fa-pencil"></i>
-                        <p>메모</p>
-                        <div className='option-container'>
-                            <input type='text' id='memo' onChange={handleOptionInput}
-                                value={saveBook.memo || ''}
-                                autoFocus />
-                        </div>
-                    </form>
+                        <form>
+                            <i id='icon' className="fas fa-pencil"></i>
+                            <p>메모</p>
+                            <div className='option-container'>
+                                <input type='text' id='memo' onChange={handleOptionInput}
+                                    value={saveBook.memo || ''}
+                                    autoFocus />
+                            </div>
+                        </form>
                     </div>
                 )
         }
@@ -148,7 +149,10 @@ function BookSave(props) {
             </section>
             <section className='selected-display'>
                 {selectedOptionContent()}
-                <button type='submit' onClick={onClickSaveBook}>저장하기</button>
+                <div className='button-container'>
+                    <button type='submit' onClick={onClickSaveBook}>저장하기</button>
+
+                </div>
             </section>
         </section>
     )

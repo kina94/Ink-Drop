@@ -42,20 +42,20 @@ function SavedBookContents(props) {
                         <i id='icon' className="fas fa-pencil"></i>
                         <p>메모</p>
                         <div className='option-container'>
-                        <span id='view'>{selectedBook.memo}</span>
+                            <span id='view'>{selectedBook.memo}</span>
                         </div>
                     </form>
                 )
             case 'want':
                 return (
                     <div>
-                    <form>
-                        <i id='icon' className="fas fa-pencil"></i>
-                        <p>메모</p>
-                        <div className='option-container'>
-                            <span id='view'>{selectedBook.memo}</span>
-                        </div>
-                    </form>
+                        <form>
+                            <i id='icon' className="fas fa-pencil"></i>
+                            <p>메모</p>
+                            <div className='option-container'>
+                                <span id='view'>{selectedBook.memo}</span>
+                            </div>
+                        </form>
                     </div>
                 )
         }
@@ -78,7 +78,10 @@ function SavedBookContents(props) {
                     <section className='save-contents'>
                         <section className='selected-display'>
                             {viewChangeByType(selectedBook.type)}
-                            <button onClick={onClickModify}>수정</button>
+                            <div className='button-container'>
+                                <button onClick={onClickModify}>수정</button>
+                                <button className='delete' id={props.selectedBook.isbn} onClick={props.onClickDelete}>삭제</button>
+                            </div>
                         </section>
                     </section>
             }

@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from 'react'
 import { Routes, Route, useNavigate, useLocation, useParams } from 'react-router-dom'
 import LoadingSpinner from '../common/utils/LoadingSpinner'
+import ShowMessage from '../components/home/common/alert/ShowMessage'
 import ContentsNothing from '../components/home/contents/library/ContentsNothing'
 import LibrarySidebar from '../components/home/contents/library/LibrarySidebar'
 import SavedBooksByCategory from '../components/home/contents/library/SavedBooksByCategory'
-
 import { BookService } from '../service/book_service'
+import animationData from '../assets/animation/72170-books.json'
+
 
 function LibraryContainer(props) {
   const params = useParams()
@@ -16,28 +18,30 @@ function LibraryContainer(props) {
 
   // 전체, 읽은책, 읽고 있는 책, 읽고 싶은 책 카테고리 선택
   const onClickCategory = (e) => {
-    const id = e.target.closest('button').id
+    const id = e.target.closest('li').id
     navigate(`/home/library/${id}`)
+    return id
   }
 
   // 저장된 책 삭제
-  const onClickDelete = (e) =>{
-    if(window.confirm('정말 삭제하시겠어요?')){
-      setSavedBooks(book=>{
-        const update = {...book}
-        const id = Object.keys(update).filter(key=>update[key].isbn===e.target.id)
+  const onClickDelete = (e) => {
+    if (window.confirm('정말 삭제하시겠어요?')) {
+      setSavedBooks(book => {
+        const update = { ...book }
+        const id = Object.keys(update).filter(key => update[key].isbn === e.target.id)
         delete update[id]
         return update
       })
       BookService.deleteBook(props.userInfo.userId, e.target.id)
       alert('삭제가 완료되었습니다.')
+      navigate(0)
     }
   }
 
-  const onClickUpdate = (newBook) =>{
-    setSavedBooks(book=>{
-      const update = {...book}
-      const id = Object.keys(update).filter(key=>update[key].isbn===newBook.isbn)
+  const onClickUpdate = (newBook) => {
+    setSavedBooks(book => {
+      const update = { ...book }
+      const id = Object.keys(update).filter(key => update[key].isbn === newBook.isbn)
       update[id] = newBook
       return update
     })
@@ -71,11 +75,15 @@ function LibraryContainer(props) {
       }
       <LibrarySidebar onClickCategory={onClickCategory}></LibrarySidebar>
       <Routes>
-        <Route exact={true} path='/' element={<ContentsNothing />} />
+        <Route exact={true} path='/' element={<ShowMessage value={'카테고리를 선택해주세요.'}
+          animationData={animationData}
+          width={'200px'}
+          height={'200px'}
+        />} />
         <Route exact={true} path=':category' element={<SavedBooksByCategory
-        userInfo={props.userInfo} savedBooks={savedBooks}
-        onClickDelete={onClickDelete}
-        onClickUpdate={onClickUpdate}
+          userInfo={props.userInfo} savedBooks={savedBooks}
+          onClickDelete={onClickDelete}
+          onClickUpdate={onClickUpdate}
         />} />
       </Routes>
     </section>
