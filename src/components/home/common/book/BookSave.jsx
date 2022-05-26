@@ -57,7 +57,8 @@ function BookSave(props) {
                 ...saveBook,
                 'type': selectedOption,
                 'endDate': saveBook.endDate ? saveBook.endDate : dateValue,
-                'startDate': saveBook.startDate ? saveBook.startDate : dateValue
+                'startDate': saveBook.startDate ? saveBook.startDate : dateValue,
+                'addDate' : new Date(),
             }
             BookService.saveBook(props.userInfo.userId, props.selectedBook.isbn, newBook)
             alert('저장을 완료했어요.')

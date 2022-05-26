@@ -60,6 +60,7 @@ function LibraryContainer(props) {
           .map(key => books[key])
       }
     }
+    processedBooks.sort((a,b)=> {return a.addDate - b.addDate})
     setSavedBooks(processedBooks)
     setIsLoading(false)
   }
