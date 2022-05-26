@@ -1,11 +1,13 @@
 import React, {useState} from 'react'
+import { useLocation } from 'react-router-dom'
 import { option } from '../../../../common/utils/common_var'
 import SubSidebar from '../../common/sub_sidebar/SubSidebar'
 
 
 function LibrarySidebar(props) {
+  const location = useLocation()
   return (
-    <section className='sub-sidebar-container'>
+    <section className={`sub-sidebar-container ${location.pathname!='/home/library' ? 'hide' : ''}`}>
     <ul>
         {
           Object.keys(option).map((key, index) => {

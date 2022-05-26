@@ -62,7 +62,7 @@ function SavedBooksByCategory(props) {
         {props.userInfo.userName}님의 {option[params.category]} 목록 ({props.savedBooks ? props.savedBooks.length : 0}권)
       </div>
       {
-        props.savedBooks && props.savedBooks.length===0 ?
+        !props.savedBooks || props.savedBooks && props.savedBooks.length===0 ?
           <ShowMessage value={'저장하신 책이 없어요. 책 검색하기를 통해 책장을 채워주세요.'}
             animationData={animationData}
             width={'200px'}

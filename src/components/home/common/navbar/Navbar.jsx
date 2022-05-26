@@ -14,7 +14,7 @@ const Navbar = (props) => {
   }, [props.authService])
 
   const InfoToggle = React.forwardRef(({ onClick }, ref) => (
-    <div>
+    <div style={{minWidth:'100px'}}>
       <p style={{ fontSize: '11px', color: 'var(--color-blue)', margin: '0 5px 0 5px' }}>Admin
       </p>
       <a
@@ -29,7 +29,7 @@ const Navbar = (props) => {
           color: 'var(--color-black)',
           fontWeight: 'bold',
           textDecoration: 'none',
-          marginLeft: '5px'
+          marginLeft: '5px',
         }}
       >
         {userName}<i className="fa-solid fa-angle-down" style={{marginLeft:'5px'}}></i>

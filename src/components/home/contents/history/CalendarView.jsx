@@ -62,7 +62,7 @@ function CalendarView(props) {
         <i id='icon' className="fa-solid fa-calendar-days" />
         <span>{props.userInfo.userName}님의 독서 캘린더</span>
         <div id='label'><div id='box'></div>책을 완독한 날</div>
-        </div>
+      </div>
       <Calendar onChange={setValue} value={value}
         tileClassName={({ date, view }) => {
           if (endDate.find(x => x === moment(date).format('YYYY-MM-DD'))) {
@@ -74,22 +74,30 @@ function CalendarView(props) {
         isToggle &&
         <div className='book-info'>
           <div className='content-wrapper'>
-            <ul>
-              {
-                selectedDayBook.map((book, index) => {
-                  return (
-                    <li key={index}>
-                      <img className='complete-book-img' src={book.thumbnail}></img>
-                      <div className='complete-book-contents'>
-                        <span>{book.title}</span>
-                        <span>{book.authors[0]} / {book.publisher}</span>
-                        <span>{book.review}</span>
-                      </div>
-                    </li>
-                  )
-                })
-              }
-            </ul>
+            <section className='title'>
+              <span id='day'>{moment(value).format('YYYY-MM-DD')}일에 읽은 책</span>
+              <button id='day' className='close'><i className="fas fa-times"></i></button>
+            </section>
+            <seciton className='day-read-book'>
+              <ul>
+                {
+                  selectedDayBook.map((book, index) => {
+                    return (
+                      <li key={index}>
+                        <div id='item'>
+                          <img className='complete-book-img' src={book.thumbnail}></img>
+                        </div>
+                        <div className='complete-book-contents'>
+                          <span>{book.title}</span>
+                          <span>{book.authors[0]} / {book.publisher}</span>
+                          <span>{book.review}</span>
+                        </div>
+                      </li>
+                    )
+                  })
+                }
+              </ul>
+            </seciton>
           </div>
         </div>
       }
