@@ -1,70 +1,28 @@
-# Getting Started with Create React App
+<div align="center">
+  <h1> 📚 다독다독 (React) </h1>
+자신이 읽은, 읽고 싶은, 읽는 중인 책을 관리하여 독서 습관을 기를 수 있는 웹 애플리케이션입니다.</br>
+도서 검색, 옵션별 저장, 저장된 책 관리, 일별/월별/연도별 독서량을 확인하고 회원 간에 도서 리뷰를 공유할 수 있는 기능을 제공합니다. </br>
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+<a href='http://dadokdadok.netlify.app'>바로가기</a>
+![image](https://user-images.githubusercontent.com/66938939/170541427-6370e1a6-06ff-409d-9ac1-60b861401aea.png)
 
-## Available Scripts
+<img src='https://user-images.githubusercontent.com/66938939/170541490-2ea2dd74-e995-494e-9569-bfaa6010e7fa.png' width='430px' height='280px'>
+<img src='https://user-images.githubusercontent.com/66938939/170539968-0c007d5d-dfbb-4605-84f5-fcde3c275bbb.png' width='430px' height='280px'>
+<img src='https://user-images.githubusercontent.com/66938939/170540436-5cff36bd-9ae2-4daa-98d1-d42e728725ed.png' width='430px' height='280px'>
+<img src='https://user-images.githubusercontent.com/66938939/170541308-7442d3d5-0be3-42fd-adc3-c52bf84a10cf.png' width='430px' height='280px'>
 
-In the project directory, you can run:
 
-### `npm start`
+</div>
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+<hr/>
 
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+## 남은 구현 사항📚</a>
+### 1) 리뷰 메뉴 구현</br>
+### 2) 도서 검색 인피니티 스크롤 구현</br>
+### 3) 재사용성을 고려한 컴포넌트와 함수 분리⭐⭐⭐⭐⭐</br>
+* 필수 기능 구현 후 리팩토링 필요</br>
+### 4) 브라우저에 따른 최적화 </br>
+* 사파리에서 css와 컴포넌트 배치가 깨져서 나오는 현상 존재</br>
+### 5) 모바일 화면 구현 </br>
+* 반응형으로 기본 css는 작업해놓은 상태</br>
