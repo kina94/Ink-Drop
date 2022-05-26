@@ -73,7 +73,7 @@ function SavedBooksByCategory(props) {
             return (
               <>
                 <ul className='book-list'>
-                  <BookList book={props.savedBooks[key]} index={index}
+                  <BookList key={index} book={props.savedBooks[key]} index={index}
                     clickEvent={onClickBook} />
                 </ul>
               </>)
