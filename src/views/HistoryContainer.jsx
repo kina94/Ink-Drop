@@ -30,7 +30,7 @@ function CalendarContainer(props) {
       {
         isLoading && <LoadingSpinner></LoadingSpinner>
       }
-      <CalendarView completeBooks={completeBooks} />
+      <CalendarView completeBooks={completeBooks} userInfo={props.userInfo} />
       <ChartView completeBooks={completeBooks} userInfo={props.userInfo}/>
     </section>
   )

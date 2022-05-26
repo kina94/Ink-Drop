@@ -19,3 +19,7 @@
 .search, .history, .library{
     height:100%;
 }
+
+.history{
+    padding:30px;
+}

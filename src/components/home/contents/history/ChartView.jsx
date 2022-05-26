@@ -46,7 +46,7 @@ function ChartView(props) {
 
 
   const labels = ['01월', '02월', '03월', '04월', '05월', '06월', '07월', '08월', '09월', '10월', '11월', '12월'];
-  
+
   const chartData = {
     labels,
     datasets: [
@@ -58,12 +58,13 @@ function ChartView(props) {
     ],
   };
 
-  const options = { reponsive: true,
-    scales:{
-      y:{
-        suggestedMax: Math.max(...chartData.datasets[0].data)+1,
-        ticks:{
-          stepSize:1,
+  const options = {
+    reponsive: true,
+    scales: {
+      y: {
+        suggestedMax: Math.max(...chartData.datasets[0].data) + 1,
+        ticks: {
+          stepSize: 1,
         }
       }
     }
@@ -71,17 +72,20 @@ function ChartView(props) {
 
 
   return (
-    <>
-      <select name='year' onChange={onChangeYear}>
-        {
-          uniqueYear.map(year => {
-            return <option value={year}>{year}</option>
-          })
-        }
-        <option value='2011'>2020</option>
-      </select>
+    <section className='chart-view'>
+      <div className='title'>
+        <i id='icon' className="fas fa-chart-bar"></i>
+        {props.userInfo.userName}님의 독서 차트
+        <select name='year' onChange={onChangeYear}>
+          {
+            uniqueYear.map(year => {
+              return <option key={year} value={year}>{year}</option>
+            })
+          }
+        </select>
+      </div>
       <Bar options={options} data={chartData} />
-    </>
+    </section>
   )
 }
 

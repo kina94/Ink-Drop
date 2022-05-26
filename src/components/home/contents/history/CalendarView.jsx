@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react'
 import Calendar from 'react-calendar'
-import 'react-calendar/dist/Calendar.css';
 import moment from 'moment';
 import './Calendar.css'
 
@@ -16,7 +15,7 @@ function CalendarView(props) {
   const onClickDate = () => {
     const date = moment(value).format('YYYY-MM-DD')
     const books = props.completeBooks.filter(item => item.endDate === date)
-    if(books.length===0){
+    if (books.length === 0) {
       alert('해당 날짜에 읽으신 책이 없어요.')
       return
     }
@@ -59,6 +58,9 @@ function CalendarView(props) {
 
   return (
     <section className='calendar-view'>
+      <div className='title'>
+        <i id='icon' className="fa-solid fa-calendar-days" />
+        {props.userInfo.userName}님의 독서 캘린더</div>
       <Calendar onChange={setValue} value={value}
         tileClassName={({ date, view }) => {
           if (endDate.find(x => x === moment(date).format('YYYY-MM-DD'))) {
@@ -71,20 +73,20 @@ function CalendarView(props) {
         <div className='book-info'>
           <div className='content-wrapper'>
             <ul>
-            {
-              selectedDayBook.map((book,index) => {
-                return (
-                  <li key={index}>
-                    <img className='complete-book-img' src={book.thumbnail}></img>
-                    <div className='complete-book-contents'>
-                      <span>{book.title}</span>
-                      <span>{book.authors[0]} / {book.publisher}</span>
-                      <span>{book.review}</span>
-                    </div>
-                  </li>
-                )
-              })
-            }
+              {
+                selectedDayBook.map((book, index) => {
+                  return (
+                    <li key={index}>
+                      <img className='complete-book-img' src={book.thumbnail}></img>
+                      <div className='complete-book-contents'>
+                        <span>{book.title}</span>
+                        <span>{book.authors[0]} / {book.publisher}</span>
+                        <span>{book.review}</span>
+                      </div>
+                    </li>
+                  )
+                })
+              }
             </ul>
           </div>
         </div>
