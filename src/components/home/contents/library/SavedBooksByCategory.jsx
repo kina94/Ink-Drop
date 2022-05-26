@@ -54,8 +54,10 @@ function SavedBooksByCategory(props) {
               <>
                 <button id={props.savedBooks[key].isbn}
                   onClick={props.onClickDelete}>삭제</button>
+                <ul className='book-list'>
                 <BookList book={props.savedBooks[key]} index={index}
                 clickEvent={onClickBook}/>
+                </ul>
               </>)
           })
       }

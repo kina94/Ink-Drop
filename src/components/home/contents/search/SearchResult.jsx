@@ -8,7 +8,6 @@ import animationData from '../../../../assets/animation/85557-empty.json'
 function BookResult(props) {
     const [isToggle, setIsToggle] = useState(false)
     const [selectedBook, setSelectedBook] = useState([])
-    const [saveBook, setSaveBook] = useState({})
 
     // 검색 결과창에서 원하는 책 클릭 시 모달 토글을 위해 state 설정
     const onClickBook = (e) => {
@@ -53,15 +52,16 @@ function BookResult(props) {
                     /> :
                     <section className='show-search-result'>
                         <span>{props.message}</span>
+                        <ul className='book-list'>
                         {
                             Object.keys(props.books).map((key, index) => {
                                 return (
-
                                     <BookList book={props.books[key]} index={index}
                                         clickEvent={onClickBook}></BookList>
                                 )
                             })
                         }
+                        </ul>
                     </section>
             }
 

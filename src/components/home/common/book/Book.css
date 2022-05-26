@@ -13,6 +13,7 @@
   display:flex;
   padding: 50px 0 30px 0;
   border-bottom:1px solid lightgrey;
+  max-height:250px;
 }
 
 .book-list li:hover{
@@ -21,6 +22,7 @@
 
 .book-list li div {
   margin-left:30px;
+  min-width:0;
 }
 
 .book-list p{
@@ -41,6 +43,12 @@
 .book-list .contents{
   margin-top:5px;
   line-height:30px;
+  display:-webkit-box; 
+  word-wrap:break-word; 
+  -webkit-line-clamp:3; 
+  -webkit-box-orient:vertical; 
+  overflow:hidden; 
+  text-overflow:ellipsis;
 }
 
 /*모달창*/
@@ -66,8 +74,10 @@
     font-size:1.5vh;
     border-radius:10px;
     text-align:center;
+    width:100%;
     max-width:800px;
-    overflow:hidden;
+    max-height:100%;
+    overflow:scroll;
 }
 
 .content-container{
@@ -86,6 +96,11 @@
   padding: 30px 20px 0px 30px;
   text-align:left;
   word-break:keep-all;
+}
+
+.content-wrapper .title span{
+  display:-webkit-box; 
+  word-wrap:break-word; 
 }
 
 .book-info .close{
@@ -121,6 +136,7 @@
 .information section:first-child p{
   margin-top:10px;
   font-weight: bold;
+  word-wrap:break-word; 
 }
 
 .information section:last-child{
@@ -134,6 +150,12 @@
 
 .information section:last-child #contents{
   line-height:30px;
+  display:-webkit-box; 
+  word-wrap:break-word; 
+  -webkit-line-clamp:8; 
+  -webkit-box-orient:vertical; 
+  overflow:hidden; 
+  text-overflow:ellipsis;
 }
 
 #link{
@@ -217,6 +239,10 @@
 
 .selected-display button:hover{
   opacity:0.9
+}
+
+.selected-display #option-saved{
+  background-color: whitesmoke;
 }
 
 .option-container{

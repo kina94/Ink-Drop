@@ -13,17 +13,17 @@ function SavedBookContents(props) {
                     <form>
                         <i id='icon' className="fas fa-calendar-check"></i>
                         <p>독서기간</p>
-                        <div className='option-container'>
+                        <div className='option-container' id='option-saved'>
                             <span>시작일</span>
                             <span id='view'>{selectedBook.startDate}</span>
                         </div>
-                        <div className='option-container'>
+                        <div className='option-container' id='option-saved'>
                             <span>종료일</span>
                             <span id='view'>{selectedBook.endDate}</span>
                         </div>
                         <i id='icon' className="fas fa-pencil"></i>
                         <p>후기</p>
-                        <div className='option-container'>
+                        <div className='option-container' id='option-saved'>
                             <span id='view'>{selectedBook.review}</span>
                         </div>
                     </form>
