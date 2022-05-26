@@ -36,7 +36,7 @@ function MainContainer(props) {
         <section className='main'>
             <Navbar userInfo={userInfo} {...props}></Navbar>
             <Sidebar></Sidebar>
-            <MobileNavbar />
+            {/* <MobileNavbar /> */}
             <section className='content'>
                 <Routes>
                     <Route exact={true} path='search/*' element={<SearchContainer userInfo={userInfo} />} />
