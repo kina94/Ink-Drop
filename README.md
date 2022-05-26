@@ -4,6 +4,7 @@
 도서 검색, 옵션별 저장, 저장된 책 관리, 일별/월별/연도별 독서량을 확인하고 회원 간에 도서 리뷰를 공유할 수 있는 기능을 제공합니다. </br>
 
 <a href='http://dadokdadok.netlify.app'>바로가기</a>
+
 ![image](https://user-images.githubusercontent.com/66938939/170541427-6370e1a6-06ff-409d-9ac1-60b861401aea.png)
 
 <img src='https://user-images.githubusercontent.com/66938939/170541490-2ea2dd74-e995-494e-9569-bfaa6010e7fa.png' width='430px' height='280px'>
@@ -16,12 +17,11 @@
 
 
 <hr/>
-
 ## 남은 구현 사항📚</a>
 ### 1) 리뷰 메뉴 구현</br>
 ### 2) 도서 검색 인피니티 스크롤 구현</br>
 ### 3) 재사용성을 고려한 컴포넌트와 함수 분리⭐⭐⭐⭐⭐</br>
-* 필수 기능 구현 후 리팩토링 필요</br>
+* 필수 기능 구현 후 전체적인 리팩토링 필요</br>
 ### 4) 브라우저에 따른 최적화 </br>
 * 사파리에서 css와 컴포넌트 배치가 깨져서 나오는 현상 존재</br>
 ### 5) 모바일 화면 구현 </br>
