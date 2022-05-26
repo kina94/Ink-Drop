@@ -53,7 +53,7 @@ function ChartView(props) {
       {
         label: '읽은 책(권)',
         data: countBook ? countBook : getCountBooks(new Date().getFullYear()),
-        backgroundColor: 'rgba(255, 99, 132, 0.5)',
+        backgroundColor: 'rgba(79, 60, 204, 0.9)',
       },
     ],
   };
@@ -76,13 +76,13 @@ function ChartView(props) {
       <div className='title'>
         <i id='icon' className="fas fa-chart-bar"></i>
         {props.userInfo.userName}님의 독서 차트
-        <select name='year' onChange={onChangeYear}>
-          {
-            uniqueYear.map(year => {
-              return <option key={year} value={year}>{year}</option>
-            })
-          }
-        </select>
+          <select name='year' onChange={onChangeYear}>
+            {
+              uniqueYear.map(year => {
+                return <option key={year} value={year}>{year}</option>
+              })
+            }
+          </select>
       </div>
       <Bar options={options} data={chartData} />
     </section>

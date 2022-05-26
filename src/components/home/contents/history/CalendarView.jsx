@@ -60,7 +60,9 @@ function CalendarView(props) {
     <section className='calendar-view'>
       <div className='title'>
         <i id='icon' className="fa-solid fa-calendar-days" />
-        {props.userInfo.userName}님의 독서 캘린더</div>
+        <span>{props.userInfo.userName}님의 독서 캘린더</span>
+        <div id='label'><div id='box'></div>책을 완독한 날</div>
+        </div>
       <Calendar onChange={setValue} value={value}
         tileClassName={({ date, view }) => {
           if (endDate.find(x => x === moment(date).format('YYYY-MM-DD'))) {
