@@ -61,25 +61,27 @@ function SavedBookContents(props) {
         }
     }
 
-    const onClickModify = () => setModifyMode(!modifyMode)
-    const updateBookContents = (update) => {
-        props.onClickUpdate(update)
-        setSelectedBook(update)
+    const updateBookContents = (newBook) => {
+        setSelectedBook(newBook)
+        setModifyMode(!modifyMode)
     }
+    
     return (
         <>
             {
                 modifyMode ? <BookSave isModify={true}
                     selectedBook={selectedBook}
+                    savedBooks={props.savedBooks}
                     userInfo={props.userInfo}
-                    onClickModify={onClickModify}
+                    bookRepository={props.bookRepository}
+                    onClickUpdateOrAdd = {props.onClickUpdateOrAdd}
                     updateBookContents={updateBookContents}
                 /> :
                     <section className='save-contents'>
                         <section className='selected-display'>
                             {viewChangeByType(selectedBook.type)}
                             <div className='button-container'>
-                                <button onClick={onClickModify}>수정</button>
+                                <button onClick={()=>setModifyMode(!modifyMode)}>수정</button>
                                 <button className='delete' id={props.selectedBook.isbn} onClick={props.onClickDelete}>삭제</button>
                             </div>
                         </section>

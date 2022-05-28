@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react'
-import { BookService } from '../../../../service/book_service'
 import SaveOptionButton from '../../contents/search/SaveOptionButton'
 import { option } from '../../../../common/utils/common_var'
 
@@ -8,14 +7,12 @@ import { option } from '../../../../common/utils/common_var'
 function BookSave(props) {
     const [selectedOption, setSelectedOption] = useState(props.selectedBook.type || 'complete')
     const [saveBook, setSaveBook] = useState(props.selectedBook)
-    const [savedBooks, setSavedBooks] = useState(null)
+    const [savedBooks, setSavedBooks] = useState(props.savedBooks)
     const dateValue = new Date().toISOString().substring(0, 10)
 
     useEffect(() => {
         if (props.isModify) { //수정인 경우
             setSaveBook(props.selectedBook)
-        } else {
-            getSavedBooks()
         }
     }, [])
 
@@ -37,12 +34,6 @@ function BookSave(props) {
         setSaveBook({ ...saveBook, [e.target.id]: e.target.value })
     }
 
-    // 저장된 책 리스트 불러오기
-    const getSavedBooks = async () => {
-        const savedBookList = await BookService.syncBooks(props.userInfo.userId)
-        setSavedBooks(savedBookList)
-    }
-
     /* 저장된 책 목록의 키값과 선택된 책의 키값을 비교 중복되지 않을 경우 저장.
     함수 분리 필요*/
     const onClickSaveBook = () => {
@@ -50,7 +41,7 @@ function BookSave(props) {
         if (savedBooks) {
             bookKey = Object.keys(savedBooks).find(key => key === props.selectedBook.isbn)
         }
-        if (bookKey) {
+        if (bookKey && !props.isModify) {
             alert(`이미 저장된 책이에요. ${option[savedBooks[bookKey].type]}을 확인해보세요.`)
         } else {
             const newBook = {
@@ -60,11 +51,11 @@ function BookSave(props) {
                 'startDate': saveBook.startDate ? saveBook.startDate : dateValue,
                 'addDate' : new Date(),
             }
-            BookService.saveBook(props.userInfo.userId, props.selectedBook.isbn, newBook)
+            console.log(newBook)
+            props.onClickUpdateOrAdd(newBook)
             alert('저장을 완료했어요.')
             if (props.isModify) {
                 props.updateBookContents(newBook)
-                props.onClickModify()
             }
         }
     }
@@ -152,7 +143,6 @@ function BookSave(props) {
                 {selectedOptionContent()}
                 <div className='button-container'>
                     <button type='submit' onClick={onClickSaveBook}>저장하기</button>
-
                 </div>
             </section>
         </section>

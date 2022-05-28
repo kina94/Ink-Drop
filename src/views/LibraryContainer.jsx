@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from 'react'
-import { Routes, Route, useNavigate, useLocation, useParams } from 'react-router-dom'
+import { Routes, Route, useNavigate, useParams } from 'react-router-dom'
 import LoadingSpinner from '../common/utils/LoadingSpinner'
 import ShowMessage from '../components/home/common/alert/ShowMessage'
-import ContentsNothing from '../components/home/contents/library/ContentsNothing'
 import LibrarySidebar from '../components/home/contents/library/LibrarySidebar'
 import SavedBooksByCategory from '../components/home/contents/library/SavedBooksByCategory'
 import { BookService } from '../service/book_service'
@@ -13,8 +12,11 @@ function LibraryContainer(props) {
   const params = useParams()
   const navigate = useNavigate()
   const [isLoading, setIsLoading] = useState(false)
-  const [savedBooks, setSavedBooks] = useState()
+  const [filteredBooks, setFilteredBooks] = useState()
+  const [isToggle, setIsToggle] = useState(false)
   const category = params['*']
+
+  const handleToggle = () => {setIsToggle(!isToggle)}
 
   // 전체, 읽은책, 읽고 있는 책, 읽고 싶은 책 카테고리 선택
   const onClickCategory = (e) => {
@@ -26,47 +28,36 @@ function LibraryContainer(props) {
   // 저장된 책 삭제
   const onClickDelete = (e) => {
     if (window.confirm('정말 삭제하시겠어요?')) {
-      setSavedBooks(book => {
-        const update = { ...book }
-        const id = Object.keys(update).filter(key => update[key].isbn === e.target.id)
-        delete update[id]
-        return update
-      })
-      BookService.deleteBook(props.userInfo.userId, e.target.id)
+      props.onClickBookDelete(e)
       alert('삭제가 완료되었습니다.')
-      navigate(0)
+      handleToggle()
     }
   }
 
-  const onClickUpdate = (newBook) => {
-    setSavedBooks(book => {
-      const update = { ...book }
-      const id = Object.keys(update).filter(key => update[key].isbn === newBook.isbn)
-      update[id] = newBook
-      return update
-    })
+  //저장된 책 업데이트
+  const onClickUpdateOrAdd = (newBook) => {
+    props.onClickBookUpdateOrAdd(newBook)
   }
 
   // 저장되어 있는 책을 카테고리에 따라 필터링해서 불러오기
-  const getSavedBooks = async () => {
+  const getBooksByCategory = () => {
     setIsLoading(true)
-    const books = await BookService.syncBooks(props.userInfo.userId)
     let processedBooks = null
-    if (books != null) {
+    if (props.savedBooks != null) {
       if (category === 'all') {
-        processedBooks = Object.keys(books).map(key => books[key]) // 키-밸류 객체를 배열 형태로 변환
+        processedBooks = Object.keys(props.savedBooks).map(key => props.savedBooks[key]) // 키-밸류 객체를 배열 형태로 변환
       } else {
-        processedBooks = Object.keys(books).filter(key => books[key].type === category)
-          .map(key => books[key])
+        processedBooks = Object.keys(props.savedBooks).filter(key => props.savedBooks[key].type === category)
+          .map(key => props.savedBooks[key])
       }
     }
     processedBooks && processedBooks.sort((a,b)=> {return a.addDate - b.addDate})
-    setSavedBooks(processedBooks)
+    setFilteredBooks(processedBooks)
     setIsLoading(false)
   }
 
   useEffect(() => {
-    getSavedBooks(category)
+    getBooksByCategory()
   }, [params])
 
   return (
@@ -82,9 +73,14 @@ function LibraryContainer(props) {
           height={'200px'}
         />} />
         <Route exact={true} path=':category' element={<SavedBooksByCategory
-          userInfo={props.userInfo} savedBooks={savedBooks}
+          userInfo={props.userInfo}
+          savedBooks={props.savedBooks}
+          bookRepository={props.bookRepository}
           onClickDelete={onClickDelete}
-          onClickUpdate={onClickUpdate}
+          onClickUpdateOrAdd={onClickUpdateOrAdd}
+          handleToggle={handleToggle}
+          isToggle = {isToggle}
+          filteredBooks={filteredBooks}
         />} />
       </Routes>
     </section>

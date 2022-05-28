@@ -89,7 +89,12 @@ function BookResult(props) {
                     <div className='book-info'>
                         <div className='content-wrapper'>
                             <BookBasicInfo selectedBook={selectedBook} />
-                            <BookSave userInfo={props.userInfo} selectedBook={selectedBook}></BookSave>
+                            <BookSave
+                            userInfo={props.userInfo}
+                            selectedBook={selectedBook}
+                            bookRepository={props.bookRepository}
+                            onClickUpdateOrAdd={props.onClickUpdateOrAdd}
+                            ></BookSave>
                         </div>
                     </div> : null
             }

@@ -11,7 +11,6 @@ import animationData from '../../../../assets/animation/85557-empty.json'
 
 // 카테고리에 저장된 책 보여주기
 function SavedBooksByCategory(props) {
-  const [isToggle, setIsToggle] = useState(false)
   const [selectedBook, setSelectedBook] = useState([])
   const params = useParams()
   const navigate = useNavigate()
@@ -21,8 +20,8 @@ function SavedBooksByCategory(props) {
 
   const onClickBook = (e) => {
     const id = e.target.closest('li').id
-    const book = props.savedBooks[id] // 이부분만 다름
-    setIsToggle(true)
+    const book = props.filteredBooks[id] // 이부분만 다름
+    props.handleToggle()
     setSelectedBook(book)
   }
 
@@ -31,16 +30,16 @@ function SavedBooksByCategory(props) {
   const handleModalClose = () => {
     window.addEventListener('keydown', (e) => {
       if (e.key === 'Escape') {
-        setIsToggle(false)
+        props.handleToggle()
       }
     })
     window.addEventListener('click', (e) => {
       try {
         if (e.target.className === 'book-info') {
-          setIsToggle(false)
+          props.handleToggle()
         }
         if (e.target.closest('button').className === 'close') {
-          setIsToggle(false)
+          props.handleToggle()
         }
       } catch {
         return
@@ -59,21 +58,21 @@ function SavedBooksByCategory(props) {
         <button className='saved-book-back' onClick={() => navigate('/home/library')}>
           <i id='icon' className="fas fa-chevron-left"></i>
         </button>
-        {props.userInfo.userName}님의 {option[params.category]} 목록 ({props.savedBooks ? props.savedBooks.length : 0}권)
+        {props.userInfo.userName}님의 {option[params.category]} 목록 ({props.filteredBooks ? Object.keys(props.filteredBooks).length : 0}권)
       </div>
       {
-        !props.savedBooks || props.savedBooks && props.savedBooks.length===0 ?
+        !props.filteredBooks || props.filteredBooks && props.filteredBooks.length === 0 ?
           <ShowMessage value={'저장하신 책이 없어요. 책 검색하기를 통해 책장을 채워주세요.'}
             animationData={animationData}
             width={'200px'}
             height={'200px'}
           />
           :
-          Object.keys(props.savedBooks).map((key, index) => {
+          Object.keys(props.filteredBooks).map((key, index) => {
             return (
               <>
                 <ul className='book-list'>
-                  <BookList key={index} book={props.savedBooks[key]} index={index}
+                  <BookList key={index} book={props.filteredBooks[key]} index={index}
                     clickEvent={onClickBook} />
                 </ul>
               </>)
@@ -81,13 +80,16 @@ function SavedBooksByCategory(props) {
       }
 
       {
-        isToggle ?
+        props.isToggle ?
           <div className='book-info'>
             <div className='content-wrapper'>
               <BookBasicInfo selectedBook={selectedBook} />
-              <SavedBookContents onClickUpdate={props.onClickUpdate}
-                selectedBook={selectedBook} userInfo={props.userInfo}
+              <SavedBookContents selectedBook={selectedBook}
+                savedBooks={props.savedBooks}
+                userInfo={props.userInfo}
+                onClickUpdateOrAdd={props.onClickUpdateOrAdd}
                 onClickDelete={props.onClickDelete}
+                bookRepository={props.bookRepository}
               />
             </div>
           </div> : null

@@ -11,27 +11,29 @@ const client = axios.create({
     }
 })
 
-export const BookService = {
-    searchBooks : async(params) =>{
+class BookService {
+    async searchBooks (params) {
         try{
             const res = await client.get('/v3/search/book', {params: params})
             if(res.status===200) return res
         } catch(e){
             throw new Error('에러 발생')
         }
-    },
+    }
 
-    saveBook : (userId, ISBN, book) => {
+    saveBook (userId, ISBN, book) {
         firebaseDatabase.ref(`${userId}/books/${ISBN}`).set(book)
-    },
+    }
 
-    deleteBook : (userId, ISBN) => {
+    deleteBook (userId, ISBN) {
         firebaseDatabase.ref(`${userId}/books/${ISBN}`).remove()
-    },
+    }
 
-    syncBooks : async(userId) => {
+    async syncBooks (userId) {
         return await firebaseDatabase.ref(`${userId}/books`).once('value').then((snapshot) => {
             return snapshot.val() && snapshot.val()
         });
     }
 }
+
+export default BookService

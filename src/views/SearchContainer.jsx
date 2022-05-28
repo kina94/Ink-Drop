@@ -28,13 +28,13 @@ function SearchContainer(props) {
       page : pageNum,
     }
     if (isScroll){
-      setPageNum(pageNum+1)
+      setPageNum(prev => prev+1)
       params = {...params, page: pageNum}
     } else {
       setBooks([])
       setPageNum(1)
     }
-    const response = await BookService.searchBooks(params)
+    const response = await props.bookRepository.searchBooks(params)
     setBooks([...books, ...response.data.documents])
   }
 
@@ -61,6 +61,8 @@ function SearchContainer(props) {
         <Route path=':keyword' element={<SearchResult books={books} 
         userInfo={props.userInfo}
         FetchBooks={FetchBooks}
+        bookRepository={props.bookRepository}
+        onClickUpdateOrAdd={props.onClickBookUpdateOrAdd}
         message={`'${params['*']}'에 대한 검색 결과`}/>} />
       </Routes>
     </section>

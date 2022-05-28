@@ -1,21 +1,17 @@
 import React, { useEffect, useState } from 'react'
-import { useNavigate } from 'react-router-dom'
 import LoadingSpinner from '../common/utils/LoadingSpinner';
 import CalendarView from '../components/home/contents/history/CalendarView';
 import ChartView from '../components/home/contents/history/ChartView';
-import { BookService } from '../service/book_service';
 
 function CalendarContainer(props) {
   const [isLoading, setIsLoading] = useState(false)
   const [completeBooks, setCompleteBooks] = useState([])
-  const navigate = useNavigate();
 
   const getCompleteBooks = async () => {
     setIsLoading(true)
-    const books = await BookService.syncBooks(props.userInfo.userId)
-    if (books != null) {
-      const processedBooks = Object.keys(books).filter(key => books[key].type === 'complete')
-        .map(key => books[key])
+    if (props.savedBooks != null) {
+      const processedBooks = Object.keys(props.savedBooks).filter(key => props.savedBooks[key].type === 'complete')
+        .map(key => props.savedBooks[key])
       setCompleteBooks(processedBooks)
     }
     setIsLoading(false)

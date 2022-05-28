@@ -4,7 +4,7 @@ import Login from './components/login/Login';
 import '@fortawesome/fontawesome-free/js/all.js'
 import MainContainer from './views/MainContainer';
 
-function App({ userRepository, authService}) {
+function App({ userRepository, authService, bookRepository}) {
   return (
     <div className='app'>
       <BrowserRouter>
@@ -13,6 +13,7 @@ function App({ userRepository, authService}) {
           <Route path="/home/*" element={<MainContainer
           authService={authService}
           userRepository={userRepository}
+          bookRepository={bookRepository}
           />}>
           </Route>
         </Routes>
