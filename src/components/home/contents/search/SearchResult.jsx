@@ -44,10 +44,11 @@ function BookResult(props) {
     }
 
     const infiniteScroll = () =>{
+        console.log('abc')
         const scrollHeight = document.querySelector('.content').scrollHeight
         const scrollTop = document.querySelector('.content').scrollTop
         const clientHeight = document.querySelector('.content').clientHeight
-        if (scrollTop + clientHeight >= scrollHeight) {
+        if (Math.ceil(scrollTop + clientHeight) >= scrollHeight) {
             props.FetchBooks(params.keyword, true)
         }
     }
