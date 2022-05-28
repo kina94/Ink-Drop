@@ -24,7 +24,8 @@ function MainContainer(props) {
                     photoURL: '',
                 })
                 userInfo.userId && props.userRepository.setUserProfile(userInfo.userId,
-                    userInfo, props.userRepository.saveUserProfile(userInfo.userId, userInfo))
+                userInfo, props.userRepository.saveUserProfile(userInfo.userId, userInfo))
+                
                 userInfo.userId && props.userRepository.loadUserProfile(userInfo.userId, setUserInfo)
             } else {
                 navigate('/')
