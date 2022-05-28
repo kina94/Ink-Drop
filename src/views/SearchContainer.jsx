@@ -14,23 +14,37 @@ function SearchContainer(props) {
   const [isLoading, setIsLoading] = useState(false)
   const [books, setBooks] = useState([])
   const [keyword, setKeyword] = useState('')
+  const [pageNum, setPageNum] = useState(1)
 
   //검색창
   const onChange = (e) => {
     setKeyword(e.target.value)
   }
 
-  //검색 시 키워드로 도서 검색하여 state 저장
-  const handleSearch = async (e) => {
+  // 도서API 호출
+  const FetchBooks = async(keyword, isScroll) =>{
+    let params = {
+      query : keyword,
+      page : pageNum,
+    }
+    if (isScroll){
+      setPageNum(pageNum+1)
+      params = {...params, page: pageNum}
+    } else {
+      setBooks([])
+      setPageNum(1)
+    }
+    const response = await BookService.searchBooks(params)
+    setBooks([...books, ...response.data.documents])
+  }
+
+  //엔터 누르면 원하는 도서 검색
+  const handleSearch = (e) => {
     if (e.key === 'Enter') {
-      const searchKeyword = keyword
       setIsLoading(true)
-      const params = {
-        query: keyword,
-        page: 3,
-      }
-      const response = await BookService.searchBooks(params)
-      setBooks(response.data.documents)
+      const searchKeyword = keyword
+      document.querySelector('.content').scrollTo(0,0)
+      FetchBooks(keyword, false)
       navigate(`${searchKeyword}`)
     }
     setIsLoading(false)
@@ -46,6 +60,7 @@ function SearchContainer(props) {
         <Route exact={true} path='/' element={<ShowMessage animationData={animationData} width='300px' height='300px' value='원하는 책을 검색하고 저장해보세요.'/>} />
         <Route path=':keyword' element={<SearchResult books={books} 
         userInfo={props.userInfo}
+        FetchBooks={FetchBooks}
         message={`'${params['*']}'에 대한 검색 결과`}/>} />
       </Routes>
     </section>

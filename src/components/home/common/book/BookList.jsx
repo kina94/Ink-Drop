@@ -4,7 +4,7 @@ import React from 'react'
 function BookList(props) {
     return (
                 <li key={props.index} id={props.index} onClick={props.clickEvent}>
-                    <img src={props.book.thumbnail}></img>
+                    <img src={props.book.thumbnail} loading='lazy'></img>
                     <div>
                         <p className='title'>{props.book.title}</p>
                         <p className='authors'>{props.book.authors.join(' ')}</p>
