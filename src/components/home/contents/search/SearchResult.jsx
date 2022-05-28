@@ -9,7 +9,6 @@ import { useParams } from 'react-router-dom'
 function BookResult(props) {
     const [isToggle, setIsToggle] = useState(false)
     const [selectedBook, setSelectedBook] = useState([])
-    const [pageNum, setPageNum] = useState(1)
     const params = useParams()
     const searchRef = useRef()
 
@@ -44,7 +43,6 @@ function BookResult(props) {
     }
 
     const infiniteScroll = () =>{
-        console.log('abc')
         const scrollHeight = document.querySelector('.content').scrollHeight
         const scrollTop = document.querySelector('.content').scrollTop
         const clientHeight = document.querySelector('.content').clientHeight
