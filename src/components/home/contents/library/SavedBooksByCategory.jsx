@@ -16,9 +16,6 @@ function SavedBooksByCategory(props) {
   const [isToggle, setIsToggle] = useState(false)
   const params = useParams()
   const navigate = useNavigate()
-  /* 검색 결과창에서 원하는 책 클릭 시 모달 토글을 위해 state 설정
-  토글 버튼을 활성화하고, 저장된 책 중 선택한 책을 state에 저장한다.
-  중복 사용되는 함수로 재사용성을 위해 분리 필요*/
 
   const onClickBook = (e) => {
     const id = e.target.closest('li').id
