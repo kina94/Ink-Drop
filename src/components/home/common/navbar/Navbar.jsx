@@ -1,8 +1,8 @@
-import React, { useEffect, useState, useCallback } from 'react'
+import React, { useState, useCallback } from 'react'
 import { Dropdown } from 'react-bootstrap'
-import { useLocation, useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import styles from './Navbar.module.css'
-const DEFAULT_IMAGE = '/images/default_logo.png'
+import DEFAULT_IMAGE from '../../../../assets/images/default_logo.png'
 
 const Navbar = (props) => {
   const navigate=useNavigate();
