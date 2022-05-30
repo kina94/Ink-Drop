@@ -58,27 +58,22 @@
   outline:none;
 }
 
-.day-read-book{
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  grid-gap: 10px;
-  padding:0 30px 30px 30px;
-  color: var(--font-color);
-  align-items: left;
-}
-
-.day-read-book{
-  text-align:left;
-}
 
 .day-read-book img {
   object-fit: cover;
   border-radius:5px;
 }
 
+.day-read-book ul {
+  list-style:none;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  grid-gap: 10px;
+  padding:0 30px 30px 30px;
+  color: var(--font-color);
+}
 
 .day-read-book #item {
-  display: inline-block;
   margin: 20px;
 }
 
