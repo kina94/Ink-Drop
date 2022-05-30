@@ -23,12 +23,12 @@ background-size: cover;
     position:relative;
     z-index:10;
 }
-/* 
-@media screen and (max-width: mediaQuery){
+
+/* @media screen and (max-width: mediaQuery){
 .section {
     width: 300px;
 }
-}
+} */
 
 ul{
     list-style:none;
@@ -39,7 +39,7 @@ ul{
 li{
     display:inline;
 
-} */
+}
 
 .login{
     margin:0;

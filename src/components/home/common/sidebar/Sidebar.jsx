@@ -16,8 +16,6 @@ const Sidebar = () => {
           <i className="fa-solid fa-list-check" id={styles.icon} ></i>내 서재</li>
         <li className={styles.li} onClick={()=>navigate('/home/history')}>
           <i className="fa-solid fa-calendar-days" id={styles.icon} ></i>독서 기록</li>
-        <li className={styles.li} onClick={()=>navigate('/home/setting')}>
-          <i className="fa-solid fa-user" id={styles.icon} ></i>내 정보</li>
       </ul>
       <div className={styles.copyright}>
         <span>Copyright 2022 All rights reserved by KINA</span></div>
