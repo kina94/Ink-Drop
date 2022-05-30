@@ -44,7 +44,6 @@ function MainContainer(props) {
 
     // 서재에 저장된 책 삭제
     const onClickBookDelete = (e) => {
-        console.log(e)
         setSavedBooks(book => {
             const update = { ...book }
             const id = Object.keys(update).filter(key => update[key].isbn === e.target.id)

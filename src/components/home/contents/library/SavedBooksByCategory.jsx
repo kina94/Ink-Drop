@@ -8,10 +8,12 @@ import { option } from '../../../../common/utils/common_var'
 import { useParams } from 'react-router-dom'
 import ShowMessage from '../../common/alert/ShowMessage'
 import animationData from '../../../../assets/animation/85557-empty.json'
+import Modal from '../../common/modal/Modal'
 
 // 카테고리에 저장된 책 보여주기
 function SavedBooksByCategory(props) {
   const [selectedBook, setSelectedBook] = useState([])
+  const [isToggle, setIsToggle] = useState(false)
   const params = useParams()
   const navigate = useNavigate()
   /* 검색 결과창에서 원하는 책 클릭 시 모달 토글을 위해 state 설정
@@ -21,36 +23,17 @@ function SavedBooksByCategory(props) {
   const onClickBook = (e) => {
     const id = e.target.closest('li').id
     const book = props.filteredBooks[id] // 이부분만 다름
-    props.handleToggle()
+    setIsToggle(true)
     setSelectedBook(book)
   }
 
-  /* 검색 결과창에서 원하는 책 클릭 시 모달 토글을 위해 state 설정
-  중복 사용되는 함수로 재사용성을 위해 분리 필요*/
-  const handleModalClose = () => {
-    window.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape') {
-        props.handleToggle()
-      }
-    })
-    window.addEventListener('click', (e) => {
-      try {
-        if (e.target.className === 'book-info') {
-          props.handleToggle()
-        }
-        if (e.target.closest('button').className === 'close') {
-          props.handleToggle()
-        }
-      } catch {
-        return
-      }
-
-    })
+  const onClickDelete = (e) =>{
+    if (window.confirm('정말 삭제하시겠어요?')) {
+      props.onClickDelete(e)
+      alert('삭제가 완료되었습니다.')
+      setIsToggle(false)
+    }
   }
-
-  useEffect(() => {
-    handleModalClose()
-  }, [])
 
   return (
     <section className='saved-book-list'>
@@ -78,22 +61,17 @@ function SavedBooksByCategory(props) {
               </>)
           })
       }
-
-      {
-        props.isToggle ?
-          <div className='book-info'>
-            <div className='content-wrapper'>
-              <BookBasicInfo selectedBook={selectedBook} />
-              <SavedBookContents selectedBook={selectedBook}
-                savedBooks={props.savedBooks}
-                userInfo={props.userInfo}
-                onClickUpdateOrAdd={props.onClickUpdateOrAdd}
-                onClickDelete={props.onClickDelete}
-                bookRepository={props.bookRepository}
-              />
-            </div>
-          </div> : null
-      }
+      <Modal isToggle={isToggle}
+        setIsToggle={setIsToggle}>
+        <BookBasicInfo selectedBook={selectedBook} />
+        <SavedBookContents selectedBook={selectedBook}
+          savedBooks={props.savedBooks}
+          userInfo={props.userInfo}
+          onClickUpdateOrAdd={props.onClickUpdateOrAdd}
+          onClickDelete={onClickDelete}
+          bookRepository={props.bookRepository}
+        />
+      </Modal>
     </section>
   )
 }

@@ -3,6 +3,7 @@ import ShowMessage from '../../common/alert/ShowMessage'
 import BookBasicInfo from '../../common/book/BookBasicInfo'
 import BookList from '../../common/book/BookList'
 import BookSave from '../../common/book/BookSave'
+import Modal from '../../common/modal/Modal'
 import animationData from '../../../../assets/animation/85557-empty.json'
 import { useParams } from 'react-router-dom'
 
@@ -20,29 +21,7 @@ function BookResult(props) {
         setSelectedBook(book)
     }
 
-    // 모달 없애기
-    const handleModalClose = () => {
-        window.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape') {
-                setIsToggle(false)
-            }
-        })
-        window.addEventListener('click', (e) => {
-            try {
-                if (e.target.className === 'book-info') {
-                    setIsToggle(false)
-                }
-                if (e.target.closest('button').className === 'close') {
-                    setIsToggle(false)
-                }
-            } catch {
-                return
-            }
-
-        })
-    }
-
-    const infiniteScroll = () =>{
+    const infiniteScroll = () => {
         const scrollHeight = document.querySelector('.content').scrollHeight
         const scrollTop = document.querySelector('.content').scrollTop
         const clientHeight = document.querySelector('.content').clientHeight
@@ -52,52 +31,40 @@ function BookResult(props) {
     }
     useEffect(() => {
         document.querySelector('.content').addEventListener('scroll', infiniteScroll)
-        return () =>  document.querySelector('.content').removeEventListener('scroll', infiniteScroll)
+        return () => document.querySelector('.content').removeEventListener('scroll', infiniteScroll)
     })
-
-    useEffect(() => {
-        handleModalClose()
-    }, [])
-
-
-
 
     return (
         <>
             {
-                props.books.length === 0 ?
+                props.books && props.books.length === 0 ?
                     <ShowMessage animationData={animationData} width='400px' height='300px'
                         value='검색 결과를 찾을 수 없어요.'
                     /> :
                     <section className='show-search-result' ref={searchRef}>
                         <span>{props.message}</span>
                         <ul className='book-list'>
-                        {
-                            Object.keys(props.books).map((key, index) => {
-                                return (
-                                    <BookList book={props.books[key]} index={index}
-                                        clickEvent={onClickBook}></BookList>
-                                )
-                            })
-                        }
+                            {
+                                Object.keys(props.books).map((key, index) => {
+                                    return (
+                                        <BookList book={props.books[key]} index={index}
+                                            clickEvent={onClickBook}></BookList>
+                                    )
+                                })
+                            }
                         </ul>
                     </section>
             }
-
-            {
-                isToggle ?
-                    <div className='book-info'>
-                        <div className='content-wrapper'>
-                            <BookBasicInfo selectedBook={selectedBook} />
-                            <BookSave
-                            userInfo={props.userInfo}
-                            selectedBook={selectedBook}
-                            bookRepository={props.bookRepository}
-                            onClickUpdateOrAdd={props.onClickUpdateOrAdd}
-                            ></BookSave>
-                        </div>
-                    </div> : null
-            }
+            <Modal isToggle={isToggle}
+                setIsToggle={setIsToggle}>
+                <BookBasicInfo selectedBook={selectedBook} />
+                <BookSave
+                    userInfo={props.userInfo}
+                    selectedBook={selectedBook}
+                    bookRepository={props.bookRepository}
+                    onClickUpdateOrAdd={props.onClickUpdateOrAdd}
+                ></BookSave>
+            </Modal>
         </>
     )
 }

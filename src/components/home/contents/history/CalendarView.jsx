@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import Calendar from 'react-calendar'
 import moment from 'moment';
 import './Calendar.css'
+import Modal from '../../common/modal/Modal'
 
 function CalendarView(props) {
   const [value, setValue] = useState()
@@ -23,33 +24,6 @@ function CalendarView(props) {
     setIsToggle(true)
   }
 
-  /* 검색 결과창에서 원하는 책 클릭 시 모달 토글을 위해 state 설정
-중복 사용되는 함수로 재사용성을 위해 분리 필요*/
-  const handleModalClose = () => {
-    window.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape') {
-        setIsToggle(false)
-      }
-    })
-    window.addEventListener('click', (e) => {
-      try {
-        if (e.target.className === 'book-info') {
-          setIsToggle(false)
-        }
-        if (e.target.closest('button').className === 'close') {
-          setIsToggle(false)
-        }
-      } catch {
-        return
-      }
-    })
-  }
-
-  useEffect(() => {
-    handleModalClose()
-  }, [])
-
-
   useEffect(() => {
     if (value != undefined) {
       onClickDate()
@@ -70,37 +44,34 @@ function CalendarView(props) {
           }
         }} />
 
-      {
-        isToggle &&
-        <div className='book-info'>
-          <div className='content-wrapper'>
-            <section className='title'>
-              <span id='day'>{moment(value).format('YYYY-MM-DD')}일에 읽은 책</span>
-              <button id='day' className='close'><i className="fas fa-times"></i></button>
-            </section>
-            <seciton className='day-read-book'>
-              <ul>
-                {
-                  selectedDayBook.map((book, index) => {
-                    return (
-                      <li key={index}>
-                        <div id='item'>
-                          <img className='complete-book-img' src={book.thumbnail}></img>
-                        </div>
-                        <div className='complete-book-contents'>
-                          <span>{book.title}</span>
-                          <span>{book.authors[0]} / {book.publisher}</span>
-                          <span>{book.review}</span>
-                        </div>
-                      </li>
-                    )
-                  })
-                }
-              </ul>
-            </seciton>
-          </div>
-        </div>
-      }
+
+      <Modal isToggle={isToggle}
+        setIsToggle={setIsToggle}>
+        <section className='title'>
+          <span id='day'>{moment(value).format('YYYY-MM-DD')}일에 읽은 책</span>
+          <button id='day' className='close'><i className="fas fa-times"></i></button>
+        </section>
+        <section className='day-read-book'>
+          <ul>
+            {
+              selectedDayBook.map((book, index) => {
+                return (
+                  <li key={index}>
+                    <div id='item'>
+                      <img className='complete-book-img' src={book.thumbnail}></img>
+                    </div>
+                    <div className='complete-book-contents'>
+                      <span>{book.title}</span>
+                      <span>{book.authors[0]} / {book.publisher}</span>
+                      <span>{book.review}</span>
+                    </div>
+                  </li>
+                )
+              })
+            }
+          </ul>
+        </section>
+      </Modal>
     </section>
   )
 }

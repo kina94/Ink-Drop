@@ -13,10 +13,7 @@ function LibraryContainer(props) {
   const navigate = useNavigate()
   const [isLoading, setIsLoading] = useState(false)
   const [filteredBooks, setFilteredBooks] = useState()
-  const [isToggle, setIsToggle] = useState(false)
   const category = params['*']
-
-  const handleToggle = () => {setIsToggle(!isToggle)}
 
   // 전체, 읽은책, 읽고 있는 책, 읽고 싶은 책 카테고리 선택
   const onClickCategory = (e) => {
@@ -27,11 +24,7 @@ function LibraryContainer(props) {
 
   // 저장된 책 삭제
   const onClickDelete = (e) => {
-    if (window.confirm('정말 삭제하시겠어요?')) {
       props.onClickBookDelete(e)
-      alert('삭제가 완료되었습니다.')
-      handleToggle()
-    }
   }
 
   //저장된 책 업데이트
@@ -78,8 +71,6 @@ function LibraryContainer(props) {
           bookRepository={props.bookRepository}
           onClickDelete={onClickDelete}
           onClickUpdateOrAdd={onClickUpdateOrAdd}
-          handleToggle={handleToggle}
-          isToggle = {isToggle}
           filteredBooks={filteredBooks}
         />} />
       </Routes>
