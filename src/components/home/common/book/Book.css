@@ -57,49 +57,6 @@
   display:flex;
 }
 
-.book-info img{
-  width:200px;
-}
-
-.book-info .title{
-  display:flex;
-  color:var(--color-black);
-  font-weight:bold;
-  font-size:30px;
-  padding: 30px 20px 0px 30px;
-  text-align:left;
-  word-break:keep-all;
-}
-
-.content-wrapper .title span{
-  display:-webkit-box; 
-  word-wrap:break-word; 
-}
-
-.book-info .close{
-  margin-left:auto;
-  background-color:transparent;
-  border : none;
-  color:var(--color-hotpink);
-  height:100%;
-  width:60px;
-}
-
-.book-info .close:hover{
-  transform:scale(1.2)
-}
-
-.book-info .information{
-  padding: 40px 35px 10px 35px;
-  display:flex;
-  color:var(--color-black)
-}
-
-.book-info img{
-  border: 1px solid whitesmoke;
-  box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
-}
-
 .information section:first-child{
   padding-right:50px;
   text-align:center;
@@ -142,9 +99,6 @@
 }
 
 
-.book-info .information{
-  text-align:left;
-}
 
 
 /*BookSave*/
