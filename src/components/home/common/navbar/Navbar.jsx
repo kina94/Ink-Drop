@@ -15,7 +15,7 @@ const Navbar = (props) => {
 
   const InfoToggle = React.forwardRef(({ onClick }, ref) => (
     <div style={{minWidth:'100px'}}>
-      <p style={{ fontSize: '11px', color: 'var(--color-blue)', margin: '0 5px 0 5px' }}>Admin
+      <p style={{ fontSize: '11px', color: 'var(--color-blue)', margin: '0 5px 0 5px' }}>다독이
       </p>
       <a
         href=""
@@ -63,7 +63,7 @@ const Navbar = (props) => {
   
   return (
     <section className={styles.section}>
-      <a className={styles.edit} onClick={()=>navigate('setting')}>
+      <a className={styles.edit}>
       <img className={styles.avatar} src={userPhoto} alt='profile' /></a>
       <Dropdown>
         <Dropdown.Toggle as={InfoToggle} id="dropdown-custom-components">

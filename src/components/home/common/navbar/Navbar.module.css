@@ -57,14 +57,6 @@
     opacity:0.8
 }
 
-.edit {
-    cursor:pointer;
-}
-
-.edit:hover{
-    color:makerViolet;
-    opacity:0.7
-}
 /* 
 @media screen and (max-width: 768px){
     .section{
