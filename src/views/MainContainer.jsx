@@ -7,16 +7,20 @@ import HistoryContainer from './HistoryContainer'
 import Sidebar from '../components/home/common/sidebar/Sidebar'
 import MobileNavbar from '../components/mobile/navbar/MobileNavbar'
 import './Container.css'
+import LoadingSpinner from '../common/utils/LoadingSpinner'
 function MainContainer(props) {
     const navigate = useNavigate();
     // 첫 로그인 시 유저 정보를 세팅합니다.
     const [userInfo, setUserInfo] = useState({})
     // 저장된 책 목록을 세팅합니다.
     const [savedBooks, setSavedBooks] = useState([])
+    const [isLoading, setIsLoading] = useState(false)
 
     const FetchSavedBooks = async () => {
+        setIsLoading(true)
         const books = await props.bookRepository.syncBooks(userInfo.userId)
         setSavedBooks(books)
+        setIsLoading(false)
     }
     useEffect(() => {
         props.authService.onAuthChange(user => {
@@ -66,16 +70,19 @@ function MainContainer(props) {
 
     return (
         <section className='main'>
+            {
+                isLoading && <LoadingSpinner></LoadingSpinner>
+            }
             <Navbar userInfo={userInfo} {...props}></Navbar>
             <Sidebar></Sidebar>
             {/* <MobileNavbar /> */}
             <section className='content'>
                 <Routes>
                     <Route exact={true} path='search/*' element={<SearchContainer
-                    savedBooks={savedBooks}
-                    userInfo={userInfo}
-                    bookRepository={props.bookRepository}
-                    onClickBookUpdateOrAdd={onClickBookUpdateOrAdd}
+                        savedBooks={savedBooks}
+                        userInfo={userInfo}
+                        bookRepository={props.bookRepository}
+                        onClickBookUpdateOrAdd={onClickBookUpdateOrAdd}
                     />} />
                     <Route exact={true} path='library/*'
                         element={<LibraryContainer

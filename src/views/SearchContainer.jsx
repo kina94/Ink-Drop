@@ -23,6 +23,7 @@ function SearchContainer(props) {
 
   // 도서API 호출
   const FetchBooks = async(keyword, isScroll) =>{
+    setIsLoading(true)
     let params = {
       query : keyword,
       page : pageNum,
@@ -36,18 +37,17 @@ function SearchContainer(props) {
     }
     const response = await props.bookRepository.searchBooks(params)
     setBooks([...books, ...response.data.documents])
+    setIsLoading(false)
   }
 
   //엔터 누르면 원하는 도서 검색
   const handleSearch = (e) => {
     if (e.key === 'Enter') {
-      setIsLoading(true)
       const searchKeyword = keyword
       document.querySelector('.content').scrollTo(0,0)
       FetchBooks(keyword, false)
       navigate(`${searchKeyword}`)
     }
-    setIsLoading(false)
   }
 
   return (

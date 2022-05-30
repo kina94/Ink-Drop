@@ -4,14 +4,12 @@ import LoadingSpinner from '../common/utils/LoadingSpinner'
 import ShowMessage from '../components/home/common/alert/ShowMessage'
 import LibrarySidebar from '../components/home/contents/library/LibrarySidebar'
 import SavedBooksByCategory from '../components/home/contents/library/SavedBooksByCategory'
-import { BookService } from '../service/book_service'
 import animationData from '../assets/animation/72170-books.json'
 
 
 function LibraryContainer(props) {
   const params = useParams()
   const navigate = useNavigate()
-  const [isLoading, setIsLoading] = useState(false)
   const [filteredBooks, setFilteredBooks] = useState()
   const category = params['*']
 
@@ -34,7 +32,6 @@ function LibraryContainer(props) {
 
   // 저장되어 있는 책을 카테고리에 따라 필터링해서 불러오기
   const getBooksByCategory = () => {
-    setIsLoading(true)
     let processedBooks = null
     if (props.savedBooks != null) {
       if (category === 'all') {
@@ -46,7 +43,6 @@ function LibraryContainer(props) {
     }
     processedBooks && processedBooks.sort((a,b)=> {return a.addDate - b.addDate})
     setFilteredBooks(processedBooks)
-    setIsLoading(false)
   }
 
   useEffect(() => {
@@ -55,9 +51,6 @@ function LibraryContainer(props) {
 
   return (
     <section className='library'>
-      {
-        isLoading && <LoadingSpinner></LoadingSpinner>
-      }
       <LibrarySidebar onClickCategory={onClickCategory}></LibrarySidebar>
       <Routes>
         <Route exact={true} path='/' element={<ShowMessage value={'카테고리를 선택해주세요.'}
