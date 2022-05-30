@@ -3,7 +3,6 @@ import BookSave from '../../common/book/BookSave'
 
 function SavedBookContents(props) {
     const [modifyMode, setModifyMode] = useState(false)
-    const [selectedBook, setSelectedBook] = useState(props.selectedBook)
 
     // 좀 더 깔끔하게 만들 수 있는 방법 생각 필요
     const viewChangeByType = (type) => {
@@ -15,16 +14,16 @@ function SavedBookContents(props) {
                         <p>독서기간</p>
                         <div className='option-container' id='option-saved'>
                             <span>시작일</span>
-                            <span id='view'>{selectedBook.startDate}</span>
+                            <span id='view'>{props.selectedBook.startDate}</span>
                         </div>
                         <div className='option-container' id='option-saved'>
                             <span>종료일</span>
-                            <span id='view'>{selectedBook.endDate}</span>
+                            <span id='view'>{props.selectedBook.endDate}</span>
                         </div>
                         <i id='icon' className="fas fa-pencil"></i>
                         <p>후기</p>
                         <div className='option-container' id='option-saved'>
-                            <span id='view'>{selectedBook.review}</span>
+                            <span id='view'>{props.selectedBook.review}</span>
                         </div>
                     </form>
                 )
@@ -33,16 +32,16 @@ function SavedBookContents(props) {
                     <form>
                         <i id='icon' className="fas fa-calendar-check"></i>
                         <p>독서기간</p>
-                        <div className='option-container'>
+                        <div className='option-container' id='option-saved'>
                             <span>시작일</span>
-                            <span id='view'>{selectedBook.startDate}</span>
+                            <span id='view'>{props.selectedBook.startDate}</span>
                         </div>
                         <div>
                         </div>
                         <i id='icon' className="fas fa-pencil"></i>
                         <p>메모</p>
-                        <div className='option-container'>
-                            <span id='view'>{selectedBook.memo}</span>
+                        <div className='option-container' id='option-saved'>
+                            <span id='view'>{props.selectedBook.memo}</span>
                         </div>
                     </form>
                 )
@@ -52,8 +51,8 @@ function SavedBookContents(props) {
                         <form>
                             <i id='icon' className="fas fa-pencil"></i>
                             <p>메모</p>
-                            <div className='option-container'>
-                                <span id='view'>{selectedBook.memo}</span>
+                            <div className='option-container' id='option-saved'>
+                                <span id='view'>{props.selectedBook.memo}</span>
                             </div>
                         </form>
                     </div>
@@ -62,7 +61,7 @@ function SavedBookContents(props) {
     }
 
     const updateBookContents = (newBook) => {
-        setSelectedBook(newBook)
+        props.setSelectedBook(newBook)
         setModifyMode(!modifyMode)
     }
     
@@ -70,7 +69,7 @@ function SavedBookContents(props) {
         <>
             {
                 modifyMode ? <BookSave isModify={true}
-                    selectedBook={selectedBook}
+                    selectedBook={props.selectedBook}
                     savedBooks={props.savedBooks}
                     userInfo={props.userInfo}
                     bookRepository={props.bookRepository}
@@ -79,7 +78,7 @@ function SavedBookContents(props) {
                 /> :
                     <section className='save-contents'>
                         <section className='selected-display'>
-                            {viewChangeByType(selectedBook.type)}
+                            {viewChangeByType(props.selectedBook.type)}
                             <div className='button-container'>
                                 <button onClick={()=>setModifyMode(!modifyMode)}>수정</button>
                                 <button className='delete' id={props.selectedBook.isbn} onClick={props.onClickDelete}>삭제</button>

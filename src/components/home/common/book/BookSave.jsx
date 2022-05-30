@@ -6,15 +6,11 @@ import { option } from '../../../../common/utils/common_var'
 //책 저장 및 수정
 function BookSave(props) {
     const [selectedOption, setSelectedOption] = useState(props.selectedBook.type || 'complete')
-    const [saveBook, setSaveBook] = useState(props.selectedBook)
-    const [savedBooks, setSavedBooks] = useState(props.savedBooks)
+    const [saveBook, setSaveBook] = useState([])
     const dateValue = new Date().toISOString().substring(0, 10)
-
     useEffect(() => {
-        if (props.isModify) { //수정인 경우
-            setSaveBook(props.selectedBook)
-        }
-    }, [])
+        setSaveBook(props.selectedBook)
+    }, [props.selectedBook])
 
     // 옵션 선택
     const onClickOption = (e) => {
@@ -38,20 +34,19 @@ function BookSave(props) {
     함수 분리 필요*/
     const onClickSaveBook = () => {
         let bookKey = null
-        if (savedBooks) {
-            bookKey = Object.keys(savedBooks).find(key => key === props.selectedBook.isbn)
+        if (props.savedBooks) {
+            bookKey = Object.keys(props.savedBooks).find(key => key === props.selectedBook.isbn)
         }
         if (bookKey && !props.isModify) {
-            alert(`이미 저장된 책이에요. ${option[savedBooks[bookKey].type]}을 확인해보세요.`)
+            alert(`이미 저장된 책이에요. ${option[props.savedBooks[bookKey].type]}을 확인해보세요.`)
         } else {
             const newBook = {
                 ...saveBook,
                 'type': selectedOption,
                 'endDate': saveBook.endDate ? saveBook.endDate : dateValue,
                 'startDate': saveBook.startDate ? saveBook.startDate : dateValue,
-                'addDate' : new Date(),
+                'addDate': new Date(),
             }
-            console.log(newBook)
             props.onClickUpdateOrAdd(newBook)
             alert('저장을 완료했어요.')
             if (props.isModify) {

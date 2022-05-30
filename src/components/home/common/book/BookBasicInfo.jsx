@@ -7,7 +7,6 @@ function BookBasicInfo(props) {
     document.querySelector('.content-wrapper').scrollTo(0, 0)
   }, [])
   let { thumbnail, authors, contents, publisher, title, url } = props.selectedBook
-  console.log(props.selectedBook)
   return (
     <>
       <section className='title'>

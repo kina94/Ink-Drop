@@ -72,6 +72,7 @@ function MainContainer(props) {
             <section className='content'>
                 <Routes>
                     <Route exact={true} path='search/*' element={<SearchContainer
+                    savedBooks={savedBooks}
                     userInfo={userInfo}
                     bookRepository={props.bookRepository}
                     onClickBookUpdateOrAdd={onClickBookUpdateOrAdd}

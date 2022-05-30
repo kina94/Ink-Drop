@@ -27,7 +27,7 @@ function SavedBooksByCategory(props) {
     setSelectedBook(book)
   }
 
-  const onClickDelete = (e) =>{
+  const onClickDelete = (e) => {
     if (window.confirm('정말 삭제하시겠어요?')) {
       props.onClickDelete(e)
       alert('삭제가 완료되었습니다.')
@@ -64,7 +64,9 @@ function SavedBooksByCategory(props) {
       <Modal isToggle={isToggle}
         setIsToggle={setIsToggle}>
         <BookBasicInfo selectedBook={selectedBook} />
-        <SavedBookContents selectedBook={selectedBook}
+        <SavedBookContents
+          selectedBook={selectedBook}
+          setSelectedBook={setSelectedBook}
           savedBooks={props.savedBooks}
           userInfo={props.userInfo}
           onClickUpdateOrAdd={props.onClickUpdateOrAdd}

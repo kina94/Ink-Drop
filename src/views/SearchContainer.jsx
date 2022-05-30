@@ -58,7 +58,9 @@ function SearchContainer(props) {
       <SearchInput onChange={onChange} handleSearch={handleSearch}></SearchInput>
       <Routes>
         <Route exact={true} path='/' element={<ShowMessage animationData={animationData} width='300px' height='300px' value='원하는 책을 검색하고 저장해보세요.'/>} />
-        <Route path=':keyword' element={<SearchResult books={books} 
+        <Route path=':keyword' element={<SearchResult
+        books={books} 
+        savedBooks={props.savedBooks}
         userInfo={props.userInfo}
         FetchBooks={FetchBooks}
         bookRepository={props.bookRepository}
