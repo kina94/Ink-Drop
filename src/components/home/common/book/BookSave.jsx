@@ -47,14 +47,14 @@ function BookSave(props) {
                 'type': selectedOption,
                 'endDate': saveBook.endDate ? saveBook.endDate : dateValue,
                 'startDate': saveBook.startDate ? saveBook.startDate : dateValue,
-                'addDate': !props.modifyMode && new Date().toISOString(),
+                'addDate': props.modifyMode ? saveBook.addDate : new Date().toISOString(),
             }
             props.onClickUpdateOrAdd(newBook)
-            console.log(newBook)
             alert('저장을 완료했어요.')
-            if (props.isModify) {
+            if (props.modifyMode) {
                 props.updateBookContents(newBook)
             }
+            
         }
     }
 
