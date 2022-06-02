@@ -73,7 +73,7 @@ function MainContainer(props) {
             {
                 isLoading && <LoadingSpinner></LoadingSpinner>
             }
-            <Navbar userInfo={userInfo}></Navbar>
+            <Navbar userInfo={userInfo} {...props}></Navbar>
             <Sidebar></Sidebar>
             <MobileNavbar {...props} />
             <section className='content'>
