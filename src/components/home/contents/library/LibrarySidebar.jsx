@@ -7,8 +7,7 @@ import SubSidebar from '../../common/sub_sidebar/SubSidebar'
 function LibrarySidebar(props) {
   const location = useLocation()
   return (
-    // <section className={`sub-sidebar-container ${location.pathname!='/home/library' ? 'hide' : ''}`}>
-    <section className='sub-sidebar-container'>
+    <section className={`sub-sidebar-container ${location.pathname!='/home/library' ? 'hide' : ''}`}>
     <ul>
         {
           Object.keys(option).map((key, index) => {

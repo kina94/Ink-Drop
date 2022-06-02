@@ -123,7 +123,7 @@ function BookSave(props) {
 
     return (
         <section className='save-contents'>
-            <section className='button-container'>
+            <section className='option-button-container'>
                 {
                     Object.keys(option).map((key, index) => {
                         if (key === 'all') return

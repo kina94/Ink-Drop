@@ -105,16 +105,17 @@
 .save-contents{
   padding: 20px 30px 30px 30px;
 }
-.button-container{
+
+.option-button-container{
   display:flex;
   font-size:16px;
   border-radius:10px;
-  color:var(--color-black);
-  justify-content:center;
-  padding: 0 15px 10px 25px;
+  justify-content: center;
+  padding:0;
+  margin:30px 0 0 0;
 }
 
-.button-container button{
+.option-button-container button{
   width:150px;
   margin-right:10px;
   height:50px;
@@ -125,7 +126,7 @@
   box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 3px 0px, rgba(0, 0, 0, 0.06) 0px 1px 2px 0px;
 }
 
-.button-container button:hover{
+.option-button-container button:hover{
   opacity:0.8
 }
 
@@ -134,12 +135,12 @@
   color:var(--color-hotpink)
 }
 
-.button-container .active{
+.option-button-container .active{
     background-color:var(--color-hotpink);
     color:white;
 }
 
-.button-container .active #icon{
+.option-button-container .active #icon{
   color:white;
 }
 
@@ -154,15 +155,17 @@
 
 .selected-display .button-container{
   display:flex;
+  font-size:16px;
+  border-radius:10px;
   justify-content: right;
   padding:0;
   margin:30px 0 0 0;
 }
 
 .selected-display button{
+  width:150px;
   border-radius:5px;
   border: none;
-  width:200px;
   height: 50px;
   background-color: var(--color-blue);
   color:white;
@@ -197,7 +200,6 @@
   color:var(--color-black);
   font-weight:normal;
 }
-
 
 .option-container input{
   padding:0 !important;

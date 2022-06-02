@@ -75,7 +75,7 @@ function MainContainer(props) {
             }
             <Navbar userInfo={userInfo} {...props}></Navbar>
             <Sidebar></Sidebar>
-            {/* <MobileNavbar /> */}
+            <MobileNavbar />
             <section className='content'>
                 <Routes>
                     <Route exact={true} path='search/*' element={<SearchContainer
