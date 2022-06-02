@@ -33,10 +33,8 @@ function SearchContainer(props) {
   const searchBooks = (isScroll) => {
     setIsLoading(true)
     if (isScroll){
-      console.log('true')
       setSearchParams({...searchParams, page:searchParams.page+1})
     } else {
-      console.log('false')
       setSearchParams({...searchParams, page:1})
       setBooks([])
     }
