@@ -41,22 +41,26 @@ function SavedBooksByCategory(props) {
         {props.userInfo.userName}님의 {option[params.category]} 목록 ({props.filteredBooks ? Object.keys(props.filteredBooks).length : 0}권)
       </div>
       {
-        !props.filteredBooks || props.filteredBooks && props.filteredBooks.length === 0 ?
+        !props.filteredBooks || props.filteredBooks.length === 0 ?
           <ShowMessage value={'저장하신 책이 없어요. 책 검색하기를 통해 책장을 채워주세요.'}
             animationData={animationData}
             width={'200px'}
             height={'200px'}
           />
           :
-          Object.keys(props.filteredBooks).map((key, index) => {
-            return (
-              <>
-                <ul className='book-list'>
-                  <BookList key={index} book={props.filteredBooks[key]} index={index}
+          <ul className='book-list'>
+            {
+              Object.keys(props.filteredBooks).map((key, index) => {
+                return (
+                  <BookList
+                    key={index}
+                    book={props.filteredBooks[key]}
+                    index={index}
                     clickEvent={onClickBook} />
-                </ul>
-              </>)
-          })
+                )
+              })
+            }
+          </ul>
       }
       <Modal isToggle={isToggle}
         setIsToggle={setIsToggle}>
