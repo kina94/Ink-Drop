@@ -60,14 +60,14 @@ li{
 
 .span{
     color:grey;
-    font-size:14px;
+    ;
     padding:0;
     margin:0;
 }
 
 .label{
     color:var(--color-hotpink);
-    font-size:16px;
+    ;
     margin-bottom:5px;
     text-align:center;
     font-weight:bold;
@@ -80,7 +80,7 @@ li{
     border-radius:5px;
     margin-bottom:10px;
     height:40px;
-    font-size:14px;
+    ;
 }
 
 .button{

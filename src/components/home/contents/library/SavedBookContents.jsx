@@ -2,8 +2,6 @@ import React, { useState } from 'react'
 import BookSave from '../../common/book/BookSave'
 
 function SavedBookContents(props) {
-    const [modifyMode, setModifyMode] = useState(false)
-
     // 좀 더 깔끔하게 만들 수 있는 방법 생각 필요
     const viewChangeByType = (type) => {
         switch (type) {
@@ -62,13 +60,13 @@ function SavedBookContents(props) {
 
     const updateBookContents = (newBook) => {
         props.setSelectedBook(newBook)
-        setModifyMode(!modifyMode)
+        props.toggleModifyMode()
     }
     
     return (
         <>
             {
-                modifyMode ? <BookSave isModify={true}
+                !props.modifyMode ? <BookSave isModify={true}
                     selectedBook={props.selectedBook}
                     savedBooks={props.savedBooks}
                     userInfo={props.userInfo}
@@ -80,7 +78,7 @@ function SavedBookContents(props) {
                         <section className='selected-display'>
                             {viewChangeByType(props.selectedBook.type)}
                             <div className='button-container'>
-                                <button onClick={()=>setModifyMode(!modifyMode)}>수정</button>
+                                <button onClick={()=>props.toggleModifyMode()}>수정</button>
                                 <button className='delete' id={props.selectedBook.isbn} onClick={props.onClickDelete}>삭제</button>
                             </div>
                         </section>

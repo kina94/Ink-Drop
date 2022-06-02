@@ -14,8 +14,14 @@ import Modal from '../../common/modal/Modal'
 function SavedBooksByCategory(props) {
   const [selectedBook, setSelectedBook] = useState([])
   const [isToggle, setIsToggle] = useState(false)
+  const [modifyMode, setModifyMode] = useState(false)
   const params = useParams()
   const navigate = useNavigate()
+
+  const toggleModifyMode = () => {
+    setModifyMode(!modifyMode)
+    console.log(modifyMode)
+  }
 
   const onClickBook = (e) => {
     const id = e.target.closest('li').id
@@ -63,7 +69,8 @@ function SavedBooksByCategory(props) {
           </ul>
       }
       <Modal isToggle={isToggle}
-        setIsToggle={setIsToggle}>
+        setIsToggle={setIsToggle}
+        toggleModifyMode={toggleModifyMode}>
         <BookBasicInfo selectedBook={selectedBook} />
         <SavedBookContents
           selectedBook={selectedBook}
@@ -73,6 +80,8 @@ function SavedBooksByCategory(props) {
           onClickUpdateOrAdd={props.onClickUpdateOrAdd}
           onClickDelete={onClickDelete}
           bookRepository={props.bookRepository}
+          toggleModifyMode={toggleModifyMode}
+          modifyMode={modifyMode}
         />
       </Modal>
     </section>
