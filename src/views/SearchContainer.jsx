@@ -1,11 +1,10 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import {Route, Routes, useNavigate, useParams } from 'react-router-dom'
 import ShowMessage from '../components/home/common/alert/ShowMessage'
 import SearchResult from '../components/home/contents/search/SearchResult'
 import SearchInput from '../components/home/contents/search/SearchInput'
 import LoadingSpinner from '../common/utils/LoadingSpinner'
 import animationData from '../assets/animation/72170-books.json'
-import { BookService } from '../service/book_service'
 import './Container.css'
 
 function SearchContainer(props) {
@@ -13,43 +12,51 @@ function SearchContainer(props) {
   const navigate = useNavigate()
   const [isLoading, setIsLoading] = useState(false)
   const [books, setBooks] = useState([])
-  const [keyword, setKeyword] = useState('')
-  const [pageNum, setPageNum] = useState(1)
+  const [searchParams, setSearchParams] = useState({
+    query: '',
+    page: 0,
+  })
 
   //검색창
   const onChange = (e) => {
-    setKeyword(e.target.value)
+    setSearchParams({...searchParams, query: e.target.value})
   }
 
   // 도서API 호출
-  const FetchBooks = async(keyword, isScroll) =>{
-    setIsLoading(true)
-    let params = {
-      query : keyword,
-      page : pageNum,
-    }
-    if (isScroll){
-      setPageNum(prev => prev+1)
-      console.log(pageNum)
-      params = {...params, page: pageNum}
-    } else {
-      setBooks([])
-      setPageNum(1)
-    }
-    const response = await props.bookRepository.searchBooks(params)
+  const FetchBooks = async() =>{
+    const response = await props.bookRepository.searchBooks(searchParams)
     setBooks([...books, ...response.data.documents])
+  }
+  
+
+  // 새로운 검색인지 스크롤링인지 구분하여 state변경
+  const searchBooks = (isScroll) => {
+    setIsLoading(true)
+    if (isScroll){
+      console.log('true')
+      setSearchParams({...searchParams, page:searchParams.page+1})
+    } else {
+      console.log('false')
+      setSearchParams({...searchParams, page:1})
+      setBooks([])
+    }
     setIsLoading(false)
   }
 
   //엔터 누르면 원하는 도서 검색
   const handleSearch = (e) => {
     if (e.key === 'Enter') {
-      const searchKeyword = keyword
-      document.querySelector('.content').scrollTo(0,0)
-      FetchBooks(keyword, false)
+      const searchKeyword = searchParams.query
       navigate(`${searchKeyword}`)
+      searchBooks(false)
     }
   }
+
+  useEffect(()=>{
+    if(searchParams.page!=0 && searchParams.query!=''){
+      FetchBooks()
+    }
+  },[searchParams])
 
   return (
     <section className='search'>
@@ -63,7 +70,7 @@ function SearchContainer(props) {
         books={books} 
         savedBooks={props.savedBooks}
         userInfo={props.userInfo}
-        FetchBooks={FetchBooks}
+        searchBooks={searchBooks}
         bookRepository={props.bookRepository}
         onClickUpdateOrAdd={props.onClickBookUpdateOrAdd}
         message={`'${params['*']}'에 대한 검색 결과`}/>} />

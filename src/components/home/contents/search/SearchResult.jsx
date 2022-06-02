@@ -10,7 +10,6 @@ import { useParams } from 'react-router-dom'
 function BookResult(props) {
     const [isToggle, setIsToggle] = useState(false)
     const [selectedBook, setSelectedBook] = useState([])
-    const params = useParams()
     const searchRef = useRef()
 
     // 검색 결과창에서 원하는 책 클릭 시 모달 토글을 위해 state 설정
@@ -25,8 +24,8 @@ function BookResult(props) {
         const scrollHeight = document.querySelector('.content').scrollHeight
         const scrollTop = document.querySelector('.content').scrollTop
         const clientHeight = document.querySelector('.content').clientHeight
-        if (Math.ceil(scrollTop + clientHeight) >= scrollHeight) {
-            props.FetchBooks(params.keyword, true)
+        if (Math.ceil(scrollTop + clientHeight) >= scrollHeight && scrollTop!=0) {
+            props.searchBooks(true)
         }
     }
     useEffect(() => {
