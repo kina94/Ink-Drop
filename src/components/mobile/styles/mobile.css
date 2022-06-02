@@ -10,7 +10,7 @@
     }
 
     .main .content{
-        padding: 0 0 0 0;
+        padding:0 0 160px 0;
     }
 
     .mobile-nav{
@@ -169,10 +169,6 @@
         display:none;
     }
 
-    .saved-book-list{
-        padding-bottom:60px;
-    }
-
     .history{
         padding:10px;
     }
@@ -182,10 +178,6 @@
 
     .calendar-view{
         margin-bottom:30px;
-    }
-
-    .chart-view{
-        min-height:300px;
     }
 
     .day-read-book{
