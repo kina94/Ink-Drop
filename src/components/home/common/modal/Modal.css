@@ -27,7 +27,7 @@
     max-height:100%;
 }
 
-.hide{
+.modal-hide{
     display:none;
 }
 
@@ -54,7 +54,6 @@
     border : none;
     color:var(--color-hotpink);
     height:100%;
-    width:60px;
     text-align:right;
   }
   

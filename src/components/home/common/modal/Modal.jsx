@@ -27,7 +27,7 @@ function Modal(props) {
     }, [])
 
     return (
-        <div className={props.isToggle? 'modal' : 'modal hide'}>
+        <div className={props.isToggle? 'modal' : 'modal modal-hide'}>
             <div className={props.isToggle ? 'content-wrapper' : 'content-wrapper hide'}>
                 {props.children}
             </div>

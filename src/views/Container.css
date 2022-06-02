@@ -22,7 +22,7 @@
 }
 
 .history, .library{
-    height: fit-content;
+    height: 100%;
 }
 
 .history{
