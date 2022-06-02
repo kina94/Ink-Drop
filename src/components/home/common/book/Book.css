@@ -211,6 +211,7 @@
   border-top-right-radius: 5px;
   border-bottom-right-radius: 5px;
   color: var(--color-black);
+  background-color:white;
 }
 
 form p{

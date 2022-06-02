@@ -30,6 +30,7 @@ function SearchContainer(props) {
     }
     if (isScroll){
       setPageNum(prev => prev+1)
+      console.log(pageNum)
       params = {...params, page: pageNum}
     } else {
       setBooks([])

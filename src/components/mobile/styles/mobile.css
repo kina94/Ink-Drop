@@ -101,6 +101,7 @@
         top:0;
         transform:none;
         border-radius:0;
+        overflow: auto;
     }
 
     .information section:first-child{
@@ -146,6 +147,12 @@
         background-color:white;
         padding:10px;
     }
+
+    .option-button-container span{
+        display:flex;
+        flex-direction:column;
+        align-items: center;
+    }   
 
     .sub-sidebar-container{
         width:100%;
