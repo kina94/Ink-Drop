@@ -12,14 +12,17 @@
     overflow:auto;
 }
 
+.search{
+    height:100%;
+}
+
 .library{
     display:flex;
     width:100%;
 }
 
-.search, .history, .library{
-    height: 100%;
-    overflow: auto;
+.history, .library{
+    height: fit-content;
 }
 
 .history{
