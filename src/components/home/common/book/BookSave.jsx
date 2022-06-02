@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from 'react'
 import SaveOptionButton from '../../contents/search/SaveOptionButton'
 import { option } from '../../../../common/utils/common_var'
+import { useNavigate } from 'react-router-dom'
 
 
 //책 저장 및 수정
 function BookSave(props) {
+    const navigate = useNavigate()
     const [selectedOption, setSelectedOption] = useState(props.selectedBook.type || 'complete')
     const [saveBook, setSaveBook] = useState([])
     const dateValue = new Date().toISOString().substring(0, 10)
@@ -49,6 +51,7 @@ function BookSave(props) {
             }
             props.onClickUpdateOrAdd(newBook)
             alert('저장을 완료했어요.')
+            navigate(0)
             if (props.isModify) {
                 props.updateBookContents(newBook)
             }

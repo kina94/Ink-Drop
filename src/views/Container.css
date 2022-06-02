@@ -18,8 +18,8 @@
 }
 
 .search, .history, .library{
-    height:fit-content;
-    overflow: hidden;
+    height: 100%;
+    overflow: auto;
 }
 
 .history{
