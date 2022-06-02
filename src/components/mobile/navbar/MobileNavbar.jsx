@@ -2,7 +2,7 @@ import React from 'react'
 import { useNavigate } from 'react-router-dom'
 import '../styles/mobile.css'
 
-function MobileNavbar() {
+function MobileNavbar(props) {
     const navigate = useNavigate()
     return (
         <nav className='mobile-nav'>
@@ -17,6 +17,10 @@ function MobileNavbar() {
             <a className='mobile-nav-menu' onClick={() => navigate('/home/history')}>
                 <i className="fa-solid fa-calendar-days" id='icon' ></i>
                 <p>독서기록</p>
+            </a>
+            <a className='mobile-nav-menu' onClick={() => props.authService.logout()}>
+            <i class="fa-solid fa-right-from-bracket" id='icon'></i>
+            <p>로그아웃</p>
             </a>
         </nav>
     )
