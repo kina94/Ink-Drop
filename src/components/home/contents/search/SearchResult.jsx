@@ -47,7 +47,9 @@ function BookResult(props) {
                             {
                                 Object.keys(props.books).map((key, index) => {
                                     return (
-                                        <BookList book={props.books[key]} index={index}
+                                        <BookList
+                                        key={index}
+                                        book={props.books[key]} index={index}
                                             clickEvent={onClickBook}></BookList>
                                     )
                                 })

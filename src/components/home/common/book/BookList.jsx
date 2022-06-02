@@ -3,7 +3,7 @@ import React from 'react'
 //책 검색 결과
 function BookList(props) {
     return (
-                <li key={props.index} id={props.index} onClick={props.clickEvent}>
+                <li id={props.index} onClick={props.clickEvent}>
                     <img src={props.book.thumbnail} loading='lazy'></img>
                     <div>
                         <p className='title'>{props.book.title}</p>

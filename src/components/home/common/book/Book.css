@@ -9,7 +9,7 @@
 }
 
 .book-list li{
-  overflow: scroll;
+  overflow:auto;
   cursor:pointer;
   display:flex;
   padding: 30px 20px 30px 20px;
