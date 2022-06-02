@@ -1,16 +1,17 @@
 <div align="center">
   <h1> 📚 다독다독 (React) </h1>
-자신이 읽은, 읽고 싶은, 읽는 중인 책을 관리하여 독서 습관을 기를 수 있는 웹 애플리케이션입니다.</br>
-도서 검색, 옵션별 저장, 저장된 책 관리, 일별/월별/연도별 독서량을 확인하고 회원 간에 도서 리뷰를 공유할 수 있는 기능을 제공합니다. </br>
+자신이 읽은, 읽고 싶은, 읽는 중인 책을 관리하여 독서 습관을 기를 수 있는 반응형 웹 애플리케이션입니다.</br>
+도서 검색, 옵션별 저장, 저장된 책 관리, 일별/월별/연도별 독서량을 확인할 수 있는 기능을 제공합니다. </br>
 
 <a href='http://dadokdadok.netlify.app'>바로가기</a>
 
-![image](https://user-images.githubusercontent.com/66938939/170541427-6370e1a6-06ff-409d-9ac1-60b861401aea.png)
+![스크린샷 2022-06-03 오전 12 46 06](https://user-images.githubusercontent.com/66938939/171669084-3b6d14f9-e133-4503-afbc-057630b879ad.png)
 
-<img src='https://user-images.githubusercontent.com/66938939/170541490-2ea2dd74-e995-494e-9569-bfaa6010e7fa.png' width='430px' height='280px'>
-<img src='https://user-images.githubusercontent.com/66938939/170539968-0c007d5d-dfbb-4605-84f5-fcde3c275bbb.png' width='430px' height='280px'>
-<img src='https://user-images.githubusercontent.com/66938939/170540436-5cff36bd-9ae2-4daa-98d1-d42e728725ed.png' width='430px' height='280px'>
-<img src='https://user-images.githubusercontent.com/66938939/170541308-7442d3d5-0be3-42fd-adc3-c52bf84a10cf.png' width='430px' height='280px'>
+
+<img src='https://user-images.githubusercontent.com/66938939/171664771-ad2e2748-6e8f-4aa0-8e40-0a7ecd9d6fa2.png' width='430px' height='280px'>
+<img src='https://user-images.githubusercontent.com/66938939/171665190-7ddb5f3d-dfb3-49b8-adfb-babd219948d3.png' width='430px' height='280px'>
+<img src='https://user-images.githubusercontent.com/66938939/171664979-68df4643-2b5e-4bdd-b08d-e97e17274cfd.png' width='430px' height='280px'>
+<img src='https://user-images.githubusercontent.com/66938939/171665058-f18f7bec-6c69-4acb-9dd7-480668f7d4f2.png' width='430px' height='280px'>
 
 
 </div>
@@ -19,9 +20,7 @@
 <hr/>
 
 ## 남은 구현 사항📚</a>
-### 1) 재사용성을 고려한 컴포넌트와 함수 분리⭐⭐⭐⭐⭐</br>
-* 필수 기능 구현 후 전체적인 리팩토링 필요</br>
-### 2) 브라우저에 따른 최적화 </br>
-* 사파리에서 css와 컴포넌트 배치가 깨져서 나오는 현상 존재</br>
-### 3) 모바일 화면 구현 </br>
-* 반응형으로 기본 css는 작업해놓은 상태</br>
+### 1) 재사용성을 고려한 컴포넌트와 함수 분리</br>
+* 전체적인 리팩토링 필요</br>
+### 2) 검색 기록 캐싱 </br>
+### 3) redux 적용
