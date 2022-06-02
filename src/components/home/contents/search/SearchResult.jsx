@@ -5,7 +5,6 @@ import BookList from '../../common/book/BookList'
 import BookSave from '../../common/book/BookSave'
 import Modal from '../../common/modal/Modal'
 import animationData from '../../../../assets/animation/85557-empty.json'
-import { useParams } from 'react-router-dom'
 
 function BookResult(props) {
     const [isToggle, setIsToggle] = useState(false)
@@ -29,8 +28,9 @@ function BookResult(props) {
         }
     }
     useEffect(() => {
-        document.querySelector('.content').addEventListener('scroll', infiniteScroll)
-        return () => document.querySelector('.content').removeEventListener('scroll', infiniteScroll)
+            document.querySelector('.content').addEventListener('scroll', infiniteScroll)
+            return () => document.querySelector('.app').removeEventListener('scroll', infiniteScroll)
+        
     })
 
     return (
