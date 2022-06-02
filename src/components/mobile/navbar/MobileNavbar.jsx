@@ -19,7 +19,7 @@ function MobileNavbar(props) {
                 <p>독서기록</p>
             </a>
             <a className='mobile-nav-menu' onClick={() => props.authService.logout()}>
-            <i class="fa-solid fa-right-from-bracket" id='icon'></i>
+            <i className="fa-solid fa-right-from-bracket" id='icon'></i>
             <p>로그아웃</p>
             </a>
         </nav>

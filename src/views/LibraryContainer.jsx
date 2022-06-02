@@ -46,7 +46,6 @@ function LibraryContainer(props) {
       else if (b.addDate > a.addDate) return 1
       else return 0
     })
-    console.log(sortBooks)
     setFilteredBooks(sortBooks)
   }
 
