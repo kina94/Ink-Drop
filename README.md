@@ -8,10 +8,10 @@
 ![스크린샷 2022-06-03 오전 12 46 06](https://user-images.githubusercontent.com/66938939/171669084-3b6d14f9-e133-4503-afbc-057630b879ad.png)
 
 
-<img src='https://user-images.githubusercontent.com/66938939/171664771-ad2e2748-6e8f-4aa0-8e40-0a7ecd9d6fa2.png' width='430px' height='280px'>
-<img src='https://user-images.githubusercontent.com/66938939/171665190-7ddb5f3d-dfb3-49b8-adfb-babd219948d3.png' width='430px' height='280px'>
-<img src='https://user-images.githubusercontent.com/66938939/171664979-68df4643-2b5e-4bdd-b08d-e97e17274cfd.png' width='430px' height='280px'>
-<img src='https://user-images.githubusercontent.com/66938939/171665058-f18f7bec-6c69-4acb-9dd7-480668f7d4f2.png' width='430px' height='280px'>
+<img src='https://user-images.githubusercontent.com/66938939/171664771-ad2e2748-6e8f-4aa0-8e40-0a7ecd9d6fa2.png' width='400px' height='280px'>
+<img src='https://user-images.githubusercontent.com/66938939/171665190-7ddb5f3d-dfb3-49b8-adfb-babd219948d3.png' width='400px' height='280px'>
+<img src='https://user-images.githubusercontent.com/66938939/171664979-68df4643-2b5e-4bdd-b08d-e97e17274cfd.png' width='400px' height='280px'>
+<img src='https://user-images.githubusercontent.com/66938939/171665058-f18f7bec-6c69-4acb-9dd7-480668f7d4f2.png' width='400px' height='280px'>
 
 
 </div>
