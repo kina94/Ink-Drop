@@ -18,11 +18,6 @@ function SavedBooksByCategory(props) {
   const params = useParams()
   const navigate = useNavigate()
 
-  const toggleModifyMode = () => {
-    setModifyMode(!modifyMode)
-    console.log(modifyMode)
-  }
-
   const onClickBook = (e) => {
     const id = e.target.closest('li').id
     const book = props.filteredBooks[id] // 이부분만 다름
@@ -70,7 +65,7 @@ function SavedBooksByCategory(props) {
       }
       <Modal isToggle={isToggle}
         setIsToggle={setIsToggle}
-        toggleModifyMode={toggleModifyMode}>
+        setModifyMode={setModifyMode}>
         <BookBasicInfo selectedBook={selectedBook} />
         <SavedBookContents
           selectedBook={selectedBook}
@@ -80,7 +75,7 @@ function SavedBooksByCategory(props) {
           onClickUpdateOrAdd={props.onClickUpdateOrAdd}
           onClickDelete={onClickDelete}
           bookRepository={props.bookRepository}
-          toggleModifyMode={toggleModifyMode}
+          setModifyMode={setModifyMode}
           modifyMode={modifyMode}
         />
       </Modal>

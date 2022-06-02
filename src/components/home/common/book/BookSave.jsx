@@ -39,7 +39,7 @@ function BookSave(props) {
         if (props.savedBooks) {
             bookKey = Object.keys(props.savedBooks).find(key => key === props.selectedBook.isbn)
         }
-        if (bookKey && !props.isModify) {
+        if (bookKey && !props.modifyMode) {
             alert(`이미 저장된 책이에요. ${option[props.savedBooks[bookKey].type]}을 확인해보세요.`)
         } else {
             const newBook = {

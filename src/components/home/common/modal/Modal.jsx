@@ -6,18 +6,19 @@ function Modal(props) {
         window.addEventListener('keydown', (e) => {
             if (e.key === 'Escape') {
                 props.setIsToggle(false)
-                props.toggleModifyMode()
+                props.setModifyMode(false)
             }
         })
         window.addEventListener('click', (e) => {
             try {
                 if (e.target.className === 'modal') {
                     props.setIsToggle(false)
-                    props.toggleModifyMode()
+                    props.setModifyMode(false)
+
                 }
                 if (e.target.closest('button').className === 'close') {
                     props.setIsToggle(false)
-                    props.toggleModifyMode()
+                    props.setModifyMode(false)
                 }
             } catch {
                 return
