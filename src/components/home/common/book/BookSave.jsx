@@ -51,7 +51,6 @@ function BookSave(props) {
             }
             props.onClickUpdateOrAdd(newBook)
             alert('저장을 완료했어요.')
-            navigate(0)
             if (props.isModify) {
                 props.updateBookContents(newBook)
             }

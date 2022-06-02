@@ -12,7 +12,7 @@
   overflow:auto;
   cursor:pointer;
   display:flex;
-  padding: 30px 20px 30px 20px;
+  padding: 15px;
   border-bottom:1px solid lightgrey;
   max-height:250px;
 }
