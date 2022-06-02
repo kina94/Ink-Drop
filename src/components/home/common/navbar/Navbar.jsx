@@ -48,7 +48,7 @@ const Navbar = (props) => {
         >
           <div className={styles.dropdown}>
             <section className={styles.info}>
-                <img className={styles.avatar} style={{ width: '6em', height: '6em' }} src={userPhoto} alt='profile' />
+                <img className={styles.avatar} src={userPhoto} alt='profile' />
               <div className={styles.userInfo}>
                 <span style={{ fontSize: '14px', fontWeight: 'bold', marginBottom: '5px' }}>{userName}</span>
                 {userEmail}

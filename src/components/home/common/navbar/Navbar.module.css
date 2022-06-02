@@ -13,7 +13,7 @@
 }
 
 .avatar{
-    width:3em;
+    width:4em;
     height:3em;
     border-radius:50%;
     margin-right:5px;
@@ -23,7 +23,6 @@
     display:flex;
     flex-direction:column;
     padding:0px 15px 10px 10px;
-    ;
     color:var(--color-black);
 }
 
