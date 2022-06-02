@@ -41,8 +41,13 @@ function LibraryContainer(props) {
           .map(key => props.savedBooks[key])
       }
     }
-    processedBooks && processedBooks.sort((a,b)=> {return a.addDate - b.addDate})
-    setFilteredBooks(processedBooks)
+    const sortBooks = processedBooks && processedBooks.sort((a,b) => {
+      if(a.addDate > b.addDate) return -1
+      else if (b.addDate > a.addDate) return 1
+      else return 0
+    })
+    console.log(sortBooks)
+    setFilteredBooks(sortBooks)
   }
 
   useEffect(() => {

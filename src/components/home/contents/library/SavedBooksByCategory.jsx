@@ -17,7 +17,6 @@ function SavedBooksByCategory(props) {
   const [modifyMode, setModifyMode] = useState(false)
   const params = useParams()
   const navigate = useNavigate()
-
   const onClickBook = (e) => {
     const id = e.target.closest('li').id
     const book = props.filteredBooks[id] // 이부분만 다름
