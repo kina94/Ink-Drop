@@ -1,5 +1,6 @@
 .modal {
     display:block;
+    overflow: hidden;
     z-index:10;
     animation : fadein 0.5s forwards;
     position: fixed;
