@@ -29,17 +29,10 @@ const Login = ({ authService }) => {
       <Header></Header>
       <section className={styles.section}>
         <h1 className={styles.login}>Sign In</h1>
-        <p className={styles.span}>다독다독과 함께 책 관리를 통해 독서 습관을 길러보세요.</p>
+        <p className={styles.span}>다독다독과 함께 독서 습관을 길러보세요.</p>
 
         <div className={styles.divInput}>
-          <label className={styles.label}>Input your Email</label>
-          <input className={styles.input} type="text" id="id" placeholder='하단의 구글 또는 깃허브 버튼으로 바로 로그인해주세요.'
-            readOnly></input>
-          <label className={styles.label}>Input your password</label>
-          <input className={styles.input} type="text" id="password" placeholder='input your password'
-            readOnly
-          ></input>
-          <button className={styles.signIn}>Sign In</button>
+          <p className={styles.label}>Login With</p>
           <ul>
             <li><button className={styles.button} onClick={onLogin} value='Google'>
               <i className="fa-brands fa-google"></i>

@@ -4,7 +4,7 @@
 }
 
 @media screen and (max-width: 1024px){
-    *{
+    .main{
         font-size:14px !important;
         line-height:25px !important;
     }

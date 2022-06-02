@@ -5,7 +5,7 @@ const Header = memo(() => {
   return(
   <header className={styles.header}>
     <h1 className={styles.name}>
-    <i className="fas fa-book" style={{color:'var(--color-pink)', paddingRight:'8px'}}></i>
+    <i className="fas fa-book fa-xs" style={{color:'var(--color-pink)', paddingRight:'8px'}}></i>
     다독다독</h1>
   </header>
   )
