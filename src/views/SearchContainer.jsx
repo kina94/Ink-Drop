@@ -26,6 +26,7 @@ function SearchContainer(props) {
   const FetchBooks = async() =>{
     const response = await props.bookRepository.searchBooks(searchParams)
     setBooks([...books, ...response.data.documents])
+    localStorage.setItem('books', JSON.stringify([...books, ...response.data.documents]))
   }
   
 
@@ -49,6 +50,13 @@ function SearchContainer(props) {
       searchBooks(false)
     }
   }
+
+  useEffect(()=>{
+    if(localStorage.getItem('books')){
+      const books = JSON.parse(localStorage.getItem('books'))
+      setBooks(books)
+    }
+  },[])
 
   useEffect(()=>{
     if(searchParams.page!=0 && searchParams.query!=''){
