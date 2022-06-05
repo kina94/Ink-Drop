@@ -5,12 +5,13 @@ import BookList from '../../common/book/BookList'
 import BookSave from '../../common/book/BookSave'
 import Modal from '../../common/modal/Modal'
 import animationData from '../../../../assets/animation/85557-empty.json'
+import { useParams } from 'react-router-dom'
 
 function BookResult(props) {
     const [isToggle, setIsToggle] = useState(false)
     const [selectedBook, setSelectedBook] = useState([])
+    const params = useParams()
     const searchRef = useRef()
-
     // 검색 결과창에서 원하는 책 클릭 시 모달 토글을 위해 state 설정
     const onClickBook = (e) => {
         const id = e.target.closest('li').id
@@ -24,13 +25,12 @@ function BookResult(props) {
         const scrollTop = document.querySelector('.content').scrollTop
         const clientHeight = document.querySelector('.content').clientHeight
         if (Math.ceil(scrollTop + clientHeight) >= scrollHeight && scrollTop!=0) {
-            props.searchBooks(true)
+            props.addPageNum(params.pageNum)
         }
     }
     useEffect(() => {
-            document.querySelector('.content').addEventListener('scroll', infiniteScroll)
-            return () => document.querySelector('.app').removeEventListener('scroll', infiniteScroll)
-        
+        document.querySelector('.content').addEventListener('scroll', infiniteScroll)
+        return () => document.querySelector('.app').removeEventListener('scroll', infiniteScroll)
     })
 
     return (
