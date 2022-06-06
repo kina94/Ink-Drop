@@ -15,6 +15,8 @@ function MainContainer(props) {
     // 저장된 책 목록을 세팅합니다.
     const [savedBooks, setSavedBooks] = useState([])
     const [isLoading, setIsLoading] = useState(false)
+    //냅바의 책 검색하기 두번 클릭 시 검색 기록을 초기화합니다.
+    const [isHome, setIsHome] = useState(false)
 
     const FetchSavedBooks = async () => {
         setIsLoading(true)
@@ -68,14 +70,31 @@ function MainContainer(props) {
         props.bookRepository.saveBook(userInfo.userId, newBook.isbn, newBook)
     }
 
+    const onClickSearchNav = () =>{
+      if(isHome){
+        navigate('/home/search')
+        localStorage.removeItem('params')
+        setIsHome(!isHome)
+      } else {
+        const savedParams = JSON.parse(localStorage.getItem('params'))
+        const serachURL = savedParams ? `/home/search/${savedParams.query}` : '/home/search'
+        navigate(serachURL)
+        setIsHome(!isHome)
+      }
+    }
+
     return (
         <section className='main'>
             {
                 isLoading && <LoadingSpinner></LoadingSpinner>
             }
             <Navbar userInfo={userInfo} {...props}></Navbar>
-            <Sidebar></Sidebar>
-            <MobileNavbar {...props} />
+            <Sidebar
+            onClickSearchNav={onClickSearchNav}
+            ></Sidebar>
+            <MobileNavbar
+            onClickSearchNav={onClickSearchNav}
+            {...props} />
             <section className='content'>
                 <Routes>
                     <Route exact={true} path='search/*' element={<SearchContainer
