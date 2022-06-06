@@ -8,6 +8,7 @@ import Sidebar from '../components/home/common/sidebar/Sidebar'
 import MobileNavbar from '../components/mobile/navbar/MobileNavbar'
 import './Container.css'
 import LoadingSpinner from '../common/utils/LoadingSpinner'
+import LocalStorage from '../common/utils/local_storage'
 function MainContainer(props) {
     const navigate = useNavigate();
     const location = useLocation()
@@ -23,6 +24,7 @@ function MainContainer(props) {
         setSavedBooks(books)
         setIsLoading(false)
     }
+
     useEffect(() => {
         props.authService.onAuthChange(user => {
             if (user) {
@@ -72,9 +74,7 @@ function MainContainer(props) {
     const onClickSearchNav = () => {
         if (location.pathname.includes('search')) {
             navigate('/home/search')
-            localStorage.removeItem('params')
-            localStorage.removeItem('books')
-            localStorage.removeItem('scroll')
+            LocalStorage.removeAllItems()
         } else {
             const savedParams = JSON.parse(localStorage.getItem('params'))
             const serachURL = savedParams ? `/home/search/${savedParams.query}` : '/home/search'
