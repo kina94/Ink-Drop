@@ -12,6 +12,7 @@ function BookResult(props) {
     const [selectedBook, setSelectedBook] = useState([])
     const params = useParams()
     const searchRef = useRef()
+
     // 검색 결과창에서 원하는 책 클릭 시 모달 토글을 위해 state 설정
     const onClickBook = (e) => {
         const id = e.target.closest('li').id
@@ -24,10 +25,12 @@ function BookResult(props) {
         const scrollHeight = document.querySelector('.content').scrollHeight
         const scrollTop = document.querySelector('.content').scrollTop
         const clientHeight = document.querySelector('.content').clientHeight
-        if (Math.ceil(scrollTop + clientHeight) >= scrollHeight && scrollTop!=0) {
+        document.querySelector('.book-list') && localStorage.setItem('scroll', scrollTop)
+        if (Math.ceil(scrollTop + clientHeight) >= scrollHeight) {
             props.addPageNum(params.pageNum)
         }
     }
+
     useEffect(() => {
         document.querySelector('.content').addEventListener('scroll', infiniteScroll)
         return () => document.querySelector('.app').removeEventListener('scroll', infiniteScroll)
