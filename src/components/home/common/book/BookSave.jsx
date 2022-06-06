@@ -2,10 +2,14 @@ import React, { useState, useEffect } from 'react'
 import SaveOptionButton from '../../contents/search/SaveOptionButton'
 import { option } from '../../../../common/utils/common_var'
 import { useNavigate } from 'react-router-dom'
+import { useDispatch } from 'react-redux'
+import bookActions from '../../../../modules/actions'
 
 
 //책 저장 및 수정
 function BookSave(props) {
+    console.log(props)
+    const dispatch = useDispatch()
     const navigate = useNavigate()
     const [selectedOption, setSelectedOption] = useState(props.selectedBook.type || 'complete')
     const [saveBook, setSaveBook] = useState([])
@@ -49,7 +53,7 @@ function BookSave(props) {
                 'startDate': saveBook.startDate ? saveBook.startDate : dateValue,
                 'addDate': props.modifyMode ? saveBook.addDate : new Date().toISOString(),
             }
-            props.onClickUpdateOrAdd(newBook)
+            dispatch(bookActions.onClickBookUpdateOrAdd(props.userInfo.userId, newBook))
             alert('저장을 완료했어요.')
             if (props.modifyMode) {
                 props.updateBookContents(newBook)

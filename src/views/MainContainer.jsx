@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useReducer, useState } from 'react'
 import { Route, Routes, useLocation, useNavigate } from 'react-router-dom'
 import Navbar from '../components/home/common/navbar/Navbar'
 import SearchContainer from './SearchContainer'
@@ -9,21 +9,18 @@ import MobileNavbar from '../components/mobile/navbar/MobileNavbar'
 import './Container.css'
 import LoadingSpinner from '../common/utils/LoadingSpinner'
 import LocalStorage from '../common/utils/local_storage'
+import { useDispatch, useSelector } from 'react-redux'
+import bookActions from '../modules/actions'
+
 function MainContainer(props) {
-    const navigate = useNavigate();
+    const dispatch = useDispatch()
+    const savedBooks = useSelector(store => store.bookStore.savedBooks)
+    const navigate = useNavigate()
     const location = useLocation()
+
     // 첫 로그인 시 유저 정보를 세팅합니다.
     const [userInfo, setUserInfo] = useState({})
-    // 저장된 책 목록을 세팅합니다.
-    const [savedBooks, setSavedBooks] = useState([])
     const [isLoading, setIsLoading] = useState(false)
-
-    const FetchSavedBooks = async () => {
-        setIsLoading(true)
-        const books = await props.bookRepository.syncBooks(userInfo.userId)
-        setSavedBooks(books)
-        setIsLoading(false)
-    }
 
     useEffect(() => {
         props.authService.onAuthChange(user => {
@@ -45,31 +42,16 @@ function MainContainer(props) {
         }, [userInfo.userId])
     }, [props.authService, props.userRepository])
 
+    const FetchSavedBooks = async() => {
+        setIsLoading(true)
+        const books = await props.bookRepository.syncBooks(userInfo.userId)
+        dispatch(bookActions.getSavedBooks(books))
+        setIsLoading(false)
+    }
+
     useEffect(() => {
         FetchSavedBooks()
     }, [userInfo.userId])
-
-    // 서재에 저장된 책 삭제
-    const onClickBookDelete = (e) => {
-        setSavedBooks(book => {
-            const update = { ...book }
-            const id = Object.keys(update).filter(key => update[key].isbn === e.target.id)
-            delete update[id]
-            return update
-        })
-        props.bookRepository.deleteBook(userInfo.userId, e.target.id)
-    }
-
-    // 서재에 저장된 책의 저장된 정보를 수정하거나 책 검색에서 서재에 추가
-    const onClickBookUpdateOrAdd = (newBook) => {
-        setSavedBooks(book => {
-            const update = { ...book }
-            const id = Object.keys(update).filter(key => update[key].isbn === newBook.isbn)
-            update[id] = newBook
-            return update
-        })
-        props.bookRepository.saveBook(userInfo.userId, newBook.isbn, newBook)
-    }
 
     const onClickSearchNav = () => {
         if (location.pathname.includes('search')) {
@@ -97,24 +79,16 @@ function MainContainer(props) {
             <section className='content'>
                 <Routes>
                     <Route exact={true} path='search/*' element={<SearchContainer
-                        savedBooks={savedBooks}
                         userInfo={userInfo}
                         bookRepository={props.bookRepository}
-                        onClickBookUpdateOrAdd={onClickBookUpdateOrAdd}
                     />} />
                     <Route exact={true} path='library/*'
                         element={<LibraryContainer
                             userInfo={userInfo}
-                            savedBooks={savedBooks}
-                            onClickBookDelete={onClickBookDelete}
-                            onClickBookUpdateOrAdd={onClickBookUpdateOrAdd}
-                            bookRepository={props.bookRepository}
                         />} />
                     <Route exact={true} path='history/*'
                         element={<HistoryContainer
                             userInfo={userInfo}
-                            savedBooks={savedBooks}
-                            bookRepository={props.bookRepository}
                         />} />
                 </Routes>
             </section>

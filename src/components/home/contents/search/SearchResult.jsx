@@ -66,7 +66,6 @@ function BookResult(props) {
                     userInfo={props.userInfo}
                     selectedBook={selectedBook}
                     savedBooks={props.savedBooks}
-                    onClickUpdateOrAdd={props.onClickUpdateOrAdd}
                 ></BookSave>
             </Modal>
         </>

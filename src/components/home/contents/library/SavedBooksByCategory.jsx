@@ -9,6 +9,7 @@ import { useParams } from 'react-router-dom'
 import ShowMessage from '../../common/alert/ShowMessage'
 import animationData from '../../../../assets/animation/85557-empty.json'
 import Modal from '../../common/modal/Modal'
+import { useDispatch } from 'react-redux'
 
 // 카테고리에 저장된 책 보여주기
 function SavedBooksByCategory(props) {
@@ -22,14 +23,6 @@ function SavedBooksByCategory(props) {
     const book = props.filteredBooks[id] // 이부분만 다름
     setIsToggle(true)
     setSelectedBook(book)
-  }
-
-  const onClickDelete = (e) => {
-    if (window.confirm('정말 삭제하시겠어요?')) {
-      props.onClickDelete(e)
-      alert('삭제가 완료되었습니다.')
-      setIsToggle(false)
-    }
   }
 
   return (
@@ -71,11 +64,9 @@ function SavedBooksByCategory(props) {
           setSelectedBook={setSelectedBook}
           savedBooks={props.savedBooks}
           userInfo={props.userInfo}
-          onClickUpdateOrAdd={props.onClickUpdateOrAdd}
-          onClickDelete={onClickDelete}
-          bookRepository={props.bookRepository}
           setModifyMode={setModifyMode}
           modifyMode={modifyMode}
+          setIsToggle={setIsToggle}
         />
       </Modal>
     </section>

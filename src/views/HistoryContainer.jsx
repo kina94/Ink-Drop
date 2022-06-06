@@ -1,21 +1,22 @@
 import React, { useEffect, useState } from 'react'
+import { useSelector } from 'react-redux';
 import CalendarView from '../components/home/contents/history/CalendarView';
 import ChartView from '../components/home/contents/history/ChartView';
 
 function CalendarContainer(props) {
+  const savedBooks = useSelector(store=>store.bookStore.savedBooks)
   const [completeBooks, setCompleteBooks] = useState([])
-
   const getCompleteBooks = async () => {
-    if (props.savedBooks != null) {
-      const processedBooks = Object.keys(props.savedBooks).filter(key => props.savedBooks[key].type === 'complete')
-        .map(key => props.savedBooks[key])
+    if (savedBooks != null) {
+      const processedBooks = Object.keys(savedBooks).filter(key => savedBooks[key].type === 'complete')
+        .map(key => savedBooks[key])
       setCompleteBooks(processedBooks)
     }
   }
 
   useEffect(() => {
     getCompleteBooks()
-  }, [props.savedBooks])
+  }, [savedBooks])
 
   return (
     <section className='history'>

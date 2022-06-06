@@ -89,7 +89,6 @@ function SearchContainer(props) {
           addPageNum={addPageNum}
           userInfo={props.userInfo}
           bookRepository={props.bookRepository}
-          onClickUpdateOrAdd={props.onClickBookUpdateOrAdd}
           message={`'${params['*']}'에 대한 검색 결과`} />} />
       </Routes>
     </section>
