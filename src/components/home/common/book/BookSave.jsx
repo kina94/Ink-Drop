@@ -2,15 +2,15 @@ import React, { useState, useEffect } from 'react'
 import SaveOptionButton from '../../contents/search/SaveOptionButton'
 import { option } from '../../../../common/utils/common_var'
 import { useNavigate } from 'react-router-dom'
-import { useDispatch } from 'react-redux'
-import {bookActions} from '../../../../modules/actions'
+import { useDispatch, useSelector } from 'react-redux'
+import { bookActions } from '../../../../modules/actions'
 
 
 //책 저장 및 수정
 function BookSave(props) {
-    console.log(props)
     const dispatch = useDispatch()
-    const navigate = useNavigate()
+    const isModifyMode = useSelector(store=>store.toggleStore.modifyToggle)
+    const savedBooks = useSelector(store => store.bookStore.savedBooks)
     const [selectedOption, setSelectedOption] = useState(props.selectedBook.type || 'complete')
     const [saveBook, setSaveBook] = useState([])
     const dateValue = new Date().toISOString().substring(0, 10)
@@ -40,25 +40,25 @@ function BookSave(props) {
     함수 분리 필요*/
     const onClickSaveBook = () => {
         let bookKey = null
-        if (props.savedBooks) {
-            bookKey = Object.keys(props.savedBooks).find(key => key === props.selectedBook.isbn)
+        if (savedBooks) {
+            bookKey = Object.keys(savedBooks).find(key => key === props.selectedBook.isbn)
         }
-        if (bookKey && !props.modifyMode) {
-            alert(`이미 저장된 책이에요. ${option[props.savedBooks[bookKey].type]}을 확인해보세요.`)
+        if (bookKey && !isModifyMode) {
+            alert(`이미 저장된 책이에요. ${option[savedBooks[bookKey].type]}을 확인해보세요.`)
         } else {
             const newBook = {
                 ...saveBook,
                 'type': selectedOption,
                 'endDate': saveBook.endDate ? saveBook.endDate : dateValue,
                 'startDate': saveBook.startDate ? saveBook.startDate : dateValue,
-                'addDate': props.modifyMode ? saveBook.addDate : new Date().toISOString(),
+                'addDate': isModifyMode ? saveBook.addDate : new Date().toISOString(),
             }
             dispatch(bookActions.onClickBookUpdateOrAdd(props.userInfo.userId, newBook))
             alert('저장을 완료했어요.')
-            if (props.modifyMode) {
+            if (isModifyMode) {
                 props.updateBookContents(newBook)
             }
-            
+
         }
     }
 
@@ -85,7 +85,7 @@ function BookSave(props) {
                         <p>후기</p>
                         <div className='option-container'>
                             <input type='text' id='review' onChange={handleOptionInput}
-                                value={saveBook.review || ''}/>
+                                value={saveBook.review || ''} />
                         </div>
                     </form>
                 )
@@ -105,7 +105,7 @@ function BookSave(props) {
                         <p>메모</p>
                         <div className='option-container'>
                             <input type='text' id='memo' onChange={handleOptionInput}
-                                value={saveBook.memo || ''}/>
+                                value={saveBook.memo || ''} />
                         </div>
                     </form>
                 )
@@ -118,7 +118,7 @@ function BookSave(props) {
                             <div className='option-container'>
                                 <input type='text' id='memo' onChange={handleOptionInput}
                                     value={saveBook.memo || ''}
-/>
+                                />
                             </div>
                         </form>
                     </div>

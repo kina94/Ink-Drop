@@ -9,19 +9,20 @@ import { useParams } from 'react-router-dom'
 import ShowMessage from '../../common/alert/ShowMessage'
 import animationData from '../../../../assets/animation/85557-empty.json'
 import Modal from '../../common/modal/Modal'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
+import { toggleActions } from '../../../../modules/actions'
 
 // 카테고리에 저장된 책 보여주기
 function SavedBooksByCategory(props) {
-  const [selectedBook, setSelectedBook] = useState([])
-  const [isToggle, setIsToggle] = useState(false)
-  const [modifyMode, setModifyMode] = useState(false)
-  const params = useParams()
+  const dispatch = useDispatch()
   const navigate = useNavigate()
+  const params = useParams()
+  const [selectedBook, setSelectedBook] = useState([])
+
   const onClickBook = (e) => {
     const id = e.target.closest('li').id
     const book = props.filteredBooks[id] // 이부분만 다름
-    setIsToggle(true)
+    dispatch(toggleActions.toggleModal(true))
     setSelectedBook(book)
   }
 
@@ -55,18 +56,12 @@ function SavedBooksByCategory(props) {
             }
           </ul>
       }
-      <Modal isToggle={isToggle}
-        setIsToggle={setIsToggle}
-        setModifyMode={setModifyMode}>
+      <Modal>
         <BookBasicInfo selectedBook={selectedBook} />
         <SavedBookContents
           selectedBook={selectedBook}
           setSelectedBook={setSelectedBook}
-          savedBooks={props.savedBooks}
           userInfo={props.userInfo}
-          setModifyMode={setModifyMode}
-          modifyMode={modifyMode}
-          setIsToggle={setIsToggle}
         />
       </Modal>
     </section>

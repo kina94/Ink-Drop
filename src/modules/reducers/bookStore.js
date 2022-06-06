@@ -33,6 +33,6 @@ export const bookStore = (state = initBookState, action) => {
             }
 
         default:
-            return state.savedBooks;
+            return state;
     }
 }

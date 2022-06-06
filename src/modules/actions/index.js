@@ -1,4 +1,4 @@
-import {initBookActions} from "./initActions"
+import {initBookActions, initToggle} from "./initActions"
 
 export const bookActions = {
     getSavedBooks: (savedBooks) =>{
@@ -22,6 +22,22 @@ export const bookActions = {
             type: initBookActions.DELETE,
             bookId,
             userId,
+        }
+    }
+}
+
+export const toggleActions = {
+    toggleModifyMode: (bool) =>{
+        return{
+            type:initToggle.MODIFY_TOGGLE,
+            bool,
+        }
+    },
+
+    toggleModal: (bool) =>{
+        return{
+            type:initToggle.MODAL_TOGGLE,
+            bool,
         }
     }
 }

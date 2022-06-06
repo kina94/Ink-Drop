@@ -11,9 +11,9 @@ import { useSelector } from 'react-redux'
 function LibraryContainer(props) {
   const savedBooks = useSelector(store=>store.bookStore.savedBooks)
   const params = useParams()
+  const category = params['*']
   const navigate = useNavigate()
   const [filteredBooks, setFilteredBooks] = useState()
-  const category = params['*']
 
   // 전체, 읽은책, 읽고 있는 책, 읽고 싶은 책 카테고리 선택
   const onClickCategory = (e) => {
@@ -56,7 +56,6 @@ function LibraryContainer(props) {
         />} />
         <Route exact={true} path=':category' element={<SavedBooksByCategory
           userInfo={props.userInfo}
-          savedBooks={savedBooks}
           filteredBooks={filteredBooks}
         />} />
       </Routes>
