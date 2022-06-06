@@ -3,7 +3,7 @@ import SaveOptionButton from '../../contents/search/SaveOptionButton'
 import { option } from '../../../../common/utils/common_var'
 import { useNavigate } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
-import bookActions from '../../../../modules/actions'
+import {bookActions} from '../../../../modules/actions'
 
 
 //책 저장 및 수정

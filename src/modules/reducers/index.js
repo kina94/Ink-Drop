@@ -1,5 +1,5 @@
 import { combineReducers } from "redux";
-import {bookStore} from "./store";
+import {bookStore} from "./bookStore";
 
 const reducers = combineReducers({
     bookStore

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { Navigate, Route, Routes, useLocation, useNavigate, useParams } from 'react-router-dom'
+import { Route, Routes, useNavigate, useParams } from 'react-router-dom'
 import ShowMessage from '../components/home/common/alert/ShowMessage'
 import SearchResult from '../components/home/contents/search/SearchResult'
 import SearchInput from '../components/home/contents/search/SearchInput'

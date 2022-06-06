@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { useDispatch } from 'react-redux'
-import bookActions from '../../../../modules/actions'
+import {bookActions} from '../../../../modules/actions'
 import BookSave from '../../common/book/BookSave'
 
 function SavedBookContents(props) {

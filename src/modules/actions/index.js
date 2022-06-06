@@ -1,6 +1,6 @@
-import initBookActions from "./actions"
+import {initBookActions} from "./initActions"
 
-const bookActions = {
+export const bookActions = {
     getSavedBooks: (savedBooks) =>{
         return{
             type: initBookActions.GET,
@@ -25,5 +25,3 @@ const bookActions = {
         }
     }
 }
-
-export default bookActions

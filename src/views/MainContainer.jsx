@@ -10,7 +10,7 @@ import './Container.css'
 import LoadingSpinner from '../common/utils/LoadingSpinner'
 import LocalStorage from '../common/utils/local_storage'
 import { useDispatch, useSelector } from 'react-redux'
-import bookActions from '../modules/actions'
+import {bookActions} from '../modules/actions'
 
 function MainContainer(props) {
     const dispatch = useDispatch()
