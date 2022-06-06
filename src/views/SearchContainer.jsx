@@ -26,7 +26,6 @@ function SearchContainer(props) {
     const response = await props.bookRepository.searchBooks(searchParams)
     if(response.data.meta.is_end && response.data.meta.pageable_count!=0){
       alert('마지막 검색 결과입니다.')
-      document.querySelector('.content').scrollTo(0, 0)
     } else {
       setBooks([...books, ...response.data.documents])
     }
