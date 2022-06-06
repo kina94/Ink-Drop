@@ -21,6 +21,10 @@ function SearchContainer(props) {
   // 도서API 호출
   const FetchBooks = async () => {
     const response = await props.bookRepository.searchBooks(searchParams)
+    if(response.data.meta.is_end){
+      alert('마지막 검색 결과입니다.')
+      return
+    }
     setBooks([...books, ...response.data.documents])
   }
 
