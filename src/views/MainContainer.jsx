@@ -10,7 +10,7 @@ import './Container.css'
 import LoadingSpinner from '../common/utils/LoadingSpinner'
 import LocalStorage from '../common/utils/local_storage'
 import { useDispatch, useSelector } from 'react-redux'
-import {bookActions} from '../modules/actions'
+import { bookActions } from '../modules/actions'
 
 function MainContainer(props) {
     const dispatch = useDispatch()
@@ -42,7 +42,7 @@ function MainContainer(props) {
         }, [userInfo.userId])
     }, [props.authService, props.userRepository])
 
-    const FetchSavedBooks = async() => {
+    const FetchSavedBooks = async () => {
         setIsLoading(true)
         const books = await props.bookRepository.syncBooks(userInfo.userId)
         dispatch(bookActions.getSavedBooks(books))
@@ -84,11 +84,11 @@ function MainContainer(props) {
                     />} />
                     <Route exact={true} path='library/*'
                         element={<LibraryContainer
-                            userInfo={userInfo}
+                        userInfo={userInfo}
                         />} />
                     <Route exact={true} path='history/*'
                         element={<HistoryContainer
-                            userInfo={userInfo}
+                        userInfo={userInfo}
                         />} />
                 </Routes>
             </section>

@@ -9,7 +9,7 @@ import { useParams } from 'react-router-dom'
 import ShowMessage from '../../common/alert/ShowMessage'
 import animationData from '../../../../assets/animation/85557-empty.json'
 import Modal from '../../common/modal/Modal'
-import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch } from 'react-redux'
 import { toggleActions } from '../../../../modules/actions'
 
 // 카테고리에 저장된 책 보여주기
