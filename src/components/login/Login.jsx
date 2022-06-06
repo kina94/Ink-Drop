@@ -8,12 +8,18 @@ import styles from './Login.module.css';
 const Login = ({ authService }) => {
   const navigate = useNavigate();
 
+  const removeLocalStorage = () =>{
+    const items = ['params', 'books', 'scroll']
+    items.map(item=>localStorage.removeItem(item))
+  }
+
   const goToHome = (userId) => {
     navigate('/home/search',
       { state: { id: userId } });
   };
 
   const onLogin = (event) => {
+    removeLocalStorage()
     authService //
       .login(event.currentTarget.value)
       .then(data => goToHome(data.user.uid));
