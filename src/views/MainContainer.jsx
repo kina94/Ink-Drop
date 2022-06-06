@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { Route, Routes, useNavigate } from 'react-router-dom'
+import { Route, Routes, useLocation, useNavigate } from 'react-router-dom'
 import Navbar from '../components/home/common/navbar/Navbar'
 import SearchContainer from './SearchContainer'
 import LibraryContainer from './LibraryContainer'
@@ -10,13 +10,12 @@ import './Container.css'
 import LoadingSpinner from '../common/utils/LoadingSpinner'
 function MainContainer(props) {
     const navigate = useNavigate();
+    const location = useLocation()
     // 첫 로그인 시 유저 정보를 세팅합니다.
     const [userInfo, setUserInfo] = useState({})
     // 저장된 책 목록을 세팅합니다.
     const [savedBooks, setSavedBooks] = useState([])
     const [isLoading, setIsLoading] = useState(false)
-    //냅바의 책 검색하기 두번 클릭 시 검색 기록을 초기화합니다.
-    const [isHome, setIsHome] = useState(false)
 
     const FetchSavedBooks = async () => {
         setIsLoading(true)
@@ -70,17 +69,15 @@ function MainContainer(props) {
         props.bookRepository.saveBook(userInfo.userId, newBook.isbn, newBook)
     }
 
-    const onClickSearchNav = () =>{
-      if(isHome){
-        navigate('/home/search')
-        localStorage.removeItem('params')
-        setIsHome(!isHome)
-      } else {
-        const savedParams = JSON.parse(localStorage.getItem('params'))
-        const serachURL = savedParams ? `/home/search/${savedParams.query}` : '/home/search'
-        navigate(serachURL)
-        setIsHome(!isHome)
-      }
+    const onClickSearchNav = () => {
+        if (location.pathname.includes('search')) {
+            navigate('/home/search')
+            localStorage.removeItem('params')
+        } else {
+            const savedParams = JSON.parse(localStorage.getItem('params'))
+            const serachURL = savedParams ? `/home/search/${savedParams.query}` : '/home/search'
+            navigate(serachURL)
+        }
     }
 
     return (
@@ -90,11 +87,11 @@ function MainContainer(props) {
             }
             <Navbar userInfo={userInfo} {...props}></Navbar>
             <Sidebar
-            onClickSearchNav={onClickSearchNav}
+                onClickSearchNav={onClickSearchNav}
             ></Sidebar>
             <MobileNavbar
-            onClickSearchNav={onClickSearchNav}
-            {...props} />
+                onClickSearchNav={onClickSearchNav}
+                {...props} />
             <section className='content'>
                 <Routes>
                     <Route exact={true} path='search/*' element={<SearchContainer
