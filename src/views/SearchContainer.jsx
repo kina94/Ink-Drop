@@ -35,6 +35,9 @@ function SearchContainer(props) {
   const initSearch = () => {
     setSearchParams({ ...searchParams, page: 1 })
     setBooks([])
+    localStorage.removeItem('params')
+    localStorage.removeItem('books')
+    localStorage.removeItem('scroll')
   }
 
   // 하단까지 스크롤 시 페이지 증가
