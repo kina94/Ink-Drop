@@ -21,11 +21,12 @@ function SearchContainer(props) {
   // 도서API 호출
   const FetchBooks = async () => {
     const response = await props.bookRepository.searchBooks(searchParams)
-    if(response.data.meta.is_end){
+    console.log(response)
+    if(response.data.meta.is_end && response.data.meta.pageable_count!=0){
       alert('마지막 검색 결과입니다.')
-      return
+    } else {
+      setBooks([...books, ...response.data.documents])
     }
-    setBooks([...books, ...response.data.documents])
   }
 
   //새로운 검색 시 state 초기화
@@ -49,7 +50,7 @@ function SearchContainer(props) {
       localStorage.setItem('params', JSON.stringify(searchParams))
     }
     setIsLoading(false)
-  }, [searchParams.page])
+  }, [params, searchParams.page])
 
   //localstorage에 검색된 책 저장
   useEffect(() => {
