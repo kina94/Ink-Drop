@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { Route, Routes, useNavigate, useParams } from 'react-router-dom'
+import { Route, Routes, useParams } from 'react-router-dom'
 import ShowMessage from '../components/home/common/alert/ShowMessage'
 import SearchResult from '../components/home/contents/search/SearchResult'
 import SearchInput from '../components/home/contents/search/SearchInput'
@@ -13,8 +13,7 @@ function SearchContainer(props) {
   const savedParams = JSON.parse(localStorage.getItem('params'))
   const [isLoading, setIsLoading] = useState(false)
   const [books, setBooks] = useState(savedBooks ? savedBooks : [])
-  const [searchParams, setSearchParams] = useState(
-    savedParams ? savedParams : {
+  const [searchParams, setSearchParams] = useState({
       query: '',
       page: 0,
     })
@@ -33,24 +32,25 @@ function SearchContainer(props) {
 
   // 하단까지 스크롤 시 페이지 증가
   const addPageNum = () => {
-    setSearchParams({ ...searchParams, page: searchParams.page + 1 })
+    const nextPage = savedParams ? savedParams.page+1 : searchParams.page+1
+    const nextQuery = savedParams ? savedParams.query : searchParams.query
+    setSearchParams({ ...searchParams, page: nextPage, query:nextQuery })
   }
 
-  //SearchParams의 page가 변경될 때마다 FetchBooks 요청
+  //SearchParams의 page가 변경될 때마다 FetchBooks를 요청하고 params 로컬스토리지 저장
   useEffect(() => {
     setIsLoading(true)
     if (searchParams.query != '') {
       FetchBooks()
+      localStorage.setItem('params', JSON.stringify(searchParams))
     }
     setIsLoading(false)
   }, [searchParams.page])
 
-  //localstorage 저장
+  //localstorage에 검색된 책 저장
   useEffect(() => {
-    localStorage.setItem('params', JSON.stringify(searchParams))
     localStorage.setItem('books', JSON.stringify(books))
-  }, [books, searchParams])
-
+  }, [books])
 
   return (
     <section className='search'>
