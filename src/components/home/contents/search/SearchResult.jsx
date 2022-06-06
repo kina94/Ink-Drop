@@ -26,7 +26,7 @@ function BookResult(props) {
         const scrollTop = document.querySelector('.content').scrollTop
         const clientHeight = document.querySelector('.content').clientHeight
         document.querySelector('.book-list') && localStorage.setItem('scroll', scrollTop)
-        if (Math.ceil(scrollTop + clientHeight) >= scrollHeight) {
+        if (Math.ceil(scrollTop + clientHeight) >= scrollHeight && scrollTop!=0) {
             props.addPageNum(params.pageNum)
         }
     }
