@@ -6,6 +6,7 @@ import SearchInput from '../components/home/contents/search/SearchInput'
 import LoadingSpinner from '../common/utils/LoadingSpinner'
 import animationData from '../assets/animation/72170-books.json'
 import './Container.css'
+import LocalStorage from '../common/utils/local_storage'
 
 function SearchContainer(props) {
   const params = useParams()
@@ -24,6 +25,7 @@ function SearchContainer(props) {
   const FetchBooks = async () => {
     const response = await props.bookRepository.searchBooks(searchParams)
     if(response.data.meta.is_end && response.data.meta.pageable_count!=0){
+      console.log(response)
       alert('마지막 검색 결과입니다.')
       document.querySelector('.content').scrollTo(0, 0)
     } else {
@@ -35,9 +37,7 @@ function SearchContainer(props) {
   const initSearch = () => {
     setSearchParams({ ...searchParams, page: 1 })
     setBooks([])
-    localStorage.removeItem('params')
-    localStorage.removeItem('books')
-    localStorage.removeItem('scroll')
+    LocalStorage.removeAllItems()
   }
 
   // 하단까지 스크롤 시 페이지 증가
