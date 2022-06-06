@@ -73,6 +73,8 @@ function MainContainer(props) {
         if (location.pathname.includes('search')) {
             navigate('/home/search')
             localStorage.removeItem('params')
+            localStorage.removeItem('books')
+            localStorage.removeItem('scroll')
         } else {
             const savedParams = JSON.parse(localStorage.getItem('params'))
             const serachURL = savedParams ? `/home/search/${savedParams.query}` : '/home/search'
