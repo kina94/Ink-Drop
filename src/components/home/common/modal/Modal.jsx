@@ -1,24 +1,27 @@
 import React, { useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { toggleActions } from '../../../../modules/actions'
 import './Modal.css'
 
 function Modal(props) {
+    const dispatch = useDispatch()
+    const isModalShow = useSelector(store=>store.toggleStore.modalToggle)
     const handleModalClose = () => {
         window.addEventListener('keydown', (e) => {
             if (e.key === 'Escape') {
-                props.setIsToggle(false)
-                props.setModifyMode(false)
+                dispatch(toggleActions.toggleModal(false))
+                dispatch(toggleActions.toggleModifyMode(false))
             }
         })
         window.addEventListener('click', (e) => {
             try {
                 if (e.target.className === 'modal') {
-                    props.setIsToggle(false)
-                    props.setModifyMode(false)
-
+                    dispatch(toggleActions.toggleModal(false))
+                    dispatch(toggleActions.toggleModifyMode(false))
                 }
                 if (e.target.closest('button').className === 'close') {
-                    props.setIsToggle(false)
-                    props.setModifyMode(false)
+                    dispatch(toggleActions.toggleModal(false))
+                    dispatch(toggleActions.toggleModifyMode(false))
                 }
             } catch {
                 return
@@ -31,8 +34,8 @@ function Modal(props) {
     }, [])
 
     return (
-        <div className={props.isToggle? 'modal' : 'modal modal-hide'}>
-            <div className={props.isToggle ? 'content-wrapper' : 'content-wrapper hide'}>
+        <div className={isModalShow? 'modal' : 'modal modal-hide'}>
+            <div className={isModalShow ? 'content-wrapper' : 'content-wrapper hide'}>
                 {props.children}
             </div>
         </div>

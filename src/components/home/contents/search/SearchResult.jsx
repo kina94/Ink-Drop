@@ -6,9 +6,11 @@ import BookSave from '../../common/book/BookSave'
 import Modal from '../../common/modal/Modal'
 import animationData from '../../../../assets/animation/85557-empty.json'
 import { useParams } from 'react-router-dom'
+import { useDispatch } from 'react-redux'
+import { toggleActions } from '../../../../modules/actions'
 
 function BookResult(props) {
-    const [isToggle, setIsToggle] = useState(false)
+    const dispatch = useDispatch()
     const [selectedBook, setSelectedBook] = useState([])
     const params = useParams()
     const searchRef = useRef()
@@ -17,7 +19,7 @@ function BookResult(props) {
     const onClickBook = (e) => {
         const id = e.target.closest('li').id
         const book = props.books[id]
-        setIsToggle(true)
+        dispatch(toggleActions.toggleModal(true))
         setSelectedBook(book)
     }
 
@@ -59,14 +61,11 @@ function BookResult(props) {
                         </ul>
                     </section>
             }
-            <Modal isToggle={isToggle}
-                setIsToggle={setIsToggle}>
+            <Modal>
                 <BookBasicInfo selectedBook={selectedBook} />
                 <BookSave
                     userInfo={props.userInfo}
                     selectedBook={selectedBook}
-                    savedBooks={props.savedBooks}
-                    onClickUpdateOrAdd={props.onClickUpdateOrAdd}
                 ></BookSave>
             </Modal>
         </>

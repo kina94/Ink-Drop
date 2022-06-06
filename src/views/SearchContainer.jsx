@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { Navigate, Route, Routes, useLocation, useNavigate, useParams } from 'react-router-dom'
+import { Route, Routes, useNavigate, useParams } from 'react-router-dom'
 import ShowMessage from '../components/home/common/alert/ShowMessage'
 import SearchResult from '../components/home/contents/search/SearchResult'
 import SearchInput from '../components/home/contents/search/SearchInput'
@@ -26,6 +26,7 @@ function SearchContainer(props) {
     const response = await props.bookRepository.searchBooks(searchParams)
     if(response.data.meta.is_end && response.data.meta.pageable_count!=0){
       alert('마지막 검색 결과입니다.')
+      return
     } else {
       setBooks([...books, ...response.data.documents])
     }
@@ -89,7 +90,6 @@ function SearchContainer(props) {
           addPageNum={addPageNum}
           userInfo={props.userInfo}
           bookRepository={props.bookRepository}
-          onClickUpdateOrAdd={props.onClickBookUpdateOrAdd}
           message={`'${params['*']}'에 대한 검색 결과`} />} />
       </Routes>
     </section>
