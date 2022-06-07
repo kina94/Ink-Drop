@@ -17,12 +17,14 @@
     top: 50%;
     transform: translate(-50%, -50%);
     background-color: #fff;
-    border-radius: 5px;
     border-radius:10px;
     text-align:center;
     width:100%;
     max-width:800px;
     max-height:100%;
+    overflow:auto;
+    padding: 0 0 4em 0;
+
 }
 
 .modal-hide{
@@ -32,13 +34,18 @@
 
 /*타이틀*/
 .content-wrapper .title{
-    display:flex;
-    color:var(--color-black);
-    font-weight:bold;
-    padding: 30px 20px 0px 30px;
-    text-align:left;
-    word-break:keep-all;
-  }
+  padding:15px;
+  background-color:white;
+  position:fixed;
+  width:100%;
+  box-shadow: rgba(0, 0, 0, 0.05) 0px 3px 5px;
+  top:0;
+  display:flex;
+  color:var(--color-black);
+  font-weight:bold;
+  text-align:left;
+  word-break:keep-all;
+}
   
 .content-wrapper .title span{
     display:-webkit-box; 
@@ -60,7 +67,8 @@
   }
   
 .content-wrapper .information{
-    padding: 40px 35px 10px 35px;
+  margin-top:3.5em;
+    padding: 3em 35px 10px 35px;
     display:flex;
     color:var(--color-black)
   }

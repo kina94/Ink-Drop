@@ -4,21 +4,13 @@ import ShowMessage from '../components/home/common/alert/ShowMessage'
 import LibrarySidebar from '../components/home/contents/library/LibrarySidebar'
 import SavedBooksByCategory from '../components/home/contents/library/SavedBooksByCategory'
 import animationData from '../assets/animation/72170-books.json'
-import { useDispatch, useSelector } from 'react-redux'
-import { bookActions } from '../modules/actions'
-
+import { useSelector } from 'react-redux'
 
 function LibraryContainer(props) {
-  const dispatch = useDispatch()
   const savedBooks = useSelector(store => store.bookStore.savedBooks)
   const params = useParams()
   const category = params['*']
   const [filteredBooks, setFilteredBooks] = useState()
-
-  const FetchSavedBooks = async () => {
-    const books = await props.bookRepository.syncBooks(props.userInfo.userId)
-    dispatch(bookActions.getSavedBooks(books))
-  }
 
   // 저장되어 있는 책을 카테고리에 따라 필터링해서 불러오기
   const getBooksByCategory = () => {
@@ -39,9 +31,6 @@ function LibraryContainer(props) {
     setFilteredBooks(sortBooks)
   }
 
-  useEffect(() => {
-    FetchSavedBooks()
-  }, [props.userInfo.userId])
 
   useEffect(() => {
     getBooksByCategory()

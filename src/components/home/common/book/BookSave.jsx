@@ -30,7 +30,7 @@ function BookSave(props) {
             endDate: '',
             memo: '',
             review: '',
-            rate: 0,
+            rate: null,
         })
     }
 

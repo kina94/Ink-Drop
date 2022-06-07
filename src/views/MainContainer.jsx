@@ -7,6 +7,7 @@ import HistoryContainer from './HistoryContainer'
 import Sidebar from '../components/home/common/sidebar/Sidebar'
 import MobileNavbar from '../components/mobile/navbar/MobileNavbar'
 import './Container.css'
+import LoadingSpinner from '../common/utils/LoadingSpinner'
 import LocalStorage from '../common/utils/local_storage'
 import { useDispatch, useSelector } from 'react-redux'
 import { bookActions } from '../modules/actions'
@@ -19,6 +20,7 @@ function MainContainer(props) {
 
     // 첫 로그인 시 유저 정보를 세팅합니다.
     const [userInfo, setUserInfo] = useState({})
+    const [isLoading, setIsLoading] = useState(false)
 
     useEffect(() => {
         props.authService.onAuthChange(user => {
@@ -52,8 +54,22 @@ function MainContainer(props) {
         }
     }
 
+    const FetchSavedBooks = async () => {
+        setIsLoading(true)
+        const books = await props.bookRepository.syncBooks(userInfo.userId)
+        dispatch(bookActions.getSavedBooks(books))
+        setIsLoading(false)
+      }
+      
+      useEffect(() => {
+        FetchSavedBooks()
+      }, [userInfo.userId])
+
     return (
         <section className='main'>
+            {
+                isLoading && <LoadingSpinner></LoadingSpinner>
+            }
             <Navbar userInfo={userInfo} {...props}/>
             <Sidebar onClickSearchNav={onClickSearchNav}/>
             <MobileNavbar onClickSearchNav={onClickSearchNav} {...props} />
@@ -66,7 +82,7 @@ function MainContainer(props) {
                     <Route exact={true} path='library/*'
                         element={<LibraryContainer
                         userInfo={userInfo}
-                        {...props}
+                        setIsLoading={setIsLoading}
                         />} />
                     <Route exact={true} path='history/*'
                         element={<HistoryContainer
