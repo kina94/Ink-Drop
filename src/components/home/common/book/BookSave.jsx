@@ -143,7 +143,7 @@ function BookSave(props) {
             <section className='selected-display'>
                 {selectedOptionContent()}
                 <div className='button-container'>
-                    <button type='submit' onClick={onClickSaveBook}>저장하기</button>
+                    <button className='save' type='submit' onClick={onClickSaveBook}>저장하기</button>
                 </div>
             </section>
         </section>

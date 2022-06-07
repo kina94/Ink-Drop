@@ -147,29 +147,32 @@
 
 .selected-display .button-container{
   display:flex;
-  ;
   border-radius:10px;
   justify-content: right;
   padding:0;
   margin:30px 0 0 0;
+  
 }
 
-.selected-display button{
+.selected-display .button-container button{
   width:150px;
   border-radius:5px;
   border: none;
   height: 50px;
-  background-color: var(--color-blue);
   color:white;
   font-weight: bold;
   margin:0 0 0 6px;
+}
+
+.selected-display .modify, .selected-display .save{
+  background-color: var(--color-blue);
 }
 
 .selected-display .delete{
   background-color: slategrey;
 }
 
-.selected-display button:hover{
+.selected-display .button-container button:hover{
   opacity:0.9
 }
 
@@ -216,12 +219,18 @@ form #icon{
   color:var(--color-black);
 }
 
+form .option-button-container button{
+  cursor:auto;
+}
 
-form span {
+form .option-button-container button:hover{
+  opacity:1;
+}
+
+form .option-container span {
   margin-right:20px;
   color: var(--color-blue);
   font-weight: bold;
-  ;
 }
 
 

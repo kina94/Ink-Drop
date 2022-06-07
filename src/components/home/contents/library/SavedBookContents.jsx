@@ -1,19 +1,20 @@
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import {bookActions, toggleActions} from '../../../../modules/actions'
+import { bookActions, toggleActions } from '../../../../modules/actions'
 import BookSave from '../../common/book/BookSave'
+import SaveOptionButton from '../search/SaveOptionButton'
 
 function SavedBookContents(props) {
     const dispatch = useDispatch()
-    const selectedBook = useSelector(store=>store.bookStore.selectedBook)
-    const isModifyMode = useSelector(store=>store.toggleStore.modifyToggle)
+    const selectedBook = useSelector(store => store.bookStore.selectedBook)
+    const isModifyMode = useSelector(store => store.toggleStore.modifyToggle)
     const onClickDelete = (e) => {
         if (window.confirm('정말 삭제하시겠어요?')) {
-          dispatch(bookActions.onClickBookDelete(e.target.id, props.userInfo.userId))
-          alert('삭제가 완료되었습니다.')
-          dispatch(toggleActions.toggleModal(false))
+            dispatch(bookActions.onClickBookDelete(e.target.id, props.userInfo.userId))
+            alert('삭제가 완료되었습니다.')
+            dispatch(toggleActions.toggleModal(false))
         }
-      }
+    }
 
     // 좀 더 깔끔하게 만들 수 있는 방법 생각 필요
     const viewChangeByType = (type) => {
@@ -21,6 +22,11 @@ function SavedBookContents(props) {
             case 'complete':
                 return (
                     <form>
+                        <section className='option-button-container'>
+                            <SaveOptionButton id='complete' name='읽은 책'
+                                onClick={(e) => e.preventDefault()}
+                            />
+                        </section>
                         <i id='icon' className="fas fa-calendar-check"></i>
                         <p>독서기간</p>
                         <div className='option-container' id='option-saved'>
@@ -41,6 +47,11 @@ function SavedBookContents(props) {
             case 'reading':
                 return (
                     <form>
+                        <section className='option-button-container'>
+                            <SaveOptionButton id='reading' name='읽고 있는 책'
+                                onClick={(e) => e.preventDefault()}
+                            />
+                        </section>
                         <i id='icon' className="fas fa-calendar-check"></i>
                         <p>독서기간</p>
                         <div className='option-container' id='option-saved'>
@@ -60,6 +71,11 @@ function SavedBookContents(props) {
                 return (
                     <div>
                         <form>
+                        <section className='option-button-container'>
+                            <SaveOptionButton id='want' name='읽고 싶은 책'
+                                onClick={(e) => e.preventDefault()}
+                            />
+                        </section>
                             <i id='icon' className="fas fa-pencil"></i>
                             <p>메모</p>
                             <div className='option-container' id='option-saved'>
@@ -75,7 +91,7 @@ function SavedBookContents(props) {
         dispatch(bookActions.getSelectedBook(newBook))
         dispatch(toggleActions.toggleModifyMode(false))
     }
-    
+
     return (
         <>
             {
@@ -88,7 +104,7 @@ function SavedBookContents(props) {
                         <section className='selected-display'>
                             {viewChangeByType(selectedBook.type)}
                             <div className='button-container'>
-                                <button onClick={()=>dispatch(toggleActions.toggleModifyMode(true))}>수정</button>
+                                <button className='modify' onClick={() => dispatch(toggleActions.toggleModifyMode(true))}>수정</button>
                                 <button className='delete' id={selectedBook.isbn} onClick={onClickDelete}>삭제</button>
                             </div>
                         </section>
