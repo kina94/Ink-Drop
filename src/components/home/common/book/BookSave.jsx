@@ -73,6 +73,8 @@ function BookSave(props) {
             dispatch(bookActions.initSearchParams())
             if (isModifyMode) {
                 props.updateBookContents(newBook)
+            } else {
+                dispatch(toggleActions.toggleModal(false))
             }
         }
     }
