@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { Routes, Route, useNavigate, useParams } from 'react-router-dom'
-import LoadingSpinner from '../common/utils/LoadingSpinner'
+import { Routes, Route, useParams } from 'react-router-dom'
 import ShowMessage from '../components/home/common/alert/ShowMessage'
 import LibrarySidebar from '../components/home/contents/library/LibrarySidebar'
 import SavedBooksByCategory from '../components/home/contents/library/SavedBooksByCategory'
@@ -9,7 +8,7 @@ import { useSelector } from 'react-redux'
 
 
 function LibraryContainer(props) {
-  const savedBooks = useSelector(store=>store.bookStore.savedBooks)
+  const savedBooks = useSelector(store => store.bookStore.savedBooks)
   const params = useParams()
   const category = params['*']
   const [filteredBooks, setFilteredBooks] = useState()
@@ -25,8 +24,8 @@ function LibraryContainer(props) {
           .map(key => savedBooks[key])
       }
     }
-    const sortBooks = processedBooks && processedBooks.sort((a,b) => {
-      if(a.addDate > b.addDate) return -1
+    const sortBooks = processedBooks && processedBooks.sort((a, b) => {
+      if (a.addDate > b.addDate) return -1
       else if (b.addDate > a.addDate) return 1
       else return 0
     })
@@ -39,9 +38,10 @@ function LibraryContainer(props) {
 
   return (
     <section className='library'>
-      <LibrarySidebar/>
+      <LibrarySidebar />
       <Routes>
-        <Route exact={true} path='/' element={<ShowMessage value={'카테고리를 선택해주세요.'}
+        <Route exact={true} path='/' element={<ShowMessage
+          value={'카테고리를 선택해주세요.'}
           animationData={animationData}
           width={'200px'}
           height={'200px'}

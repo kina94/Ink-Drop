@@ -11,12 +11,13 @@ function BookSave(props) {
     const dispatch = useDispatch()
     const isModifyMode = useSelector(store=>store.toggleStore.modifyToggle)
     const savedBooks = useSelector(store => store.bookStore.savedBooks)
-    const [selectedOption, setSelectedOption] = useState(props.selectedBook.type || 'complete')
+    const selectedBook = useSelector(store => store.bookStore.selectedBook)
+    const [selectedOption, setSelectedOption] = useState(selectedBook.type || 'complete')
     const [saveBook, setSaveBook] = useState([])
     const dateValue = new Date().toISOString().substring(0, 10)
     useEffect(() => {
-        setSaveBook(props.selectedBook)
-    }, [props.selectedBook])
+        setSaveBook(selectedBook)
+    }, [selectedBook])
 
     // 옵션 선택
     const onClickOption = (e) => {
@@ -41,7 +42,7 @@ function BookSave(props) {
     const onClickSaveBook = () => {
         let bookKey = null
         if (savedBooks) {
-            bookKey = Object.keys(savedBooks).find(key => key === props.selectedBook.isbn)
+            bookKey = Object.keys(savedBooks).find(key => key === selectedBook.isbn)
         }
         if (bookKey && !isModifyMode) {
             alert(`이미 저장된 책이에요. ${option[savedBooks[bookKey].type]}을 확인해보세요.`)

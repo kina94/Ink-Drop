@@ -1,6 +1,15 @@
 import {initBookActions, initToggle} from "./initActions"
 
 export const bookActions = {
+    /*서재 및 검색 공통함수*/
+    getSelectedBook : (selectedBook)=>{
+        return{
+            type: initBookActions.SELECT,
+            selectedBook,
+        }
+    },
+
+    /*서재 CRUD*/
     getSavedBooks: (savedBooks) =>{
         return{
             type: initBookActions.GET,
@@ -25,6 +34,7 @@ export const bookActions = {
         }
     },
 
+    /*책 검색*/
     getSearchBooks: (searchResultBooks) =>{
         return{
             type: initBookActions.SEARCH,
@@ -60,6 +70,7 @@ export const bookActions = {
     }
 }
 
+/*모달 관련*/
 export const toggleActions = {
     toggleModifyMode: (bool) =>{
         return{

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useEffect } from 'react'
 import ShowMessage from '../../common/alert/ShowMessage'
 import BookBasicInfo from '../../common/book/BookBasicInfo'
 import BookList from '../../common/book/BookList'
@@ -10,10 +10,9 @@ import { bookActions, toggleActions } from '../../../../modules/actions'
 
 function BookResult(props) {
     const dispatch = useDispatch()
-    const searchParams = useSelector(store=>store.bookStore.searchParams)
+    const searchParams = useSelector(store => store.bookStore.searchParams)
+    const searchBooks = useSelector(store => store.bookStore.searchResultBooks)
     const savedParams = JSON.parse(localStorage.getItem('params'))
-    const [selectedBook, setSelectedBook] = useState([])
-    const searchBooks = useSelector(store=>store.bookStore.searchResultBooks)
 
     // 하단까지 스크롤 시 페이지 증가
     const addPageNum = () => {
@@ -27,7 +26,7 @@ function BookResult(props) {
         const id = e.target.closest('li').id
         const book = searchBooks[id]
         dispatch(toggleActions.toggleModal(true))
-        setSelectedBook(book)
+        dispatch(bookActions.getSelectedBook(book))
     }
 
     //무한스크롤
@@ -70,10 +69,9 @@ function BookResult(props) {
                     </section>
             }
             <Modal>
-                <BookBasicInfo selectedBook={selectedBook} />
+                <BookBasicInfo/>
                 <BookSave
                     userInfo={props.userInfo}
-                    selectedBook={selectedBook}
                 ></BookSave>
             </Modal>
         </>

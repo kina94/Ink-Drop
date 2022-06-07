@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import BookList from '../../common/book/BookList'
 import BookBasicInfo from '../../common/book/BookBasicInfo'
 import SavedBookContents from './SavedBookContents'
@@ -10,20 +10,19 @@ import ShowMessage from '../../common/alert/ShowMessage'
 import animationData from '../../../../assets/animation/85557-empty.json'
 import Modal from '../../common/modal/Modal'
 import { useDispatch } from 'react-redux'
-import { toggleActions } from '../../../../modules/actions'
+import { bookActions, toggleActions } from '../../../../modules/actions'
 
 // 카테고리에 저장된 책 보여주기
 function SavedBooksByCategory(props) {
   const dispatch = useDispatch()
   const navigate = useNavigate()
   const params = useParams()
-  const [selectedBook, setSelectedBook] = useState([])
 
   const onClickBook = (e) => {
     const id = e.target.closest('li').id
-    const book = props.filteredBooks[id] // 이부분만 다름
+    const book = props.filteredBooks[id]
     dispatch(toggleActions.toggleModal(true))
-    setSelectedBook(book)
+    dispatch(bookActions.getSelectedBook(book))
   }
 
   return (
@@ -57,12 +56,8 @@ function SavedBooksByCategory(props) {
           </ul>
       }
       <Modal>
-        <BookBasicInfo selectedBook={selectedBook} />
-        <SavedBookContents
-          selectedBook={selectedBook}
-          setSelectedBook={setSelectedBook}
-          userInfo={props.userInfo}
-        />
+        <BookBasicInfo/>
+        <SavedBookContents userInfo={props.userInfo}/>
       </Modal>
     </section>
   )

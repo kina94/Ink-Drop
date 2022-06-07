@@ -10,11 +10,18 @@ const initBookState = {
     searchParams: {
         query:'',
         page:0
-    }
+    },
+    selectedBook: []
 };
 
 export const bookStore = (state = initBookState, action) => {
     switch (action.type) {
+        /*검색 및 저장 공통 액션*/
+        case initBookActions.SELECT:
+            {
+                return {...state , selectedBook: action.selectedBook}
+            }
+
         /*저장된 책 CRUD*/
         case initBookActions.GET:
             {

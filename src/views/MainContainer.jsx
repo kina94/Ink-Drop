@@ -1,5 +1,5 @@
-import React, { useEffect, useReducer, useState } from 'react'
-import { Route, Routes, useLocation, useNavigate, useParams } from 'react-router-dom'
+import React, { useEffect, useState } from 'react'
+import { Route, Routes, useLocation, useNavigate} from 'react-router-dom'
 import Navbar from '../components/home/common/navbar/Navbar'
 import SearchContainer from './SearchContainer'
 import LibraryContainer from './LibraryContainer'
@@ -13,7 +13,6 @@ import { useDispatch, useSelector } from 'react-redux'
 import { bookActions } from '../modules/actions'
 
 function MainContainer(props) {
-    const params = useParams()
     const dispatch = useDispatch()
     const savedBooks = useSelector(store => store.bookStore.savedBooks)
     const navigate = useNavigate()
