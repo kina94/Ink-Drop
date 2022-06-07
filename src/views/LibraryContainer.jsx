@@ -12,15 +12,7 @@ function LibraryContainer(props) {
   const savedBooks = useSelector(store=>store.bookStore.savedBooks)
   const params = useParams()
   const category = params['*']
-  const navigate = useNavigate()
   const [filteredBooks, setFilteredBooks] = useState()
-
-  // 전체, 읽은책, 읽고 있는 책, 읽고 싶은 책 카테고리 선택
-  const onClickCategory = (e) => {
-    const id = e.target.closest('li').id
-    navigate(`/home/library/${id}`)
-    return id
-  }
 
   // 저장되어 있는 책을 카테고리에 따라 필터링해서 불러오기
   const getBooksByCategory = () => {
@@ -47,7 +39,7 @@ function LibraryContainer(props) {
 
   return (
     <section className='library'>
-      <LibrarySidebar onClickCategory={onClickCategory}></LibrarySidebar>
+      <LibrarySidebar/>
       <Routes>
         <Route exact={true} path='/' element={<ShowMessage value={'카테고리를 선택해주세요.'}
           animationData={animationData}

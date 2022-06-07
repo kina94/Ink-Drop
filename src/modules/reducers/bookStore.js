@@ -2,13 +2,20 @@ import {initBookActions} from "../actions/initActions";
 import BookService from '../../service/book_service'
 
 const bookService = new BookService()
+const savedResultBooks = JSON.parse(localStorage.getItem('books'))
 
 const initBookState = {
-    savedBooks: []
+    savedBooks: [],
+    searchResultBooks: savedResultBooks? savedResultBooks : [],
+    searchParams: {
+        query:'',
+        page:0
+    }
 };
 
 export const bookStore = (state = initBookState, action) => {
     switch (action.type) {
+        /*저장된 책 CRUD*/
         case initBookActions.GET:
             {
                 return { ...state, savedBooks: action.savedBooks }
@@ -30,6 +37,33 @@ export const bookStore = (state = initBookState, action) => {
                 update[id] = action.newBook
                 bookService.saveBook(action.userId, action.newBookId, action.newBook)
                 return { ...state, savedBooks: update }
+            }
+
+
+        /*책 검색 관련*/
+        case initBookActions.SEARCH:
+            {
+                return {...state, searchResultBooks:[...state.searchResultBooks, ...action.searchResultBooks]}
+            }
+
+        case initBookActions.INIT_BOOKS:
+            {
+                return {...state, searchResultBooks:[]}
+            }
+
+        case initBookActions.INIT_PARAMS:
+            {
+                return {...state, searchParams:{...state.searchParams, page:1}}
+            }
+
+        case initBookActions.SET_PARAMS_QUERY:
+            {
+                return {...state, searchParams:{...state.searchParams, query:action.query}}
+            }
+        
+        case initBookActions.SET_PARAMS_ALL:
+            {
+                return{...state, searchParams:{query:action.query, page:action.page}}
             }
 
         default:

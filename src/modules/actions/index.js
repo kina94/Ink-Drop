@@ -23,6 +23,40 @@ export const bookActions = {
             bookId,
             userId,
         }
+    },
+
+    getSearchBooks: (searchResultBooks) =>{
+        return{
+            type: initBookActions.SEARCH,
+            searchResultBooks,
+        }
+    },
+
+    initSearchBooks: () =>{
+        return{
+            type: initBookActions.INIT_BOOKS,
+        }
+    },
+
+    initSearchParams: () =>{
+        return{
+            type: initBookActions.INIT_PARAMS
+        }
+    },
+
+    setSearchParamsQuery: (query) =>{
+        return{
+            type:initBookActions.SET_PARAMS_QUERY,
+            query
+        }
+    },
+
+    setSearchParamsAll: (query, page) =>{
+        return{
+            type:initBookActions.SET_PARAMS_ALL,
+            query,
+            page,
+        }
     }
 }
 

@@ -70,13 +70,9 @@ function MainContainer(props) {
             {
                 isLoading && <LoadingSpinner></LoadingSpinner>
             }
-            <Navbar userInfo={userInfo} {...props}></Navbar>
-            <Sidebar
-                onClickSearchNav={onClickSearchNav}
-            ></Sidebar>
-            <MobileNavbar
-                onClickSearchNav={onClickSearchNav}
-                {...props} />
+            <Navbar userInfo={userInfo} {...props}/>
+            <Sidebar onClickSearchNav={onClickSearchNav}/>
+            <MobileNavbar onClickSearchNav={onClickSearchNav} {...props} />
             <section className='content'>
                 <Routes>
                     <Route exact={true} path='search/*' element={<SearchContainer
