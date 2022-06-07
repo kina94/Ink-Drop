@@ -1,11 +1,8 @@
 import React, { useState, useEffect } from 'react'
 import { useSelector } from 'react-redux'
-import { useLocation } from 'react-router-dom'
 import './Rating.css'
-const rateArray = [0, 1, 2, 3, 4]
 
 function Rating(props) {
-    const location = useLocation()
     const isModifyMode = useSelector(store => store.toggleStore.modifyToggle)
     const isModalShow = useSelector(store => store.toggleStore.modalToggle)
     const initStars = new Array(5).fill(false)
@@ -39,12 +36,12 @@ function Rating(props) {
     return (
         <ul className='rate'>
             {
-                rateArray.map((rate, index) => {
+                clicked.map((item, index) => {
                     return (
                         <li
                             key={index}
-                            onClick={props.onClick ? props.onClick : () => handleStarClick(rate)}
-                            className={clicked[rate] ? 'star yellowStar' : 'star normalStar'}>
+                            onClick={props.onClick ? props.onClick : () => handleStarClick(index)}
+                            className={clicked[index] ? 'star yellowStar' : 'star normalStar'}>
                             <i id='rate-star' className="fas fa-star"></i>
                         </li>
                     )
