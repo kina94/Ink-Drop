@@ -27,9 +27,20 @@
 
 ## 기능</a>
   * 사용자별 서재 저장을 위한 구글 및 깃허브 로그인
-  * 책 검색 기능 (infinite scrolling)
-  * 옵션별 책 저장 기능
+  <img src='https://user-images.githubusercontent.com/66938939/172463198-230264e4-6140-4723-a8d6-548d1ec5aae5.gif' width=400px height=400px/>
+  
+  * 책 검색 (infinite scrolling)
+  <img src='https://user-images.githubusercontent.com/66938939/172464067-babba6bf-2581-4edf-a9de-7300a8cf662b.gif' width=400px height=400px/>
+
+  * 옵션별 책 저장
+  <img src='https://user-images.githubusercontent.com/66938939/172464789-f2a8fb11-3892-4a21-ae96-92249521a896.gif' width=400px height=400px/>
+  
   * 내 서재
+  <img src='https://user-images.githubusercontent.com/66938939/172465351-1d6fe3bc-f492-4dec-a218-da3b23c8d62d.gif' width=400px height=400px/>
+  
+  * 저장한 책 관리
+  <img src='https://user-images.githubusercontent.com/66938939/172465351-1d6fe3bc-f492-4dec-a218-da3b23c8d62d.gif' width=400px height=400px/>
+  
   * 독서 차트
 
 <hr/>
