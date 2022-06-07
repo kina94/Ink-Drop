@@ -9,7 +9,7 @@ const initBookState = {
     searchResultBooks: savedResultBooks? savedResultBooks : [],
     searchParams: {
         query:'',
-        page:0
+        page:1,
     },
     selectedBook: []
 };
@@ -53,6 +53,10 @@ export const bookStore = (state = initBookState, action) => {
                 console.log('serach')
                 return {...state, searchResultBooks:[...state.searchResultBooks, ...action.searchResultBooks]}
             }
+        case initBookActions.SET_NEW_SEARCH_PAGE:
+            {
+                return {...state, searchParams:{...state.searchParams, page:1}}
+            }
 
         case initBookActions.INIT_BOOKS:
             {
@@ -61,7 +65,7 @@ export const bookStore = (state = initBookState, action) => {
 
         case initBookActions.INIT_PARAMS:
             {
-                return {...state, searchParams:{...state.searchParams, page:1}}
+                return {...state, searchParams:{query:'', page:1}}
             }
 
         case initBookActions.SET_PARAMS_QUERY:

@@ -42,6 +42,12 @@ export const bookActions = {
         }
     },
 
+    setNewSearchPage: () =>{
+        return{
+            type:initBookActions.SET_NEW_SEARCH_PAGE
+        }
+    },
+
     initSearchBooks: () =>{
         return{
             type: initBookActions.INIT_BOOKS,
