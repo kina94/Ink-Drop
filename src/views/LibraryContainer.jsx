@@ -10,7 +10,6 @@ import { bookActions } from '../modules/actions'
 
 function LibraryContainer(props) {
   const dispatch = useDispatch()
-  const location = useLocation()
   const savedBooks = useSelector(store => store.bookStore.savedBooks)
   const params = useParams()
   const category = params['*']
@@ -20,12 +19,6 @@ function LibraryContainer(props) {
     const books = await props.bookRepository.syncBooks(props.userInfo.userId)
     dispatch(bookActions.getSavedBooks(books))
   }
-
-  useEffect(() => {
-    props.setIsLoading(true)
-    FetchSavedBooks()
-    props.setIsLoading(false)
-  }, [props.userInfo.userId, location])
 
   // 저장되어 있는 책을 카테고리에 따라 필터링해서 불러오기
   const getBooksByCategory = () => {
@@ -45,6 +38,10 @@ function LibraryContainer(props) {
     })
     setFilteredBooks(sortBooks)
   }
+
+  useEffect(() => {
+    FetchSavedBooks()
+  }, [props.userInfo.userId])
 
   useEffect(() => {
     getBooksByCategory()

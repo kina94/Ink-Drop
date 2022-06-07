@@ -31,12 +31,10 @@ function SearchContainer(props) {
   //SearchParams의 page가 변경될 때마다 FetchBooks를 요청
   //params를 로컬스토리지에 저장
   useEffect(() => {
-    props.setIsLoading(true)
     if (searchParams.query != '') {
       FetchBooks()
       location.pathname!='/home/search' && localStorage.setItem('params', JSON.stringify(searchParams))
     }
-    props.setIsLoading(false)
   }, [params, searchParams.page])
 
   //localstorage에 검색된 책 저장
