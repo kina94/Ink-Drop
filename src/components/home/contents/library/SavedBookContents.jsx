@@ -9,6 +9,7 @@ function SavedBookContents(props) {
     const dispatch = useDispatch()
     const selectedBook = useSelector(store => store.bookStore.selectedBook)
     const isModifyMode = useSelector(store => store.toggleStore.modifyToggle)
+
     const onClickDelete = (e) => {
         if (window.confirm('정말 삭제하시겠어요?')) {
             dispatch(bookActions.onClickBookDelete(e.target.id, props.userInfo.userId))
@@ -43,10 +44,10 @@ function SavedBookContents(props) {
                         <div className='option-container' id='option-saved'>
                             <span id='view'>{selectedBook.review}</span>
                         </div>
-                        <p style={{ width: '100%', textAlign: 'center' }}>나의 평점은?</p>
+                        <p style={{ width: '100%', textAlign: 'center' }}>내가 남긴 평점</p>
                         <Rating stars={selectedBook.rate}
-                        onClick={(e)=>e.preventDefault()}
-                        ></Rating>
+                        onClick={(e) => e.preventDefault()}
+                        />
                     </form>
                 )
             case 'reading':

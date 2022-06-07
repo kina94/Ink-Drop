@@ -15,6 +15,7 @@ function BookSave(props) {
     const [selectedOption, setSelectedOption] = useState(selectedBook.type || 'complete')
     const [saveBook, setSaveBook] = useState([])
     const dateValue = new Date().toISOString().substring(0, 10)
+
     useEffect(() => {
         setSaveBook(selectedBook)
     }, [selectedBook])
@@ -95,7 +96,7 @@ function BookSave(props) {
                                 value={saveBook.review || ''} />
                         </div>
                         <p style={{ width: '100%', textAlign: 'center' }}>나의 평점은?</p>
-                        <Rating handleRate={handleRate}></Rating>
+                        <Rating stars={selectedBook.rate} handleRate={handleRate}></Rating>
                     </form>
                 )
             case 'reading':
