@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { Route, Routes, useLocation, useNavigate} from 'react-router-dom'
+import { Route, Routes, useLocation, useNavigate, useParams} from 'react-router-dom'
 import Navbar from '../components/home/common/navbar/Navbar'
 import SearchContainer from './SearchContainer'
 import LibraryContainer from './LibraryContainer'

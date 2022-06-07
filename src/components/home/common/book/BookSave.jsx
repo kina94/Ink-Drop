@@ -4,12 +4,12 @@ import { option } from '../../../../common/utils/common_var'
 import { useNavigate } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { bookActions } from '../../../../modules/actions'
-
+import Rating from '../rating/Rating'
 
 //책 저장 및 수정
 function BookSave(props) {
     const dispatch = useDispatch()
-    const isModifyMode = useSelector(store=>store.toggleStore.modifyToggle)
+    const isModifyMode = useSelector(store => store.toggleStore.modifyToggle)
     const savedBooks = useSelector(store => store.bookStore.savedBooks)
     const selectedBook = useSelector(store => store.bookStore.selectedBook)
     const [selectedOption, setSelectedOption] = useState(selectedBook.type || 'complete')
@@ -29,12 +29,18 @@ function BookSave(props) {
             endDate: '',
             memo: '',
             review: '',
+            rate: 0,
         })
     }
 
     //input change
     const handleOptionInput = (e) => {
         setSaveBook({ ...saveBook, [e.target.id]: e.target.value })
+    }
+
+    //rate change
+    const handleRate = (rate) =>{
+        setSaveBook({ ...saveBook, rate: rate })
     }
 
     /* 저장된 책 목록의 키값과 선택된 책의 키값을 비교 중복되지 않을 경우 저장.
@@ -88,6 +94,8 @@ function BookSave(props) {
                             <input type='text' id='review' onChange={handleOptionInput}
                                 value={saveBook.review || ''} />
                         </div>
+                        <p style={{ width: '100%', textAlign: 'center' }}>나의 평점은?</p>
+                        <Rating handleRate={handleRate}></Rating>
                     </form>
                 )
             case 'reading':
@@ -108,6 +116,7 @@ function BookSave(props) {
                             <input type='text' id='memo' onChange={handleOptionInput}
                                 value={saveBook.memo || ''} />
                         </div>
+                        
                     </form>
                 )
             case 'want':

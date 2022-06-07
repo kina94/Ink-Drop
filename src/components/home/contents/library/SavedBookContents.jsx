@@ -2,6 +2,7 @@ import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { bookActions, toggleActions } from '../../../../modules/actions'
 import BookSave from '../../common/book/BookSave'
+import Rating from '../../common/rating/Rating'
 import SaveOptionButton from '../search/SaveOptionButton'
 
 function SavedBookContents(props) {
@@ -42,6 +43,10 @@ function SavedBookContents(props) {
                         <div className='option-container' id='option-saved'>
                             <span id='view'>{selectedBook.review}</span>
                         </div>
+                        <p style={{ width: '100%', textAlign: 'center' }}>나의 평점은?</p>
+                        <Rating stars={selectedBook.rate}
+                        onClick={(e)=>e.preventDefault()}
+                        ></Rating>
                     </form>
                 )
             case 'reading':
