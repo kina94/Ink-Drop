@@ -3,7 +3,6 @@ import { Route, Routes, useLocation, useNavigate, useParams } from 'react-router
 import ShowMessage from '../components/home/common/alert/ShowMessage'
 import SearchResult from '../components/home/contents/search/SearchResult'
 import SearchInput from '../components/home/contents/search/SearchInput'
-import LoadingSpinner from '../common/utils/LoadingSpinner'
 import animationData from '../assets/animation/72170-books.json'
 import './Container.css'
 import { useDispatch, useSelector } from 'react-redux'
@@ -14,7 +13,6 @@ function SearchContainer(props) {
   const params = useParams()
   const location = useLocation()
   const navigate =useNavigate()
-  const [isLoading, setIsLoading] = useState(false)
   const savedScroll = localStorage.getItem('scroll')
   const searchBooks = useSelector(store=>store.bookStore.searchResultBooks)
   const searchParams = useSelector(store=>store.bookStore.searchParams)
@@ -33,12 +31,12 @@ function SearchContainer(props) {
   //SearchParams의 page가 변경될 때마다 FetchBooks를 요청
   //params를 로컬스토리지에 저장
   useEffect(() => {
-    setIsLoading(true)
+    props.setIsLoading(true)
     if (searchParams.query != '') {
       FetchBooks()
       location.pathname!='/home/search' && localStorage.setItem('params', JSON.stringify(searchParams))
     }
-    setIsLoading(false)
+    props.setIsLoading(false)
   }, [params, searchParams.page])
 
   //localstorage에 검색된 책 저장
@@ -58,9 +56,6 @@ function SearchContainer(props) {
 
   return (
     <section className='search'>
-      {
-        isLoading && <LoadingSpinner></LoadingSpinner>
-      }
       <SearchInput/>
       <Routes>
         <Route exact={true} path='/' element={<ShowMessage

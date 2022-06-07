@@ -1,17 +1,31 @@
 import React, { useState, useEffect } from 'react'
-import { Routes, Route, useParams } from 'react-router-dom'
+import { Routes, Route, useParams, useLocation } from 'react-router-dom'
 import ShowMessage from '../components/home/common/alert/ShowMessage'
 import LibrarySidebar from '../components/home/contents/library/LibrarySidebar'
 import SavedBooksByCategory from '../components/home/contents/library/SavedBooksByCategory'
 import animationData from '../assets/animation/72170-books.json'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
+import { bookActions } from '../modules/actions'
 
 
 function LibraryContainer(props) {
+  const dispatch = useDispatch()
+  const location = useLocation()
   const savedBooks = useSelector(store => store.bookStore.savedBooks)
   const params = useParams()
   const category = params['*']
   const [filteredBooks, setFilteredBooks] = useState()
+
+  const FetchSavedBooks = async () => {
+    const books = await props.bookRepository.syncBooks(props.userInfo.userId)
+    dispatch(bookActions.getSavedBooks(books))
+  }
+
+  useEffect(() => {
+    props.setIsLoading(true)
+    FetchSavedBooks()
+    props.setIsLoading(false)
+  }, [props.userInfo.userId, location])
 
   // 저장되어 있는 책을 카테고리에 따라 필터링해서 불러오기
   const getBooksByCategory = () => {

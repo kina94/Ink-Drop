@@ -42,17 +42,6 @@ function MainContainer(props) {
         }, [userInfo.userId])
     }, [props.authService, props.userRepository])
 
-    const FetchSavedBooks = async () => {
-        setIsLoading(true)
-        const books = await props.bookRepository.syncBooks(userInfo.userId)
-        dispatch(bookActions.getSavedBooks(books))
-        setIsLoading(false)
-    }
-
-    useEffect(() => {
-        FetchSavedBooks()
-    }, [userInfo.userId])
-
     const onClickSearchNav = () => {
         if (location.pathname.includes('search/')) {
             navigate('/home/search')
@@ -77,11 +66,14 @@ function MainContainer(props) {
                 <Routes>
                     <Route exact={true} path='search/*' element={<SearchContainer
                         userInfo={userInfo}
+                        setIsLoading={setIsLoading}
                         bookRepository={props.bookRepository}
                     />} />
                     <Route exact={true} path='library/*'
                         element={<LibraryContainer
                         userInfo={userInfo}
+                        setIsLoading={setIsLoading}
+                        {...props}
                         />} />
                     <Route exact={true} path='history/*'
                         element={<HistoryContainer

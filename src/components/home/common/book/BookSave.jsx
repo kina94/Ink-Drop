@@ -63,6 +63,7 @@ function BookSave(props) {
             }
             dispatch(bookActions.onClickBookUpdateOrAdd(props.userInfo.userId, newBook))
             alert('저장을 완료했어요.')
+            dispatch(bookActions.initSearchParams())
             if (isModifyMode) {
                 props.updateBookContents(newBook)
             }
