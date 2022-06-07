@@ -17,7 +17,7 @@ function SearchInput() {
 
   //새로운 검색 시 state 초기화
   const initSearch = () => {
-    dispatch(bookActions.initSearchParams())
+    dispatch(bookActions.setNewSearchPage())
     dispatch(bookActions.initSearchBooks())
     LocalStorage.removeAllItems()
   }

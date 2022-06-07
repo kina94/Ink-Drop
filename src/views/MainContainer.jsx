@@ -58,6 +58,7 @@ function MainContainer(props) {
             navigate('/home/search')
             LocalStorage.removeAllItems()
         } else {
+            dispatch(bookActions.initSearchParams())
             const savedParams = JSON.parse(localStorage.getItem('params'))
             const serachURL = savedParams ? `/home/search/${savedParams.query}` : '/home/search'
             navigate(serachURL)
