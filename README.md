@@ -6,12 +6,30 @@
 <a href='http://dadokdadok.netlify.app'>바로가기</a>
 
 ![스크린샷 2022-06-03 오전 12 46 06](https://user-images.githubusercontent.com/66938939/171669084-3b6d14f9-e133-4503-afbc-057630b879ad.png)
-
-
-<img src='https://user-images.githubusercontent.com/66938939/171664771-ad2e2748-6e8f-4aa0-8e40-0a7ecd9d6fa2.png' width='400px' height='280px'>
-<img src='https://user-images.githubusercontent.com/66938939/171665190-7ddb5f3d-dfb3-49b8-adfb-babd219948d3.png' width='400px' height='280px'>
-<img src='https://user-images.githubusercontent.com/66938939/171664979-68df4643-2b5e-4bdd-b08d-e97e17274cfd.png' width='400px' height='280px'>
-<img src='https://user-images.githubusercontent.com/66938939/171665058-f18f7bec-6c69-4acb-9dd7-480668f7d4f2.png' width='400px' height='280px'>
-
-
 </div>
+
+<hr/>
+
+## 적용 기술 및 라이브러리</a>
+  * react hooks
+  * react-router-dom
+  * redux
+  * lottie
+  * react-chartjs2
+  * react-calendar
+  * react-bootstrap
+  * fireabse
+  * axios
+  * infinite scrolling
+  * Restful API
+
+<hr/>
+
+## 기능</a>
+  * 사용자별 서재 저장을 위한 구글 및 깃허브 로그인
+  * 책 검색 기능 (infinite scrolling)
+  * 옵션별 책 저장 기능
+  * 내 서재
+  * 독서 차트
+
+<hr/>
