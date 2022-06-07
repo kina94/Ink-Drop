@@ -19,7 +19,6 @@ function SearchContainer(props) {
   const searchBooks = useSelector(store=>store.bookStore.searchResultBooks)
   const searchParams = useSelector(store=>store.bookStore.searchParams)
 
-  console.log(params)
   // 도서API 호출
   const FetchBooks = async () => {
     const response = await props.bookRepository.searchBooks(searchParams)
