@@ -1,15 +1,16 @@
 import React, { useState, useEffect } from 'react'
 import { useSelector } from 'react-redux'
-import { useLocation, useParams } from 'react-router-dom'
+import { useLocation } from 'react-router-dom'
 import './Rating.css'
 const rateArray = [0, 1, 2, 3, 4]
 
 function Rating(props) {
+    const location = useLocation()
     const isModifyMode = useSelector(store => store.toggleStore.modifyToggle)
     const isModalShow = useSelector(store => store.toggleStore.modalToggle)
-    const selectedBook = useSelector(store => store.bookStore.selectedBook)
     const initStars = new Array(5).fill(false)
-    const [clicked, setClicked] = useState(initStars)
+    const savedStars = initStars.fill(true, 0, props.stars)
+    const [clicked, setClicked] = useState(props.book && props.stars!=undefined ? savedStars : initStars)
 
     const handleStarClick = (index) => {
         let update = [...clicked]
@@ -19,10 +20,11 @@ function Rating(props) {
         setClicked(update)
     }
 
-    useEffect(() => {
-        const savedStars = initStars.fill(true, 0, props.stars)
-        setClicked(savedStars)
-    }, [props.book])
+    useEffect(()=>{
+        if(!isModifyMode){
+            setClicked(savedStars)
+        }
+    },[props.book])
 
     useEffect(() => {
         props.handleRate && props.handleRate(clicked.filter(item => item == true).length)

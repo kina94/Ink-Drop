@@ -23,7 +23,7 @@ function SavedBookContents(props) {
         switch (type) {
             case 'complete':
                 return (
-                    <form>
+                    <form id='saved-book-view'>
                         <section className='option-button-container'>
                             <SaveOptionButton id='complete' name='읽은 책'
                                 onClick={(e) => e.preventDefault()}
@@ -45,7 +45,9 @@ function SavedBookContents(props) {
                             <span id='view'>{selectedBook.review}</span>
                         </div>
                         <p style={{ width: '100%', textAlign: 'center' }}>내가 남긴 평점</p>
-                        <Rating stars={selectedBook.rate}
+                        <Rating
+                        book={selectedBook}
+                        stars={selectedBook.rate}
                         onClick={(e) => e.preventDefault()}
                         />
                     </form>

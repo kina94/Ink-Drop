@@ -1,20 +1,27 @@
 import React, { useState, useEffect } from 'react'
 import SaveOptionButton from '../../contents/search/SaveOptionButton'
 import { option } from '../../../../common/utils/common_var'
-import { useNavigate } from 'react-router-dom'
+import { useLocation, useNavigate } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
-import { bookActions } from '../../../../modules/actions'
+import { bookActions, toggleActions } from '../../../../modules/actions'
 import Rating from '../rating/Rating'
 
 //책 저장 및 수정
 function BookSave(props) {
     const dispatch = useDispatch()
     const isModifyMode = useSelector(store => store.toggleStore.modifyToggle)
+    const isModalShow = useSelector(store => store.toggleStore.modalToggle)
     const savedBooks = useSelector(store => store.bookStore.savedBooks)
     const selectedBook = useSelector(store => store.bookStore.selectedBook)
-    const [selectedOption, setSelectedOption] = useState(selectedBook.type || 'complete')
+    const [selectedOption, setSelectedOption] = useState(!selectedBook.type ? 'complete' : selectedBook.type)
     const [saveBook, setSaveBook] = useState([])
     const dateValue = new Date().toISOString().substring(0, 10)
+
+    useEffect(()=>{
+        if(!isModalShow){
+            setSelectedOption('complete')
+        }
+    },[isModalShow])
 
     useEffect(() => {
         setSaveBook(selectedBook)
@@ -67,7 +74,6 @@ function BookSave(props) {
             if (isModifyMode) {
                 props.updateBookContents(newBook)
             }
-
         }
     }
 
@@ -97,7 +103,10 @@ function BookSave(props) {
                                 value={saveBook.review || ''} />
                         </div>
                         <p style={{ width: '100%', textAlign: 'center' }}>나의 평점은?</p>
-                        <Rating stars={selectedBook.rate} handleRate={handleRate}></Rating>
+                        <Rating
+                        book={selectedBook}
+                        stars={selectedBook.rate}
+                        handleRate={handleRate}></Rating>
                     </form>
                 )
             case 'reading':

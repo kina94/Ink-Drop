@@ -70,8 +70,7 @@ function BookResult(props) {
             }
             <Modal>
                 <BookBasicInfo/>
-                <BookSave
-                    userInfo={props.userInfo}
+                <BookSave userInfo={props.userInfo}
                 ></BookSave>
             </Modal>
         </>

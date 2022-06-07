@@ -32,9 +32,14 @@
 }
 
 .saved-book-top .rate li{
+    cursor:auto;
     border:none;
     padding:0;
     font-size:0.9em;
+}
+
+.saved-book-top .rate li:hover{
+    opacity:1;
 }
 
 .saved-book-top .rate p{

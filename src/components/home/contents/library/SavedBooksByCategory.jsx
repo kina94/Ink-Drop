@@ -26,7 +26,7 @@ function SavedBooksByCategory(props) {
     dispatch(toggleActions.toggleModal(true))
     dispatch(bookActions.getSelectedBook(book))
   }
-
+  
   return (
     <section className='saved-book-list'>
       <div className='saved-book-list-header'>
@@ -57,7 +57,11 @@ function SavedBooksByCategory(props) {
                         props.filteredBooks[key].rate!=null &&
                         <>
                         <span>평점</span>
-                        <Rating book={props.filteredBooks[key]} stars={props.filteredBooks[key].rate}></Rating>
+                        <Rating
+                        book={props.filteredBooks[key]}
+                        stars={props.filteredBooks[key].rate}
+                        onClick={(e)=>e.preventDefault()}
+                        ></Rating>
                         </>
                       }
                       <span>추가</span>
