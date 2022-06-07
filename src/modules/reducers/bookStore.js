@@ -50,7 +50,6 @@ export const bookStore = (state = initBookState, action) => {
         /*책 검색 관련*/
         case initBookActions.SEARCH:
             {
-                console.log('serach')
                 return {...state, searchResultBooks:[...state.searchResultBooks, ...action.searchResultBooks]}
             }
         case initBookActions.SET_NEW_SEARCH_PAGE:
@@ -70,13 +69,11 @@ export const bookStore = (state = initBookState, action) => {
 
         case initBookActions.SET_PARAMS_QUERY:
             {
-                console.log('query')
                 return {...state, searchParams:{...state.searchParams, query:action.query}}
             }
         
         case initBookActions.SET_PARAMS_ALL:
             {
-                console.log('all')
                 return{...state, searchParams:{query:action.query, page:action.page}}
             }
 
