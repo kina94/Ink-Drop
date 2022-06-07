@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { Route, Routes, useNavigate, useParams } from 'react-router-dom'
+import { Route, Routes, useLocation, useNavigate, useParams } from 'react-router-dom'
 import ShowMessage from '../components/home/common/alert/ShowMessage'
 import SearchResult from '../components/home/contents/search/SearchResult'
 import SearchInput from '../components/home/contents/search/SearchInput'
@@ -10,6 +10,7 @@ import LocalStorage from '../common/utils/local_storage'
 
 function SearchContainer(props) {
   const params = useParams()
+  const location = useLocation()
   const navigate =useNavigate()
   const savedBooks = JSON.parse(localStorage.getItem('books'))
   const savedParams = JSON.parse(localStorage.getItem('params'))
@@ -24,9 +25,9 @@ function SearchContainer(props) {
   // 도서API 호출
   const FetchBooks = async () => {
     const response = await props.bookRepository.searchBooks(searchParams)
-    if(response.data.meta.is_end && response.data.meta.pageable_count!=0){
-      alert('마지막 검색 결과입니다.')
-      return
+    if(response.data.meta.is_end && response.data.meta.pageable_count!=0 &&
+      document.querySelector('.content').scrollTop!=0){
+      return alert('마지막 검색 결과입니다.')
     } else {
       setBooks([...books, ...response.data.documents])
     }
@@ -51,14 +52,14 @@ function SearchContainer(props) {
     setIsLoading(true)
     if (searchParams.query != '') {
       FetchBooks()
-      localStorage.setItem('params', JSON.stringify(searchParams))
+      location.pathname!='/home/search' && localStorage.setItem('params', JSON.stringify(searchParams))
     }
     setIsLoading(false)
   }, [params, searchParams.page])
 
   //localstorage에 검색된 책 저장
   useEffect(() => {
-    localStorage.setItem('books', JSON.stringify(books))
+    location.pathname!='/home/search' && localStorage.setItem('books', JSON.stringify(books))
   }, [books])
 
   //새로고침 및 탭 이동 시 서칭하던 스크롤이 있는 곳으로 이동
