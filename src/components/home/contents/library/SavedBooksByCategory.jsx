@@ -69,7 +69,7 @@ function SavedBooksByCategory(props) {
       </div>
       {
         !props.filteredBooks || props.filteredBooks.length === 0 ?
-          <ShowMessage value={'저장하신 책이 없어요. 책 검색하기를 통해 책장을 채워주세요.'}
+          <ShowMessage value={'책 검색하기를 통해 책장을 채워주세요.'}
             animationData={animationData}
             width={'200px'}
             height={'200px'}
