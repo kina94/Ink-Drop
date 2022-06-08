@@ -5,8 +5,10 @@ import BookList from '../../common/book/BookList'
 import BookSave from '../../common/book/BookSave'
 import Modal from '../../common/modal/Modal'
 import animationData from '../../../../assets/animation/85557-empty.json'
+import { useLocation } from 'react-router-dom'
 
 function BookResult(props) {
+    const location = useLocation()
     const [isToggle, setIsToggle] = useState(false)
     const [selectedBook, setSelectedBook] = useState([])
     const searchRef = useRef()
@@ -23,14 +25,18 @@ function BookResult(props) {
         const scrollHeight = document.querySelector('.content').scrollHeight
         const scrollTop = document.querySelector('.content').scrollTop
         const clientHeight = document.querySelector('.content').clientHeight
-        if (Math.ceil(scrollTop + clientHeight) >= scrollHeight && scrollTop!=0) {
+        if (Math.ceil(scrollTop + clientHeight) >= scrollHeight && scrollTop != 0) {
             props.searchBooks(true)
+        }
+        if(location.pathname.includes('search/')){
+            localStorage.setItem('scroll', scrollTop)
+        } else {
+            console.log('abc')
         }
     }
     useEffect(() => {
-            document.querySelector('.content').addEventListener('scroll', infiniteScroll)
-            return () => document.querySelector('.app').removeEventListener('scroll', infiniteScroll)
-        
+        document.querySelector('.content').addEventListener('scroll', infiniteScroll)
+        return () => document.querySelector('.app').removeEventListener('scroll', infiniteScroll)
     })
 
     return (
@@ -47,8 +53,8 @@ function BookResult(props) {
                                 Object.keys(props.books).map((key, index) => {
                                     return (
                                         <BookList
-                                        key={index}
-                                        book={props.books[key]} index={index}
+                                            key={index}
+                                            book={props.books[key]} index={index}
                                             clickEvent={onClickBook}></BookList>
                                     )
                                 })

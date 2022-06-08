@@ -52,7 +52,7 @@ function SearchContainer(props) {
   }
 
   useEffect(()=>{
-    if(localStorage.getItem('books') && localStorage.getItem('params')){
+    if(localStorage.getItem('books') && localStorage.getItem('params') && localStorage.getItem('scroll')){
       const books = JSON.parse(localStorage.getItem('books'))
       const params = JSON.parse(localStorage.getItem('params'))
       setBooks(books)
@@ -62,10 +62,11 @@ function SearchContainer(props) {
       })
     }
   },[])
-
+  
   useEffect(()=>{
     if(searchParams.page!=0 && searchParams.query!=''){
       FetchBooks()
+      localStorage.setItem('params', JSON.stringify(searchParams))
       localStorage.setItem('params', JSON.stringify(searchParams))
     }
   },[searchParams])
