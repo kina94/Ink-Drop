@@ -16,7 +16,7 @@ function SearchContainer(props) {
   const savedScroll = localStorage.getItem('scroll')
   const searchBooks = useSelector(store=>store.bookStore.searchResultBooks)
   const searchParams = useSelector(store=>store.bookStore.searchParams)
-
+  
   // 도서API 호출
   const FetchBooks = async () => {
     const response = await props.bookRepository.searchBooks(searchParams)
