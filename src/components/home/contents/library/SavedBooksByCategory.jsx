@@ -9,7 +9,7 @@ import { useParams } from 'react-router-dom'
 import ShowMessage from '../../common/alert/ShowMessage'
 import animationData from '../../../../assets/animation/85557-empty.json'
 import Modal from '../../common/modal/Modal'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { bookActions, toggleActions } from '../../../../modules/actions'
 import Rating from '../../common/rating/Rating'
 import SaveOptionButton from '../search/SaveOptionButton'
@@ -18,6 +18,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 // 카테고리에 저장된 책 보여주기
 function SavedBooksByCategory(props) {
   const dispatch = useDispatch()
+  const imModalShow = useSelector(store=>store.toggleStore.modalToggle)
   const navigate = useNavigate()
   const params = useParams()
 
@@ -61,7 +62,7 @@ function SavedBooksByCategory(props) {
 
   return (
     <section className='saved-book-list'>
-      <div className='saved-book-list-header'>
+      <div className= { imModalShow ? 'saved-book-list-header mobile-hide' : 'saved-book-list-header'}>
         <button className='saved-book-back' onClick={() => navigate('/home/library')}>
           <i id='icon' className="fas fa-chevron-left"></i>
         </button>
