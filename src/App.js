@@ -6,6 +6,7 @@ import MainContainer from './views/MainContainer';
 import { useEffect } from 'react';
 
 function App({ userRepository, authService, bookRepository}) {
+
   useEffect(()=>{
     document.querySelector('.app').style.height=window.innerHeight+'px';
   },[])
@@ -18,8 +19,7 @@ function App({ userRepository, authService, bookRepository}) {
           <Route path="/home/*" element={<MainContainer
           authService={authService}
           userRepository={userRepository}
-          bookRepository={bookRepository}
-          />}>
+          bookRepository={bookRepository}/>}>
           </Route>
         </Routes>
       </BrowserRouter>
