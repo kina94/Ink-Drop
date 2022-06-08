@@ -38,7 +38,7 @@ function BookResult(props) {
         if (Math.ceil(scrollTop + clientHeight) >= scrollHeight && scrollTop != 0) {
             setTimeout(()=>{
                 addPageNum()
-            },50)
+            },100)
         }
     }
 
