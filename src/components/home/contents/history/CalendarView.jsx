@@ -3,10 +3,12 @@ import Calendar from 'react-calendar'
 import moment from 'moment';
 import './Calendar.css'
 import Modal from '../../common/modal/Modal'
+import { useDispatch } from 'react-redux';
+import { toggleActions } from '../../../../modules/actions';
 
 function CalendarView(props) {
+  const dispatch = useDispatch()
   const [value, setValue] = useState()
-  const [isToggle, setIsToggle] = useState(false)
   const [selectedDayBook, setSelectedDayBook] = useState([])
 
   const endDate = props.completeBooks.map(item => {
@@ -21,7 +23,7 @@ function CalendarView(props) {
       return
     }
     setSelectedDayBook(books)
-    setIsToggle(true)
+    dispatch(toggleActions.toggleModal(true))
   }
 
   useEffect(() => {
@@ -45,8 +47,7 @@ function CalendarView(props) {
         }} />
 
 
-      <Modal isToggle={isToggle}
-        setIsToggle={setIsToggle}>
+      <Modal>
         <section className='title'>
           <span id='day'>{moment(value).format('YYYY-MM-DD')}일에 읽은 책</span>
           <button id='day' className='close'><i className="fas fa-times"></i></button>

@@ -1,27 +1,28 @@
 import React, { useEffect, useState } from 'react'
-import { Route, Routes, useNavigate } from 'react-router-dom'
+import { Route, Routes, useLocation, useNavigate, useParams} from 'react-router-dom'
 import Navbar from '../components/home/common/navbar/Navbar'
 import SearchContainer from './SearchContainer'
 import LibraryContainer from './LibraryContainer'
 import HistoryContainer from './HistoryContainer'
 import Sidebar from '../components/home/common/sidebar/Sidebar'
 import MobileNavbar from '../components/mobile/navbar/MobileNavbar'
-import './Container.css'
 import LoadingSpinner from '../common/utils/LoadingSpinner'
+import MoveTop from '../components/home/common/move_top/MoveTop'
+import LocalStorage from '../common/utils/local_storage'
+import { useDispatch, useSelector } from 'react-redux'
+import { bookActions } from '../modules/actions'
+import './Container.css'
+
 function MainContainer(props) {
-    const navigate = useNavigate();
+    const dispatch = useDispatch()
+    const savedBooks = useSelector(store => store.bookStore.savedBooks)
+    const navigate = useNavigate()
+    const location = useLocation()
+
     // 첫 로그인 시 유저 정보를 세팅합니다.
     const [userInfo, setUserInfo] = useState({})
-    // 저장된 책 목록을 세팅합니다.
-    const [savedBooks, setSavedBooks] = useState([])
     const [isLoading, setIsLoading] = useState(false)
 
-    const FetchSavedBooks = async () => {
-        setIsLoading(true)
-        const books = await props.bookRepository.syncBooks(userInfo.userId)
-        setSavedBooks(books)
-        setIsLoading(false)
-    }
     useEffect(() => {
         props.authService.onAuthChange(user => {
             if (user) {
@@ -42,61 +43,52 @@ function MainContainer(props) {
         }, [userInfo.userId])
     }, [props.authService, props.userRepository])
 
-    useEffect(() => {
+    const onClickSearchNav = () => {
+        if (location.pathname.includes('search/')) {
+            navigate('/home/search')
+            LocalStorage.removeAllItems()
+        } else {
+            dispatch(bookActions.initSearchParams())
+            const savedParams = JSON.parse(localStorage.getItem('params'))
+            const serachURL = savedParams ? `/home/search/${savedParams.query}` : '/home/search'
+            navigate(serachURL)
+        }
+    }
+
+    const FetchSavedBooks = async () => {
+        setIsLoading(true)
+        const books = await props.bookRepository.syncBooks(userInfo.userId)
+        dispatch(bookActions.getSavedBooks(books))
+        setIsLoading(false)
+      }
+      
+      useEffect(() => {
         FetchSavedBooks()
-    }, [userInfo.userId])
-
-    // 서재에 저장된 책 삭제
-    const onClickBookDelete = (e) => {
-        setSavedBooks(book => {
-            const update = { ...book }
-            const id = Object.keys(update).filter(key => update[key].isbn === e.target.id)
-            delete update[id]
-            return update
-        })
-        props.bookRepository.deleteBook(userInfo.userId, e.target.id)
-    }
-
-    // 서재에 저장된 책의 저장된 정보를 수정하거나 책 검색에서 서재에 추가
-    const onClickBookUpdateOrAdd = (newBook) => {
-        setSavedBooks(book => {
-            const update = { ...book }
-            const id = Object.keys(update).filter(key => update[key].isbn === newBook.isbn)
-            update[id] = newBook
-            return update
-        })
-        props.bookRepository.saveBook(userInfo.userId, newBook.isbn, newBook)
-    }
+      }, [userInfo.userId])
 
     return (
         <section className='main'>
             {
                 isLoading && <LoadingSpinner></LoadingSpinner>
             }
-            <Navbar userInfo={userInfo} {...props}></Navbar>
-            <Sidebar></Sidebar>
-            <MobileNavbar {...props} />
+            <Navbar userInfo={userInfo} {...props}/>
+            <Sidebar onClickSearchNav={onClickSearchNav}/>
+            <MobileNavbar onClickSearchNav={onClickSearchNav} {...props} />
+            <MoveTop/>
             <section className='content'>
                 <Routes>
                     <Route exact={true} path='search/*' element={<SearchContainer
-                        savedBooks={savedBooks}
                         userInfo={userInfo}
                         bookRepository={props.bookRepository}
-                        onClickBookUpdateOrAdd={onClickBookUpdateOrAdd}
                     />} />
                     <Route exact={true} path='library/*'
                         element={<LibraryContainer
-                            userInfo={userInfo}
-                            savedBooks={savedBooks}
-                            onClickBookDelete={onClickBookDelete}
-                            onClickBookUpdateOrAdd={onClickBookUpdateOrAdd}
-                            bookRepository={props.bookRepository}
+                        userInfo={userInfo}
+                        setIsLoading={setIsLoading}
                         />} />
                     <Route exact={true} path='history/*'
                         element={<HistoryContainer
-                            userInfo={userInfo}
-                            savedBooks={savedBooks}
-                            bookRepository={props.bookRepository}
+                        userInfo={userInfo}
                         />} />
                 </Routes>
             </section>

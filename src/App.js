@@ -3,12 +3,13 @@ import './App.css';
 import Login from './components/login/Login';
 import '@fortawesome/fontawesome-free/js/all.js'
 import MainContainer from './views/MainContainer';
-import { useEffect } from 'react';
 
 function App({ userRepository, authService, bookRepository}) {
-  useEffect(()=>{
+
+  window.onresize = function() {
     document.querySelector('.app').style.height=window.innerHeight+'px';
-  },[])
+  };
+
   return (
     <div className='app'>
       <BrowserRouter>

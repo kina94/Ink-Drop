@@ -1,16 +1,16 @@
 import React from 'react'
-import { Link, useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import styles from './Sidebar.module.css'
 
-const Sidebar = () => {
-  const navigate=useNavigate();
+const Sidebar = (props) => {
+  const navigate = useNavigate()
   return (
     <aside className={styles.section}>
       <h1 className={styles.name} onClick={()=>navigate('/home/search')}>
         <i className="fas fa-book" style={{color:'var(--color-pink)', paddingRight:'8px', fontSize:'35px'}}></i>
         <span>다독다독</span></h1>
       <ul className={styles.ul}>
-        <li className={styles.li} onClick={()=>navigate('/home/search')}>
+        <li className={styles.li} onClick={props.onClickSearchNav}>
           <i className="fa-solid fa-magnifying-glass" id={styles.icon}></i>책 검색하기</li>
         <li className={styles.li} onClick={()=>navigate('/home/library')}>
           <i className="fa-solid fa-list-check" id={styles.icon} ></i>내 서재</li>

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import BookList from '../../common/book/BookList'
 import BookBasicInfo from '../../common/book/BookBasicInfo'
 import SavedBookContents from './SavedBookContents'
@@ -9,32 +9,60 @@ import { useParams } from 'react-router-dom'
 import ShowMessage from '../../common/alert/ShowMessage'
 import animationData from '../../../../assets/animation/85557-empty.json'
 import Modal from '../../common/modal/Modal'
+import { useDispatch, useSelector } from 'react-redux'
+import { bookActions, toggleActions } from '../../../../modules/actions'
+import Rating from '../../common/rating/Rating'
+import SaveOptionButton from '../search/SaveOptionButton'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 // 카테고리에 저장된 책 보여주기
 function SavedBooksByCategory(props) {
-  const [selectedBook, setSelectedBook] = useState([])
-  const [isToggle, setIsToggle] = useState(false)
-  const [modifyMode, setModifyMode] = useState(false)
-  const params = useParams()
+  const dispatch = useDispatch()
+  const imModalShow = useSelector(store=>store.toggleStore.modalToggle)
   const navigate = useNavigate()
-  const onClickBook = (e) => {
-    const id = e.target.closest('li').id
-    const book = props.filteredBooks[id] // 이부분만 다름
-    setIsToggle(true)
-    setSelectedBook(book)
+  const params = useParams()
+
+  const getDday = (startDate) =>{
+    const setStartDate = new Date(startDate)
+    const now = new Date()
+    const distance = now.getTime() - setStartDate.getTime()
+    const day = Math.floor(distance / (1000 * 60 * 60 *24))
+    return day+1
   }
 
-  const onClickDelete = (e) => {
-    if (window.confirm('정말 삭제하시겠어요?')) {
-      props.onClickDelete(e)
-      alert('삭제가 완료되었습니다.')
-      setIsToggle(false)
+  const onClickBook = (e) => {
+    const id = e.target.closest('li').id
+    const book = props.filteredBooks[id]
+    dispatch(toggleActions.toggleModal(true))
+    dispatch(bookActions.getSelectedBook(book))
+  }
+
+  const switchTopInfo = (book) => {
+    switch (book.type) {
+      case 'complete':
+        return (<>
+          <span>평점</span>
+          <Rating
+            book={book}
+            stars={book.rate}
+            onClick={(e) => e.preventDefault()}
+          ></Rating>
+          <span>읽은 기간</span>
+          {book.startDate.slice(0, 10)} ~ {book.endDate.slice(0, 10)}
+        </>)
+      case 'reading':
+        return(<>
+          <span>시작일</span>
+          {book.startDate.slice(0, 10)}
+          <span><FontAwesomeIcon icon='fa-book-open-reader'/></span>
+          {getDday(book.startDate)}일차
+        </>)
     }
   }
 
   return (
     <section className='saved-book-list'>
-      <div className='saved-book-list-header'>
+      <div className= { imModalShow ? 'saved-book-list-header mobile-hide' : 'saved-book-list-header'}>
         <button className='saved-book-back' onClick={() => navigate('/home/library')}>
           <i id='icon' className="fas fa-chevron-left"></i>
         </button>
@@ -42,7 +70,7 @@ function SavedBooksByCategory(props) {
       </div>
       {
         !props.filteredBooks || props.filteredBooks.length === 0 ?
-          <ShowMessage value={'저장하신 책이 없어요. 책 검색하기를 통해 책장을 채워주세요.'}
+          <ShowMessage value={'책 검색하기를 통해 책장을 채워주세요.'}
             animationData={animationData}
             width={'200px'}
             height={'200px'}
@@ -52,31 +80,30 @@ function SavedBooksByCategory(props) {
             {
               Object.keys(props.filteredBooks).map((key, index) => {
                 return (
-                  <BookList
-                    key={index}
-                    book={props.filteredBooks[key]}
-                    index={index}
-                    clickEvent={onClickBook} />
+                  <>
+                    <div className='saved-book-top'>
+                      <SaveOptionButton
+                        name={option[props.filteredBooks[key].type]}
+                        onClick={(e) => e.preventDefault()}
+                      />
+                      {
+                        switchTopInfo(props.filteredBooks[key])
+                      }
+                    </div>
+                    <BookList
+                      key={index}
+                      book={props.filteredBooks[key]}
+                      index={index}
+                      clickEvent={onClickBook} />
+                  </>
                 )
               })
             }
           </ul>
       }
-      <Modal isToggle={isToggle}
-        setIsToggle={setIsToggle}
-        setModifyMode={setModifyMode}>
-        <BookBasicInfo selectedBook={selectedBook} />
-        <SavedBookContents
-          selectedBook={selectedBook}
-          setSelectedBook={setSelectedBook}
-          savedBooks={props.savedBooks}
-          userInfo={props.userInfo}
-          onClickUpdateOrAdd={props.onClickUpdateOrAdd}
-          onClickDelete={onClickDelete}
-          bookRepository={props.bookRepository}
-          setModifyMode={setModifyMode}
-          modifyMode={modifyMode}
-        />
+      <Modal>
+        <BookBasicInfo />
+        <SavedBookContents userInfo={props.userInfo} />
       </Modal>
     </section>
   )

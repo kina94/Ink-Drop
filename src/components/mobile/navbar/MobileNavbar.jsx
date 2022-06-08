@@ -6,7 +6,7 @@ function MobileNavbar(props) {
     const navigate = useNavigate()
     return (
         <nav className='mobile-nav'>
-            <a className='mobile-nav-menu' onClick={() => navigate('/home/search')}>
+            <a className='mobile-nav-menu' onClick={props.onClickSearchNav}>
                 <i className="fa-solid fa-magnifying-glass" id='icon' />
                 <p>도서검색</p>
             </a>

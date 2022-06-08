@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import LocalStorage from '../../common/utils/local_storage';
 import Footer from './footer/Footer';
 import Header from './header/Header';
 import styles from './Login.module.css';
@@ -14,6 +15,7 @@ const Login = ({ authService }) => {
   };
 
   const onLogin = (event) => {
+    LocalStorage.removeAllItems()
     authService //
       .login(event.currentTarget.value)
       .then(data => goToHome(data.user.uid));

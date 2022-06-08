@@ -1,25 +1,27 @@
-import React from 'react'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import React, { useEffect } from 'react'
 
 function SaveOptionButton(props) {
+
     const switchValue = (name) => {
         switch (name) {
             case '읽은 책':
                 return (
                     <span>
-                        <i id='icon' className="fas fa-flag"></i>
+                        <FontAwesomeIcon icon='fas fa-flag' id='icon'/>
                         {name}
                     </span>)
             case '읽고 있는 책':
                 return (
                     <span>
-                        <i id='icon' className="fas fa-book-open"></i>
+                        <FontAwesomeIcon id='icon' icon="fas fa-book-open"/>
                         {name}
                     </span>
                 )
             case '읽고 싶은 책':
                 return (
                     <span>
-                        <i id='icon' className="fas fa-heart"></i>
+                        <FontAwesomeIcon id='icon' icon="fas fa-heart"/>
                         {name}
                     </span>
                 )

@@ -23,3 +23,57 @@
 .saved-book-list-header #icon{
     color:white;
 }
+
+.saved-book-top .rate{
+    display:flex;
+    flex-direction:row;
+    border:none;
+    padding-left:0;
+}
+
+.saved-book-top .rate li{
+    cursor:auto;
+    border:none;
+    padding:0;
+    font-size:0.9em;
+}
+
+.saved-book-top .rate li:hover{
+    opacity:1;
+}
+
+.saved-book-top .rate p{
+    display:none;
+}
+
+.saved-book-top{
+    padding: 1em 0 1em 0.7em;
+    display:flex;
+    flex-direction:row;
+    border:none;
+    font-size:0.8em;
+    color:var(--color-black);
+    background-color:whitesmoke;
+}
+
+.saved-book-top span{
+    color:var(--color-blue);
+    font-weight:bold;
+    margin: 0 0.4em 0 0.8em
+}
+
+
+.saved-book-top button{
+    cursor:auto;
+    background-color:transparent;
+    border:none;
+    padding:0;
+    margin:0;
+}
+
+.saved-book-top button span{
+    color:var(--color-hotpink);
+    font-weight: normal;
+    margin-right: 0.5em;
+    font-weight:bold;
+}
