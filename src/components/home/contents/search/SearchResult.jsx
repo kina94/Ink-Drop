@@ -42,7 +42,7 @@ function BookResult(props) {
 
     useEffect(() => {
         document.querySelector('.content').addEventListener('scroll', infiniteScroll)
-        return () => document.querySelector('.app').removeEventListener('scroll', infiniteScroll)
+        return () => document.querySelector('.content').removeEventListener('scroll', infiniteScroll)
     })
 
     return (
