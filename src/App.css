@@ -2,7 +2,6 @@
 * {
   box-sizing: border-box;
   word-break:keep-all;
-  scroll-behavior: smooth;
 }
 
 :root{
