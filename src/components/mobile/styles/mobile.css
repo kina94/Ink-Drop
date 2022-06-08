@@ -167,6 +167,7 @@
 
     .saved-book-list-header{
         position:fixed;
+        z-index:15;
         top:0;
         width:100%;
     }
@@ -206,5 +207,10 @@
     .day-read-book img{
         margin:10px;
         width:100px;
+    }
+
+    .main .move-top{
+        bottom:5em;
+        right:1em;
     }
 }

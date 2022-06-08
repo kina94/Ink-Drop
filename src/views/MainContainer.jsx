@@ -6,11 +6,12 @@ import LibraryContainer from './LibraryContainer'
 import HistoryContainer from './HistoryContainer'
 import Sidebar from '../components/home/common/sidebar/Sidebar'
 import MobileNavbar from '../components/mobile/navbar/MobileNavbar'
-import './Container.css'
 import LoadingSpinner from '../common/utils/LoadingSpinner'
+import MoveTop from '../components/home/common/move_top/MoveTop'
 import LocalStorage from '../common/utils/local_storage'
 import { useDispatch, useSelector } from 'react-redux'
 import { bookActions } from '../modules/actions'
+import './Container.css'
 
 function MainContainer(props) {
     const dispatch = useDispatch()
@@ -73,6 +74,7 @@ function MainContainer(props) {
             <Navbar userInfo={userInfo} {...props}/>
             <Sidebar onClickSearchNav={onClickSearchNav}/>
             <MobileNavbar onClickSearchNav={onClickSearchNav} {...props} />
+            <MoveTop/>
             <section className='content'>
                 <Routes>
                     <Route exact={true} path='search/*' element={<SearchContainer
