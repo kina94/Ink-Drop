@@ -13,6 +13,7 @@ import { useDispatch } from 'react-redux'
 import { bookActions, toggleActions } from '../../../../modules/actions'
 import Rating from '../../common/rating/Rating'
 import SaveOptionButton from '../search/SaveOptionButton'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 // 카테고리에 저장된 책 보여주기
 function SavedBooksByCategory(props) {
@@ -20,13 +21,44 @@ function SavedBooksByCategory(props) {
   const navigate = useNavigate()
   const params = useParams()
 
+  const getDday = (startDate) =>{
+    const setStartDate = new Date(startDate)
+    const now = new Date()
+    const distance = now.getTime() - setStartDate.getTime()
+    const day = Math.floor(distance / (1000 * 60 * 60 *24))
+    return day+1
+  }
+
   const onClickBook = (e) => {
     const id = e.target.closest('li').id
     const book = props.filteredBooks[id]
     dispatch(toggleActions.toggleModal(true))
     dispatch(bookActions.getSelectedBook(book))
   }
-  
+
+  const switchTopInfo = (book) => {
+    switch (book.type) {
+      case 'complete':
+        return (<>
+          <span>평점</span>
+          <Rating
+            book={book}
+            stars={book.rate}
+            onClick={(e) => e.preventDefault()}
+          ></Rating>
+          <span>읽은 기간</span>
+          {book.startDate.slice(0, 10)} ~ {book.endDate.slice(0, 10)}
+        </>)
+      case 'reading':
+        return(<>
+          <span>시작일</span>
+          {book.startDate.slice(0, 10)}
+          <span><FontAwesomeIcon icon='fa-book-open-reader'/></span>
+          {getDday(book.startDate)}일차
+        </>)
+    }
+  }
+
   return (
     <section className='saved-book-list'>
       <div className='saved-book-list-header'>
@@ -50,23 +82,12 @@ function SavedBooksByCategory(props) {
                   <>
                     <div className='saved-book-top'>
                       <SaveOptionButton
-                      name={option[props.filteredBooks[key].type]}
-                      onClick={(e)=>e.preventDefault()} 
-                      /> 
+                        name={option[props.filteredBooks[key].type]}
+                        onClick={(e) => e.preventDefault()}
+                      />
                       {
-                        props.filteredBooks[key].rate!=null &&
-                        <>
-                        <span>평점</span>
-                        <Rating
-                        book={props.filteredBooks[key]}
-                        stars={props.filteredBooks[key].rate}
-                        onClick={(e)=>e.preventDefault()}
-                        ></Rating>
-                        </>
+                        switchTopInfo(props.filteredBooks[key])
                       }
-                      <span>추가</span>
-                      {/* {props.filteredBooks[key].rate} */}
-                      {props.filteredBooks[key].addDate.slice(0,10)}
                     </div>
                     <BookList
                       key={index}
