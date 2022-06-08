@@ -7,7 +7,6 @@ import Modal from '../../common/modal/Modal'
 import animationData from '../../../../assets/animation/85557-empty.json'
 import { useDispatch, useSelector } from 'react-redux'
 import { bookActions, toggleActions } from '../../../../modules/actions'
-let isFetching = false
 
 function BookResult(props) {
     const dispatch = useDispatch()
@@ -36,18 +35,16 @@ function BookResult(props) {
         const scrollTop = document.querySelector('.content').scrollTop
         const clientHeight = document.querySelector('.content').clientHeight
         document.querySelector('.book-list') && localStorage.setItem('scroll', scrollTop)
-        if (!isFetching && Math.ceil(scrollTop + clientHeight) >= scrollHeight && scrollTop != 0) {
-            addPageNum()
-            isFetching=true
+        if (Math.ceil(scrollTop + clientHeight) >= scrollHeight && scrollTop != 0) {
+            setTimeout(()=>{
+                addPageNum()
+            },50)
         }
     }
 
     useEffect(() => {
         document.querySelector('.content').addEventListener('scroll', infiniteScroll)
-        return () => {
-            document.querySelector('.content') && document.querySelector('.content').removeEventListener('scroll', infiniteScroll)
-            isFetching=false
-        }
+        return () => document.querySelector('.content') && document.querySelector('.content').removeEventListener('scroll', infiniteScroll)
     })
     
     return (
