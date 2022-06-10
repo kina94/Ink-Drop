@@ -39,10 +39,10 @@ function BookResult(props) {
                 const clientHeight = document.querySelector('.content').clientHeight
                 document.querySelector('.book-list') && localStorage.setItem('scroll', scrollTop)
                 if (Math.ceil(scrollTop + clientHeight) >= scrollHeight && scrollTop != 0) {
-                        addPageNum()
+                    addPageNum()
                 }
                 timeForThrottle=null
-            },200)
+            },100)
         }
     }
 
