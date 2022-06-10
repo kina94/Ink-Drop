@@ -6,6 +6,13 @@ import './Modal.css'
 function Modal(props) {
     const dispatch = useDispatch()
     const isModalShow = useSelector(store=>store.toggleStore.modalToggle)
+
+    useEffect(()=>{
+        if(isModalShow){
+          document.querySelector('.content-wrapper').scrollTo(0,0)
+        }
+  }, [isModalShow])
+
     const handleModalClose = () => {
         window.addEventListener('keydown', (e) => {
             if (e.key === 'Escape') {

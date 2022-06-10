@@ -6,7 +6,11 @@ import MainContainer from './views/MainContainer';
 
 function App({ userRepository, authService, bookRepository}) {
 
+<<<<<<< HEAD
   window.onresize = function() {
+=======
+  useEffect(()=>{
+>>>>>>> 171c1ae3f6ab346e5e8c5dd4d1fe502d54641806
     document.querySelector('.app').style.height=window.innerHeight+'px';
   };
 
@@ -18,8 +22,7 @@ function App({ userRepository, authService, bookRepository}) {
           <Route path="/home/*" element={<MainContainer
           authService={authService}
           userRepository={userRepository}
-          bookRepository={bookRepository}
-          />}>
+          bookRepository={bookRepository}/>}>
           </Route>
         </Routes>
       </BrowserRouter>

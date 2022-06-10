@@ -16,7 +16,7 @@ function SearchContainer(props) {
   const savedScroll = localStorage.getItem('scroll')
   const searchBooks = useSelector(store=>store.bookStore.searchResultBooks)
   const searchParams = useSelector(store=>store.bookStore.searchParams)
-
+  
   // 도서API 호출
   const FetchBooks = async () => {
     const response = await props.bookRepository.searchBooks(searchParams)
@@ -45,7 +45,7 @@ function SearchContainer(props) {
   //새로고침 및 탭 이동 시 서칭하던 스크롤이 있는 곳으로 이동
   useEffect(()=>{
     document.querySelector('.content').scrollTo(0, savedScroll)
-  },[])
+  },[props.userInfo.userId])
 
   //뒤로가기 및 앞으로 가기 처리
   window.onpopstate = function(){

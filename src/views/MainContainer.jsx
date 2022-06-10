@@ -47,6 +47,7 @@ function MainContainer(props) {
         if (location.pathname.includes('search/')) {
             navigate('/home/search')
             LocalStorage.removeAllItems()
+            document.querySelector('search-input-container input').value=''
         } else {
             dispatch(bookActions.initSearchParams())
             const savedParams = JSON.parse(localStorage.getItem('params'))
