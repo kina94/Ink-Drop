@@ -47,7 +47,7 @@ function MainContainer(props) {
         if (location.pathname.includes('search/')) {
             navigate('/home/search')
             LocalStorage.removeAllItems()
-            document.querySelector('search-input-container input').value=''
+            document.querySelector('input').value=''
         } else {
             dispatch(bookActions.initSearchParams())
             const savedParams = JSON.parse(localStorage.getItem('params'))
@@ -81,11 +81,11 @@ function MainContainer(props) {
                     <Route exact={true} path='search/*' element={<SearchContainer
                         userInfo={userInfo}
                         bookRepository={props.bookRepository}
+                        setIsLoading={setIsLoading}
                     />} />
                     <Route exact={true} path='library/*'
                         element={<LibraryContainer
                         userInfo={userInfo}
-                        setIsLoading={setIsLoading}
                         />} />
                     <Route exact={true} path='history/*'
                         element={<HistoryContainer
