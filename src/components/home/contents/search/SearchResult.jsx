@@ -7,6 +7,7 @@ import Modal from '../../common/modal/Modal'
 import animationData from '../../../../assets/animation/85557-empty.json'
 import { useDispatch, useSelector } from 'react-redux'
 import { bookActions, toggleActions } from '../../../../modules/actions'
+let timeForThrottle;
 
 function BookResult(props) {
     const dispatch = useDispatch()
@@ -31,14 +32,17 @@ function BookResult(props) {
 
     //무한스크롤
     const infiniteScroll = () => {
-        const scrollHeight = document.querySelector('.content').scrollHeight
-        const scrollTop = document.querySelector('.content').scrollTop
-        const clientHeight = document.querySelector('.content').clientHeight
-        document.querySelector('.book-list') && localStorage.setItem('scroll', scrollTop)
-        if (Math.ceil(scrollTop + clientHeight) >= scrollHeight && scrollTop != 0) {
-            setTimeout(()=>{
-                addPageNum()
-            },1000)
+        if(!timeForThrottle){
+            timeForThrottle=setTimeout(()=>{
+                const scrollHeight = document.querySelector('.content').scrollHeight
+                const scrollTop = document.querySelector('.content').scrollTop
+                const clientHeight = document.querySelector('.content').clientHeight
+                document.querySelector('.book-list') && localStorage.setItem('scroll', scrollTop)
+                if (Math.ceil(scrollTop + clientHeight) >= scrollHeight && scrollTop != 0) {
+                        addPageNum()
+                }
+                timeForThrottle=null
+            },200)
         }
     }
 
