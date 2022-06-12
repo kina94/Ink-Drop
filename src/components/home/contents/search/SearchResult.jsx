@@ -42,7 +42,7 @@ function BookResult(props) {
                     addPageNum()
                 }
                 timeForThrottle=null
-            },100)
+            },1000)
         }
     }
 
