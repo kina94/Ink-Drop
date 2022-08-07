@@ -27,25 +27,25 @@
 
 ## 기능
   * 사용자별 서재 저장을 위한 구글 및 깃허브 로그인
-  <img src='https://user-images.githubusercontent.com/66938939/172463198-230264e4-6140-4723-a8d6-548d1ec5aae5.gif' width=400px height=400px/>
+  <img src='https://user-images.githubusercontent.com/66938939/172463198-230264e4-6140-4723-a8d6-548d1ec5aae5.gif' width=auto height=400px/>
   
   * 책 검색 (infinite scrolling)
-  <img src='https://user-images.githubusercontent.com/66938939/172464067-babba6bf-2581-4edf-a9de-7300a8cf662b.gif' width=400px height=400px/>
+  <img src='https://user-images.githubusercontent.com/66938939/172464067-babba6bf-2581-4edf-a9de-7300a8cf662b.gif' width=auto height=400px/>
 
   * 옵션별 책 저장
-  <img src='https://user-images.githubusercontent.com/66938939/172464789-f2a8fb11-3892-4a21-ae96-92249521a896.gif' width=400px height=400px/>
+  <img src='https://user-images.githubusercontent.com/66938939/172464789-f2a8fb11-3892-4a21-ae96-92249521a896.gif' width=auto height=400px/>
   
   * 내 서재
-  <img src='https://user-images.githubusercontent.com/66938939/172465351-1d6fe3bc-f492-4dec-a218-da3b23c8d62d.gif' width=400px height=400px/>
+  <img src='https://user-images.githubusercontent.com/66938939/172465351-1d6fe3bc-f492-4dec-a218-da3b23c8d62d.gif' width=auto height=400px/>
   
   * 저장한 책 관리 (수정/삭제)
-  <img src='https://user-images.githubusercontent.com/66938939/172465974-e17b5a11-212e-4896-8920-dafa1a9996fb.gif' width=400px height=400px/>
+  <img src='https://user-images.githubusercontent.com/66938939/172465974-e17b5a11-212e-4896-8920-dafa1a9996fb.gif' width=auto height=400px/>
   
   * 독서 차트 (연도별/월별/일별)
-  <img src='https://user-images.githubusercontent.com/66938939/172466820-cafda8df-70bd-456b-8525-ab2377d773d2.gif' width=400px height=400px/>
+  <img src='https://user-images.githubusercontent.com/66938939/172466820-cafda8df-70bd-456b-8525-ab2377d773d2.gif' width=auto height=400px/>
   
   * 검색 기록 및 스크롤바 위치 캐싱 (메뉴 이동 및 새로고침 시 유지, 책 검색 두 번 클릭 시 초기화)
-  <img src='https://user-images.githubusercontent.com/66938939/172467274-b48417d2-7e98-4e58-983a-5b78a0f89482.gif' width=400px height=400px/>
+  <img src='https://user-images.githubusercontent.com/66938939/172467274-b48417d2-7e98-4e58-983a-5b78a0f89482.gif' width=auto height=400px/>
   
   * 반응형 구현
   <img src='https://user-images.githubusercontent.com/66938939/172468758-523f658b-00e8-4c46-a479-ffdfda7fb22f.gif'/>  
