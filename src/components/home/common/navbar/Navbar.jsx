@@ -3,15 +3,15 @@ import { Dropdown } from 'react-bootstrap'
 import { useNavigate } from 'react-router-dom'
 import styles from './Navbar.module.css'
 import DEFAULT_IMAGE from '../../../../assets/images/default_logo.png'
+import * as authService from '../../../../service/authService'
 
 const Navbar = (props) => {
   const navigate=useNavigate();
   const {userName, userEmail, photoURL} = {...props.userInfo}
   const [userPhoto, setUserPhoto] = useState(photoURL ? photoURL : DEFAULT_IMAGE);
-
   const onLogout = useCallback(() => {
-    props.authService.logout();
-  }, [props.authService])
+    authService.logout();
+  }, [authService])
 
   const InfoToggle = React.forwardRef(({ onClick }, ref) => (
     <div style={{minWidth:'100px'}}>

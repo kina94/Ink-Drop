@@ -12,6 +12,7 @@ import LocalStorage from '../common/utils/local_storage'
 import { useDispatch, useSelector } from 'react-redux'
 import { bookActions } from '../modules/actions'
 import './Container.css'
+import * as authService from '../service/authService'
 
 function MainContainer(props) {
     const dispatch = useDispatch()
@@ -24,7 +25,7 @@ function MainContainer(props) {
     const [isLoading, setIsLoading] = useState(false)
 
     useEffect(() => {
-        props.authService.onAuthChange(user => {
+        authService.onAuthChange(user => {
             if (user) {
                 setUserInfo({
                     ...userInfo,
@@ -41,7 +42,7 @@ function MainContainer(props) {
                 navigate('/')
             }
         }, [userInfo.userId])
-    }, [props.authService, props.userRepository])
+    }, [authService, props.userRepository])
 
     const onClickSearchNav = () => {
         if (location.pathname.includes('search/')) {

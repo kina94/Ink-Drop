@@ -1,5 +1,6 @@
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
+import * as authService from '../../../service/authService'
 import '../styles/mobile.css'
 
 function MobileNavbar(props) {
@@ -18,7 +19,7 @@ function MobileNavbar(props) {
                 <i className="fa-solid fa-calendar-days" id='icon' ></i>
                 <p>독서기록</p>
             </a>
-            <a className='mobile-nav-menu' onClick={() => props.authService.logout()}>
+            <a className='mobile-nav-menu' onClick={() => authService.logout()}>
             <i className="fa-solid fa-right-from-bracket" id='icon'></i>
             <p>로그아웃</p>
             </a>
