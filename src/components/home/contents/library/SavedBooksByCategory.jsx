@@ -14,7 +14,6 @@ import {toggleActions } from '../../../../modules/actions'
 import Rating from '../../common/rating/Rating'
 import SaveOptionButton from '../search/SaveOptionButton'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { getSelectedBook } from '../../../../modules/book'
 
 // 카테고리에 저장된 책 보여주기
 function SavedBooksByCategory(props) {
@@ -30,13 +29,6 @@ function SavedBooksByCategory(props) {
     const distance = now.getTime() - setStartDate.getTime()
     const day = Math.floor(distance / (1000 * 60 * 60 *24))
     return day+1
-  }
-
-  const onClickBook = (e) => {
-    const id = e.target.closest('li').id
-    const book = props.filteredBooks[id]
-    dispatch(toggleActions.toggleModal(true))
-    dispatch(getSelectedBook(book))
   }
 
   const switchTopInfo = (book) => {
@@ -96,9 +88,8 @@ function SavedBooksByCategory(props) {
                     </div>
                     <BookList
                       key={index}
-                      book={props.filteredBooks[key]}
-                      index={index}
-                      clickEvent={onClickBook} />
+                      selectedBook={props.filteredBooks[key]}
+                      index={index}/>
                   </>
                 )
               })

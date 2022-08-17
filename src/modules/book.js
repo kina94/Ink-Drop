@@ -16,7 +16,7 @@ const SET_PARAMS_ALL = "book/SET_PARAMS_ALL";
 
 /* ------------ 액션 생성 함수 ---------------*/
 /*서재 및 검색 공통함수*/
-export const getSelectedBook = (selectedBook) => ({
+export const setSelectedBook = (selectedBook) => ({
   type: SELECT,
   selectedBook,
 });

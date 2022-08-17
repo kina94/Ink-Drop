@@ -1,7 +1,7 @@
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { toggleActions } from '../../../../modules/actions'
-import { getSelectedBook, onClickBookDelete } from '../../../../modules/book'
+import { setSelectedBook, onClickBookDelete } from '../../../../modules/book'
 import BookSave from '../../common/book/BookSave'
 import Rating from '../../common/rating/Rating'
 import SaveOptionButton from '../search/SaveOptionButton'
@@ -98,7 +98,7 @@ function SavedBookContents(props) {
     }
 
     const updateBookContents = (newBook) => {
-        dispatch(getSelectedBook(newBook))
+        dispatch(setSelectedBook(newBook))
         dispatch(toggleActions.toggleModifyMode(false))
     }
 
