@@ -5,7 +5,7 @@ import '@fortawesome/fontawesome-free/js/all.js'
 import MainContainer from './views/MainContainer';
 import { useEffect, useState } from 'react';
 
-function App({ userRepository, bookRepository }) {
+function App({ userRepository }) {
   useEffect(() => {
     document.querySelector('.app').style.height = window.innerHeight + 'px';
   }, [])
@@ -17,7 +17,6 @@ function App({ userRepository, bookRepository }) {
           <Route path="/" element={<Login/>} />
           <Route path="/home/*" element={<MainContainer
             userRepository={userRepository}
-            bookRepository={bookRepository}
             />}>
           </Route>
         </Routes>

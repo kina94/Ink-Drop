@@ -7,6 +7,7 @@ import animationData from '../assets/animation/72170-books.json'
 import './Container.css'
 import { useDispatch, useSelector } from 'react-redux'
 import { bookActions } from '../modules/actions'
+import { callSearchBookApi } from '../service/bookService'
 
 function SearchContainer(props) {
   const dispatch = useDispatch()
@@ -19,7 +20,7 @@ function SearchContainer(props) {
   
   // 도서API 호출
   const FetchBooks = async () => {
-    const response = await props.bookRepository.searchBooks(searchParams)
+    const response = await callSearchBookApi(searchParams)
     if(response.data.meta.is_end && response.data.meta.pageable_count!=0 &&
       document.querySelector('.content').scrollTop!=0){
       return alert('마지막 검색 결과입니다.')

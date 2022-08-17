@@ -1,7 +1,6 @@
+import { deleteBookFromDB, saveBookToDB } from "../../service/bookService";
 import {initBookActions} from "../actions/initActions";
-import BookService from '../../service/book_service'
 
-const bookService = new BookService()
 const savedResultBooks = JSON.parse(localStorage.getItem('books'))
 
 const initBookState = {
@@ -33,7 +32,7 @@ export const bookStore = (state = initBookState, action) => {
                 const update = { ...state.savedBooks }
                 const id = Object.keys(update).filter(key => update[key].isbn === action.bookId)
                 delete update[id]
-                bookService.deleteBook(action.userId, action.bookId)
+                deleteBookFromDB(action.userId, action.bookId)
                 return { ...state, savedBooks: update }
             }
 
@@ -42,7 +41,7 @@ export const bookStore = (state = initBookState, action) => {
                 const update = { ...state.savedBooks }
                 const id = Object.keys(update).filter(key => update[key].isbn === action.newBookId)
                 update[id] = action.newBook
-                bookService.saveBook(action.userId, action.newBookId, action.newBook)
+                saveBookToDB(action.userId, action.newBookId, action.newBook)
                 return { ...state, savedBooks: update }
             }
 

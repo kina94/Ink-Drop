@@ -13,6 +13,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { bookActions } from '../modules/actions'
 import './Container.css'
 import * as authService from '../service/authService'
+import { getSavedBooksFromDB } from '../service/bookService'
 
 function MainContainer(props) {
     const dispatch = useDispatch()
@@ -59,7 +60,7 @@ function MainContainer(props) {
 
     const FetchSavedBooks = async () => {
         setIsLoading(true)
-        const books = await props.bookRepository.syncBooks(userInfo.userId)
+        const books = await getSavedBooksFromDB(userInfo.userId)
         dispatch(bookActions.getSavedBooks(books))
         setIsLoading(false)
       }
@@ -81,7 +82,6 @@ function MainContainer(props) {
                 <Routes>
                     <Route exact={true} path='search/*' element={<SearchContainer
                         userInfo={userInfo}
-                        bookRepository={props.bookRepository}
                         setIsLoading={setIsLoading}
                     />} />
                     <Route exact={true} path='library/*'
