@@ -1,13 +1,39 @@
 import React from 'react'
-import { useNavigate } from 'react-router-dom'
+import { useLocation, useNavigate } from 'react-router-dom'
+import { removeAllLocalStorageItems } from '../../../common/utils/local_storage'
 import * as authService from '../../../service/authService'
 import '../styles/mobile.css'
 
-function MobileNavbar(props) {
+function MobileNavbar() {
     const navigate = useNavigate()
+    const currentPath = useLocation().pathname;
+
+    /*-----------------중복 코드 제거 필요-------------*/
+  const resetSavedSearchHistory = () => {
+    removeAllLocalStorageItems();
+    document.querySelector("input").value = "";
+  };
+
+  const getSavedSearchURL = (savedParams) => {
+    const savedSearchURL = savedParams
+      ? `/home/search/${savedParams.query}`
+      : "/home/search";
+    return savedSearchURL;
+  };
+
+  const handleSearchMenu = () => {
+    if (currentPath.includes("search/")) {
+      resetSavedSearchHistory();
+      navigate("/home/search");
+    } else {
+      const savedParams = JSON.parse(localStorage.getItem("params"));
+      navigate(getSavedSearchURL(savedParams));
+    }
+  };
+
     return (
         <nav className='mobile-nav'>
-            <a className='mobile-nav-menu' onClick={props.onClickSearchNav}>
+            <a className='mobile-nav-menu' onClick={handleSearchMenu}>
                 <i className="fa-solid fa-magnifying-glass" id='icon' />
                 <p>도서검색</p>
             </a>

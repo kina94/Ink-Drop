@@ -73,7 +73,7 @@ export const setSearchParamsAll = (query, page) => ({
 const initBookState = {
   savedBooks: [],
   bookSearchResults: savedResultBooks ? savedResultBooks : [],
-  searchParams: savedParams ? savedParams : {
+  searchParams: {
     query:'',
     page:1
   },

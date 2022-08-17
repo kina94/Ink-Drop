@@ -15,6 +15,7 @@ export const useInfiniteScrollEffect = (listner) => {
     const scrollHeight = document.querySelector(".content").scrollHeight;
     const scrollTop = document.querySelector(".content").scrollTop; 
     const clientHeight = document.querySelector(".content").clientHeight; 
+    document.querySelector('.book-list') && localStorage.setItem('scroll', scrollTop)
     listner(scrollHeight, scrollTop, clientHeight);
   };
   

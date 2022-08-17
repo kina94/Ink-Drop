@@ -18,7 +18,6 @@ function Search() {
   const { bookSearchResults: searchedBooks, searchParams } = useSelector(
     (store) => store.bookReducer
   );
-  const savedScroll = localStorage.getItem("scroll");
 
   // 도서API 호출
   const getBookSearchResults = async () => {
@@ -45,6 +44,7 @@ function Search() {
 
   //새로고침 및 탭 이동 시 서칭하던 스크롤이 있는 곳으로 이동
   useEffect(() => {
+    const savedScroll = localStorage.getItem("scroll");
     document.querySelector(".content").scrollTo(0, savedScroll);
   }, [user.uid]);
 
@@ -64,7 +64,7 @@ function Search() {
           value="원하는 책을 검색하고 저장해보세요."
         />
       ) : (
-        <SearchResult message={`'${searchParams.query}'에 대한 검색 결과`} />
+        <SearchResult message={`'${currentSearchQuery}'에 대한 검색 결과`} />
       )}
     </section>
   );

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import ShowMessage from "../../common/alert/ShowMessage";
 import BookBasicInfo from "../../common/book/BookBasicInfo";
 import BookList from "../../common/book/BookList";
@@ -6,16 +6,21 @@ import BookSave from "../../common/book/BookSave";
 import Modal from "../../common/modal/Modal";
 import animationData from "../../../../assets/animation/85557-empty.json";
 import { useDispatch, useSelector } from "react-redux";
-import { setSearchParamsAll } from "../../../../modules/book";
-import { useInfiniteScrollEffect } from "../../../../common/utils/bookSearch";
+import { setSearchedBooks, setSearchParamsAll } from "../../../../modules/book";
+import { isEndOfPage, useInfiniteScrollEffect } from "../../../../common/utils/bookSearch";
+import { callSearchBookApi } from "../../../../service/bookService";
+import { useNavigate, useParams } from "react-router-dom";
 let timeForThrottle;
 
 function BookResult(props) {
   const dispatch = useDispatch();
-  const searchParams = useSelector((store) => store.bookReducer.searchParams);
-  const searchedBooks = useSelector(
-    (store) => store.bookReducer.bookSearchResults
+  const { bookSearchResults: searchedBooks, searchParams } = useSelector(
+    (store) => store.bookReducer
   );
+  const navigate = useNavigate();
+  const { "*": currentSearchQuery } = useParams();
+  const user = useSelector((store) => store.userReducer.user);
+
 
   // 하단까지 스크롤 시 페이지 증가
   const addPageNum = () => {

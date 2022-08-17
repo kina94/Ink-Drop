@@ -9,7 +9,7 @@ import MobileNavbar from "../components/mobile/navbar/MobileNavbar";
 import LoadingSpinner from "../common/utils/LoadingSpinner";
 import MoveTop from "../components/home/common/move_top/MoveTop";
 import { useDispatch, useSelector } from "react-redux";
-import "./Container.css";
+import "../../src/views/Container.css";
 import { getSavedBooksFromDB } from "../service/bookService";
 import { isNewUser, setNewUserToDB } from "../service/userService";
 import { onAuthChange } from "../service/authService";
@@ -53,7 +53,7 @@ function Home() {
       <Navbar />
       <Sidebar />
       {/* 수정필요 */}
-      {/* <MobileNavbar/>  */}
+      <MobileNavbar/> 
       <MoveTop />
       <section className="content">
         <Routes>
