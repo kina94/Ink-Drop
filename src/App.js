@@ -3,9 +3,9 @@ import './App.css';
 import Login from './components/login/Login';
 import '@fortawesome/fontawesome-free/js/all.js'
 import MainContainer from './views/MainContainer';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 
-function App({ userRepository }) {
+function App() {
   useEffect(() => {
     document.querySelector('.app').style.height = window.innerHeight + 'px';
   }, [])
@@ -15,9 +15,7 @@ function App({ userRepository }) {
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Login/>} />
-          <Route path="/home/*" element={<MainContainer
-            userRepository={userRepository}
-            />}>
+          <Route path="/home/*" element={<MainContainer/>}>
           </Route>
         </Routes>
       </BrowserRouter>
