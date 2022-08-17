@@ -59,6 +59,8 @@ function SavedBooksByCategory(props) {
           <span><FontAwesomeIcon icon='fa-book-open-reader'/></span>
           {getDday(book.startDate)}일차
         </>)
+        default:
+          return
     }
   }
 

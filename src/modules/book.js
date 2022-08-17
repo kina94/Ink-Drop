@@ -15,78 +15,58 @@ const SET_PARAMS_ALL = "book/SET_PARAMS_ALL";
 
 /* ------------ 액션 생성 함수 ---------------*/
 /*서재 및 검색 공통함수*/
-export const getSelectedBook = (selectedBook) => {
-  return {
-    type: SELECT,
-    selectedBook,
-  };
-};
+export const getSelectedBook = (selectedBook) => ({
+  type: SELECT,
+  selectedBook,
+});
 
 /*서재 CRUD*/
-export const setSavedBooks = (savedBooks) => {
-  return {
-    type: GET,
-    savedBooks,
-  };
-};
+export const setSavedBooks = (savedBooks) => ({
+  type: GET,
+  savedBooks,
+});
 
-export const onClickBookUpdateOrAdd = (userId, newBook) => {
-  return {
-    type: UPDATE_OR_ADD,
-    userId,
-    newBookId: newBook.isbn,
-    newBook,
-  };
-};
+export const onClickBookUpdateOrAdd = (userId, newBook) => ({
+  type: UPDATE_OR_ADD,
+  userId,
+  newBookId: newBook.isbn,
+  newBook,
+});
 
-export const onClickBookDelete = (bookId, userId) => {
-  return {
-    type: DELETE,
-    bookId,
-    userId,
-  };
-};
+export const onClickBookDelete = (bookId, userId) => ({
+  type: DELETE,
+  bookId,
+  userId,
+});
 
 /*책 검색*/
-export const getSearchBooks = (searchResultBooks) => {
-  return {
-    type: SEARCH,
-    searchResultBooks,
-  };
-};
+export const getSearchBooks = (searchResultBooks) => ({
+  type: SEARCH,
+  searchResultBooks,
+});
 
-export const setNewSearchPage = () => {
-  return {
-    type: SET_NEW_SEARCH_PAGE,
-  };
-};
+export const setNewSearchPage = () => ({
+  type: SET_NEW_SEARCH_PAGE,
+});
 
-export const initSearchBooks = () => {
-  return {
-    type: INIT_BOOKS,
-  };
-};
+export const initSearchBooks = () => ({
+  type: INIT_BOOKS,
+});
 
-export const initSearchParams = () => {
-  return {
-    type: INIT_PARAMS,
-  };
-};
+export const initSearchParams = () => ({
+  type: INIT_PARAMS,
+});
 
-export const setSearchParamsQuery = (query) => {
-  return {
-    type: SET_PARAMS_QUERY,
-    query,
-  };
-};
+export const setSearchParamsQuery = (query) => ({
+  type: SET_PARAMS_QUERY,
+  query,
+});
 
-export const setSearchParamsAll = (query, page) => {
-  return {
-    type: SET_PARAMS_ALL,
-    query,
-    page,
-  };
-};
+export const setSearchParamsAll = (query, page) => ({
+  type: SET_PARAMS_ALL,
+  query,
+  page,
+});
 
 /* ------------ 초기 상태 ---------------*/
 const initBookState = {
@@ -103,14 +83,12 @@ const initBookState = {
 export const bookReducer = (state = initBookState, action) => {
   switch (action.type) {
     /*검색 및 저장 공통 액션*/
-    case SELECT: {
+    case SELECT:
       return { ...state, selectedBook: action.selectedBook };
-    }
 
     /*저장된 책 CRUD*/
-    case GET: {
+    case GET:
       return { ...state, savedBooks: action.savedBooks };
-    }
 
     case DELETE: {
       const update = { ...state.savedBooks };
@@ -133,7 +111,7 @@ export const bookReducer = (state = initBookState, action) => {
     }
 
     /*책 검색 관련*/
-    case SEARCH: {
+    case SEARCH:
       return {
         ...state,
         searchResultBooks: [
@@ -141,32 +119,26 @@ export const bookReducer = (state = initBookState, action) => {
           ...action.searchResultBooks,
         ],
       };
-    }
-    case SET_NEW_SEARCH_PAGE: {
+    case SET_NEW_SEARCH_PAGE:
       return { ...state, searchParams: { ...state.searchParams, page: 1 } };
-    }
 
-    case INIT_BOOKS: {
+    case INIT_BOOKS:
       return { ...state, searchResultBooks: [] };
-    }
 
-    case INIT_PARAMS: {
+    case INIT_PARAMS:
       return { ...state, searchParams: { query: "", page: 1 } };
-    }
 
-    case SET_PARAMS_QUERY: {
+    case SET_PARAMS_QUERY:
       return {
         ...state,
         searchParams: { ...state.searchParams, query: action.query },
       };
-    }
 
-    case SET_PARAMS_ALL: {
+    case SET_PARAMS_ALL:
       return {
         ...state,
         searchParams: { query: action.query, page: action.page },
       };
-    }
 
     default:
       return state;

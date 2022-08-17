@@ -16,7 +16,7 @@ const initState = {
 /* ------------ 리듀서 ---------------*/
 export const userReducer = (state = initState, action) => {
   switch (action.type) {
-    case "user/SET":
+    case SET:
       return { ...state, user: action.user };
 
     default:

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import {
   Route,
   Routes,
@@ -17,21 +17,22 @@ import { getSearchBooks } from "../modules/book";
 
 function SearchContainer() {
   const user = useSelector((store) => store.userReducer.user);
+  const searchBooks = useSelector((store) => store.bookReducer.searchResultBooks);
+  const searchParams = useSelector((store) => store.bookReducer.searchParams);
   const dispatch = useDispatch();
   const params = useParams();
   const location = useLocation();
   const navigate = useNavigate();
   const savedScroll = localStorage.getItem("scroll");
-  const searchBooks = useSelector((store) => store.bookReducer.searchResultBooks);
-  const searchParams = useSelector((store) => store.bookReducer.searchParams);
+
 
   // 도서API 호출
   const FetchBooks = async () => {
     const response = await callSearchBookApi(searchParams);
     if (
       response.data.meta.is_end &&
-      response.data.meta.pageable_count != 0 &&
-      document.querySelector(".content").scrollTop != 0
+      response.data.meta.pageable_count !== 0 &&
+      document.querySelector(".content").scrollTop !== 0
     ) {
       return alert("마지막 검색 결과입니다.");
     } else {
@@ -42,16 +43,16 @@ function SearchContainer() {
   //SearchParams의 page가 변경될 때마다 FetchBooks를 요청
   //params를 로컬스토리지에 저장
   useEffect(() => {
-    if (searchParams.query != "") {
+    if (searchParams.query !== "") {
       FetchBooks();
-      location.pathname != "/home/search" &&
+      location.pathname !== "/home/search" &&
         localStorage.setItem("params", JSON.stringify(searchParams));
     }
   }, [params, searchParams.page]);
 
   //localstorage에 검색된 책 저장
   useEffect(() => {
-    location.pathname != "/home/search" &&
+    location.pathname !== "/home/search" &&
       localStorage.setItem("books", JSON.stringify(searchBooks));
   }, [searchBooks]);
 

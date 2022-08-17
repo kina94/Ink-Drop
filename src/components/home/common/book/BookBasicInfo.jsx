@@ -17,7 +17,7 @@ function BookBasicInfo() {
       </section>
       <section className='information'>
         <section>
-          <img src={thumbnail}></img>
+          <img src={thumbnail} alt='thumbnail'></img>
           <p>{authors && authors.join(' ')} / {publisher}</p>
         </section>
         <section>

@@ -16,7 +16,7 @@ import { onAuthChange } from "../service/authService";
 import { setUser } from "../modules/user";
 import { setSavedBooks } from "../modules/book";
 
-function MainContainer(props) {
+function Home() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const user = useSelector((store) => store.userReducer.user);
@@ -39,8 +39,8 @@ function MainContainer(props) {
 
   const getSavedUserBooks = async () => {
     setIsLoading(true);
-    const books = await getSavedBooksFromDB(user.uid);
-    dispatch(setSavedBooks(books));
+    const response = await getSavedBooksFromDB(user.uid);
+    dispatch(setSavedBooks(response));
     setIsLoading(false);
   };
 
@@ -54,7 +54,7 @@ function MainContainer(props) {
       <Navbar />
       <Sidebar/>
       {/* 수정필요 */}
-      <MobileNavbar/> 
+      {/* <MobileNavbar/>  */}
       <MoveTop />
       <section className="content">
         <Routes>
@@ -76,4 +76,4 @@ function MainContainer(props) {
   );
 }
 
-export default MainContainer;
+export default Home;

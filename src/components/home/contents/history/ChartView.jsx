@@ -10,7 +10,7 @@ import { Bar } from 'react-chartjs-2';
 import { useSelector } from 'react-redux';
 
 function ChartView(props) {
-  const user = useSelector(store=>store.userReudcer.user)
+  const user = useSelector(store=>store.userReducer.user)
   //데이터 관련 정의
   const [countBook, setCountBook] = useState()
 

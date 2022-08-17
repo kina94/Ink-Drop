@@ -4,7 +4,7 @@ import { removeAllLocalStorageItems } from "../../../../common/utils/local_stora
 import styles from "./Sidebar.module.css";
 
 const Sidebar = () => {
-  const navigate = useNavigate;
+  const navigate = useNavigate();
   const currentPath = useLocation().pathname;
 
   // 검색 메뉴 두 번 클릭 시 검색 기록 초기화
