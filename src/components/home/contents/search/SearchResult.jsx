@@ -6,20 +6,21 @@ import BookSave from "../../common/book/BookSave";
 import Modal from "../../common/modal/Modal";
 import animationData from "../../../../assets/animation/85557-empty.json";
 import { useDispatch, useSelector } from "react-redux";
-import { bookActions, toggleActions } from "../../../../modules/actions";
+import { toggleActions } from "../../../../modules/actions";
+import { getSelectedBook, setSearchParamsAll } from "../../../../modules/book";
 let timeForThrottle;
 
 function BookResult(props) {
   const dispatch = useDispatch();
-  const searchParams = useSelector((store) => store.bookStore.searchParams);
-  const searchBooks = useSelector((store) => store.bookStore.searchResultBooks);
+  const searchParams = useSelector((store) => store.bookReducer.searchParams);
+  const searchBooks = useSelector((store) => store.bookReducer.searchResultBooks);
   const savedParams = JSON.parse(localStorage.getItem("params"));
 
   // 하단까지 스크롤 시 페이지 증가
   const addPageNum = () => {
     const nextPage = savedParams ? savedParams.page + 1 : searchParams.page + 1;
     const nextQuery = savedParams ? savedParams.query : searchParams.query;
-    dispatch(bookActions.setSearchParamsAll(nextQuery, nextPage));
+    dispatch(setSearchParamsAll(nextQuery, nextPage));
   };
 
   // 검색 결과창에서 원하는 책 클릭 시 모달 토글을 위해 state 설정
@@ -27,7 +28,7 @@ function BookResult(props) {
     const id = e.target.closest("li").id;
     const book = searchBooks[id];
     dispatch(toggleActions.toggleModal(true));
-    dispatch(bookActions.getSelectedBook(book));
+    dispatch(getSelectedBook(book));
   };
 
   //무한스크롤

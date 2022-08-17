@@ -10,10 +10,11 @@ import ShowMessage from '../../common/alert/ShowMessage'
 import animationData from '../../../../assets/animation/85557-empty.json'
 import Modal from '../../common/modal/Modal'
 import { useDispatch, useSelector } from 'react-redux'
-import { bookActions, toggleActions } from '../../../../modules/actions'
+import {toggleActions } from '../../../../modules/actions'
 import Rating from '../../common/rating/Rating'
 import SaveOptionButton from '../search/SaveOptionButton'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { getSelectedBook } from '../../../../modules/book'
 
 // 카테고리에 저장된 책 보여주기
 function SavedBooksByCategory(props) {
@@ -35,7 +36,7 @@ function SavedBooksByCategory(props) {
     const id = e.target.closest('li').id
     const book = props.filteredBooks[id]
     dispatch(toggleActions.toggleModal(true))
-    dispatch(bookActions.getSelectedBook(book))
+    dispatch(getSelectedBook(book))
   }
 
   const switchTopInfo = (book) => {

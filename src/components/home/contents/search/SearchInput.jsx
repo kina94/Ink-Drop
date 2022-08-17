@@ -2,23 +2,23 @@ import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import { removeAllLocalStorageItems } from '../../../../common/utils/local_storage'
-import { bookActions } from '../../../../modules/actions'
+import { initSearchParams, setNewSearchPage, setSearchParamsQuery } from '../../../../modules/book'
 import './Search.css'
 
 function SearchInput() {
   const dispatch = useDispatch()
-  const query = useSelector(store => store.bookStore.searchParams.query)
+  const query = useSelector(store => store.bookReducer.searchParams.query)
   const navigate = useNavigate()
 
   //검색창
   const onChange = (e) => {
-    dispatch(bookActions.setSearchParamsQuery(e.target.value))
+    dispatch(setSearchParamsQuery(e.target.value))
   }
 
   //새로운 검색 시 state 초기화
   const initSearch = () => {
-    dispatch(bookActions.setNewSearchPage())
-    dispatch(bookActions.initSearchBooks())
+    dispatch(setNewSearchPage())
+    dispatch(initSearchParams())
     removeAllLocalStorageItems()
   }
 

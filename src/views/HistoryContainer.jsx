@@ -4,7 +4,7 @@ import CalendarView from '../components/home/contents/history/CalendarView';
 import ChartView from '../components/home/contents/history/ChartView';
 
 function CalendarContainer() {
-  const savedBooks = useSelector(store=>store.bookStore.savedBooks)
+  const savedBooks = useSelector(store=>store.bookReducer.savedBooks)
   const [completeBooks, setCompleteBooks] = useState([])
   const getCompleteBooks = async () => {
     if (savedBooks != null) {

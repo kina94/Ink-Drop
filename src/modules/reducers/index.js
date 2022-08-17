@@ -1,12 +1,12 @@
 import { combineReducers } from "redux";
 import { userReducer } from "../user";
-import {bookStore} from "./bookStore";
+import { bookReducer } from "../book";
 import { toggleStore } from "./toggleStore";
 
 const reducers = combineReducers({
-    bookStore,
-    toggleStore,
-    userReducer,
+  bookReducer,
+  toggleStore,
+  userReducer,
 });
 
-export default reducers
+export default reducers;

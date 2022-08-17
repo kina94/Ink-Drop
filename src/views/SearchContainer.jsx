@@ -12,8 +12,8 @@ import SearchInput from "../components/home/contents/search/SearchInput";
 import animationData from "../assets/animation/72170-books.json";
 import "./Container.css";
 import { useDispatch, useSelector } from "react-redux";
-import { bookActions } from "../modules/actions";
 import { callSearchBookApi } from "../service/bookService";
+import { getSearchBooks } from "../modules/book";
 
 function SearchContainer() {
   const user = useSelector((store) => store.userReducer.user);
@@ -22,8 +22,8 @@ function SearchContainer() {
   const location = useLocation();
   const navigate = useNavigate();
   const savedScroll = localStorage.getItem("scroll");
-  const searchBooks = useSelector((store) => store.bookStore.searchResultBooks);
-  const searchParams = useSelector((store) => store.bookStore.searchParams);
+  const searchBooks = useSelector((store) => store.bookReducer.searchResultBooks);
+  const searchParams = useSelector((store) => store.bookReducer.searchParams);
 
   // 도서API 호출
   const FetchBooks = async () => {
@@ -35,7 +35,7 @@ function SearchContainer() {
     ) {
       return alert("마지막 검색 결과입니다.");
     } else {
-      dispatch(bookActions.getSearchBooks(response.data.documents));
+      dispatch(getSearchBooks(response.data.documents));
     }
   };
 

@@ -3,8 +3,9 @@ import SaveOptionButton from '../../contents/search/SaveOptionButton'
 import { option } from '../../../../common/utils/common_var'
 import { useLocation, useNavigate } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
-import { bookActions, toggleActions } from '../../../../modules/actions'
+import { toggleActions } from '../../../../modules/actions'
 import Rating from '../rating/Rating'
+import { initSearchParams, onClickBookUpdateOrAdd } from '../../../../modules/book'
 
 //책 저장 및 수정
 function BookSave(props) {
@@ -12,8 +13,8 @@ function BookSave(props) {
     const dispatch = useDispatch()
     const isModifyMode = useSelector(store => store.toggleStore.modifyToggle)
     const isModalShow = useSelector(store => store.toggleStore.modalToggle)
-    const savedBooks = useSelector(store => store.bookStore.savedBooks)
-    const selectedBook = useSelector(store => store.bookStore.selectedBook)
+    const savedBooks = useSelector(store => store.bookReducer.savedBooks)
+    const selectedBook = useSelector(store => store.bookReducer.selectedBook)
     const [selectedOption, setSelectedOption] = useState(!selectedBook.type ? 'complete' : selectedBook.type)
     const [saveBook, setSaveBook] = useState([])
     const dateValue = new Date().toISOString().substring(0, 10)
@@ -69,9 +70,9 @@ function BookSave(props) {
                 'startDate': saveBook.startDate ? saveBook.startDate : dateValue,
                 'addDate': isModifyMode ? saveBook.addDate : new Date().toISOString(),
             }
-            dispatch(bookActions.onClickBookUpdateOrAdd(user.uid, newBook))
+            dispatch(onClickBookUpdateOrAdd(user.uid, newBook))
             alert('저장을 완료했어요.')
-            dispatch(bookActions.initSearchParams())
+            dispatch(initSearchParams())
             if (isModifyMode) {
                 props.updateBookContents(newBook)
             } else {

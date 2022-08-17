@@ -7,7 +7,7 @@ import animationData from '../assets/animation/72170-books.json'
 import { useSelector } from 'react-redux'
 
 function LibraryContainer() {
-  const savedBooks = useSelector(store => store.bookStore.savedBooks)
+  const savedBooks = useSelector(store => store.bookReducer.savedBooks)
   const params = useParams()
   const category = params['*']
   const [filteredBooks, setFilteredBooks] = useState()

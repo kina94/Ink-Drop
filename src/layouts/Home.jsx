@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Route, Routes, useLocation, useNavigate } from "react-router-dom";
+import { Route, Routes, useNavigate } from "react-router-dom";
 import Navbar from "../components/home/common/navbar/Navbar";
 import SearchContainer from "../views/SearchContainer";
 import LibraryContainer from "../views/LibraryContainer";
@@ -9,13 +9,12 @@ import MobileNavbar from "../components/mobile/navbar/MobileNavbar";
 import LoadingSpinner from "../common/utils/LoadingSpinner";
 import MoveTop from "../components/home/common/move_top/MoveTop";
 import { useDispatch, useSelector } from "react-redux";
-import { bookActions } from "../modules/actions";
 import "./Container.css";
 import { getSavedBooksFromDB } from "../service/bookService";
 import { isNewUser, setNewUserToDB } from "../service/userService";
 import { onAuthChange } from "../service/authService";
 import { setUser } from "../modules/user";
-import { removeAllLocalStorageItems } from "../common/utils/local_storage";
+import { setSavedBooks } from "../modules/book";
 
 function MainContainer(props) {
   const dispatch = useDispatch();
@@ -41,7 +40,7 @@ function MainContainer(props) {
   const getSavedUserBooks = async () => {
     setIsLoading(true);
     const books = await getSavedBooksFromDB(user.uid);
-    dispatch(bookActions.getSavedBooks(books));
+    dispatch(setSavedBooks(books));
     setIsLoading(false);
   };
 
@@ -53,8 +52,9 @@ function MainContainer(props) {
     <section className="main">
       {isLoading && <LoadingSpinner></LoadingSpinner>}
       <Navbar />
-      <Sidebar onClickSearchNav={onClickSearchNav} />
-      <MobileNavbar onClickSearchNav={onClickSearchNav} {...props} />
+      <Sidebar/>
+      {/* 수정필요 */}
+      <MobileNavbar/> 
       <MoveTop />
       <section className="content">
         <Routes>
