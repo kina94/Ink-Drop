@@ -1,11 +1,9 @@
 import React, { useEffect, useState } from "react";
 import {
-  Navigate,
   Route,
   Routes,
   useLocation,
   useNavigate,
-  useParams,
 } from "react-router-dom";
 import Navbar from "../components/home/common/navbar/Navbar";
 import SearchContainer from "../views/SearchContainer";
@@ -21,44 +19,32 @@ import { bookActions } from "../modules/actions";
 import "./Container.css";
 import { getSavedBooksFromDB } from "../service/bookService";
 import {
-  loadUserProfile,
-  saveUserProfile,
-  setUserProfile,
+  isNewUser,
+  setNewUserToDB,
 } from "../service/userService";
 import { onAuthChange } from "../service/authService";
+import { setUser } from "../modules/user";
 
 function MainContainer(props) {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const location = useLocation();
-
+  const user = useSelector((store) => store.userReducer.user);
   // 첫 로그인 시 유저 정보를 세팅합니다.
-  const [userInfo, setUserInfo] = useState({});
   const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     onAuthChange((user) => {
       if (user) {
-        setUserInfo({
-          ...userInfo,
-          userId: user.uid, // 유저 토큰
-          userName: user.displayName, // 유저 이름
-          userEmail: user.email, // 유저 이메일
-          photoURL: "",
-        });
-        userInfo.userId &&
-          setUserProfile(
-            userInfo.userId,
-            userInfo,
-            saveUserProfile(userInfo.userId, userInfo)
-          );
-
-        userInfo.userId && loadUserProfile(userInfo.userId, setUserInfo);
+        const { uid, displayName, email } = user;
+        const userInfo = { uid, displayName, email };
+        isNewUser(uid) && setNewUserToDB(uid, userInfo);
+        dispatch(setUser(userInfo))
       } else {
         navigate("/");
       }
     });
-  }, [userInfo.userId]);
+  }, []);
 
   const onClickSearchNav = () => {
     if (location.pathname.includes("search/")) {
@@ -77,19 +63,19 @@ function MainContainer(props) {
 
   const getSavedUserBooks = async () => {
     setIsLoading(true);
-    const books = await getSavedBooksFromDB(userInfo.userId);
+    const books = await getSavedBooksFromDB(user.uid);
     dispatch(bookActions.getSavedBooks(books));
     setIsLoading(false);
   };
 
   useEffect(() => {
     getSavedUserBooks();
-  }, [userInfo.userId]);
+  }, [user.uid]);
 
   return (
     <section className="main">
       {isLoading && <LoadingSpinner></LoadingSpinner>}
-      <Navbar userInfo={userInfo} {...props} />
+      <Navbar userInfo={user} {...props} />
       <Sidebar onClickSearchNav={onClickSearchNav} />
       <MobileNavbar onClickSearchNav={onClickSearchNav} {...props} />
       <MoveTop />
@@ -99,18 +85,18 @@ function MainContainer(props) {
             path="search/*"
             element={
               <SearchContainer
-                userInfo={userInfo}
+                userInfo={user}
                 setIsLoading={setIsLoading}
               />
             }
           />
           <Route
             path="library/*"
-            element={<LibraryContainer userInfo={userInfo} />}
+            element={<LibraryContainer userInfo={user} />}
           />
           <Route
             path="history/*"
-            element={<HistoryContainer userInfo={userInfo} />}
+            element={<HistoryContainer userInfo={user} />}
           />
         </Routes>
       </section>
