@@ -1,5 +1,6 @@
 import { deleteBookFromDB, saveBookToDB } from "../service/bookService";
 const savedResultBooks = JSON.parse(localStorage.getItem("books"));
+const savedParams = JSON.parse(localStorage.getItem("params"));
 
 /* ------------ 액션 타입 --------------- */
 const SELECT = "book/SELECT";
@@ -40,9 +41,9 @@ export const onClickBookDelete = (bookId, userId) => ({
 });
 
 /*책 검색*/
-export const getSearchBooks = (searchResultBooks) => ({
+export const setSearchedBooks = (bookSearchResults) => ({
   type: SEARCH,
-  searchResultBooks,
+  bookSearchResults,
 });
 
 export const setNewSearchPage = () => ({
@@ -71,10 +72,10 @@ export const setSearchParamsAll = (query, page) => ({
 /* ------------ 초기 상태 ---------------*/
 const initBookState = {
   savedBooks: [],
-  searchResultBooks: savedResultBooks ? savedResultBooks : [],
-  searchParams: {
-    query: "",
-    page: 1,
+  bookSearchResults: savedResultBooks ? savedResultBooks : [],
+  searchParams: savedParams ? savedParams : {
+    query:'',
+    page:1
   },
   selectedBook: [],
 };
@@ -114,21 +115,23 @@ export const bookReducer = (state = initBookState, action) => {
     case SEARCH:
       return {
         ...state,
-        searchResultBooks: [
-          ...state.searchResultBooks,
-          ...action.searchResultBooks,
+        bookSearchResults: [
+          ...state.bookSearchResults,
+          ...action.bookSearchResults,
         ],
       };
+
     case SET_NEW_SEARCH_PAGE:
       return { ...state, searchParams: { ...state.searchParams, page: 1 } };
 
     case INIT_BOOKS:
-      return { ...state, searchResultBooks: [] };
+      return { ...state, bookSearchResults: [] };
 
     case INIT_PARAMS:
       return { ...state, searchParams: { query: "", page: 1 } };
 
     case SET_PARAMS_QUERY:
+      console.log(state.searchParams)
       return {
         ...state,
         searchParams: { ...state.searchParams, query: action.query },

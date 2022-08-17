@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Route, Routes, useNavigate } from "react-router-dom";
 import Navbar from "../components/home/common/navbar/Navbar";
-import SearchContainer from "../views/SearchContainer";
+import Search from "../views/Search";
 import LibraryContainer from "../views/LibraryContainer";
 import HistoryContainer from "../views/HistoryContainer";
 import Sidebar from "../components/home/common/sidebar/Sidebar";
@@ -28,14 +28,13 @@ function Home() {
         const { uid, displayName, email } = user;
         const userInfo = { uid, displayName, email };
         // 새로운 유저인 경우 DB에 세팅
-        isNewUser(uid) && setNewUserToDB(uid, userInfo); 
+        isNewUser(uid) && setNewUserToDB(uid, userInfo);
         dispatch(setUser(userInfo));
       } else {
         navigate("/");
       }
     });
   }, []);
-
 
   const getSavedUserBooks = async () => {
     setIsLoading(true);
@@ -52,7 +51,7 @@ function Home() {
     <section className="main">
       {isLoading && <LoadingSpinner></LoadingSpinner>}
       <Navbar />
-      <Sidebar/>
+      <Sidebar />
       {/* 수정필요 */}
       {/* <MobileNavbar/>  */}
       <MoveTop />
@@ -60,16 +59,10 @@ function Home() {
         <Routes>
           <Route
             path="search/*"
-            element={<SearchContainer setIsLoading={setIsLoading} />}
+            element={<Search setIsLoading={setIsLoading} />}
           />
-          <Route
-            path="library/*"
-            element={<LibraryContainer/>}
-          />
-          <Route
-            path="history/*"
-            element={<HistoryContainer/>}
-          />
+          <Route path="library/*" element={<LibraryContainer />} />
+          <Route path="history/*" element={<HistoryContainer />} />
         </Routes>
       </section>
     </section>

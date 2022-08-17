@@ -13,20 +13,20 @@ let timeForThrottle;
 function BookResult(props) {
   const dispatch = useDispatch();
   const searchParams = useSelector((store) => store.bookReducer.searchParams);
-  const searchBooks = useSelector((store) => store.bookReducer.searchResultBooks);
-  const savedParams = JSON.parse(localStorage.getItem("params"));
+  const searchedBooks = useSelector(
+    (store) => store.bookReducer.bookSearchResults
+  );
 
   // 하단까지 스크롤 시 페이지 증가
   const addPageNum = () => {
-    const nextPage = savedParams ? savedParams.page + 1 : searchParams.page + 1;
-    const nextQuery = savedParams ? savedParams.query : searchParams.query;
-    dispatch(setSearchParamsAll(nextQuery, nextPage));
+    const nextPage = searchParams.page + 1;
+    dispatch(setSearchParamsAll(searchParams.query, nextPage));
   };
 
   // 검색 결과창에서 원하는 책 클릭 시 모달 토글을 위해 state 설정
   const onClickBook = (e) => {
     const id = e.target.closest("li").id;
-    const book = searchBooks[id];
+    const book = searchedBooks[id];
     dispatch(toggleActions.toggleModal(true));
     dispatch(getSelectedBook(book));
   };
@@ -65,7 +65,7 @@ function BookResult(props) {
 
   return (
     <>
-      {searchBooks && searchBooks.length === 0 ? (
+      {searchedBooks && searchedBooks.length === 0 ? (
         <ShowMessage
           animationData={animationData}
           width="400px"
@@ -76,11 +76,11 @@ function BookResult(props) {
         <section className="show-search-result">
           <span>{props.message}</span>
           <ul className="book-list">
-            {Object.keys(searchBooks).map((key, index) => {
+            {Object.keys(searchedBooks).map((key, index) => {
               return (
                 <BookList
                   key={index}
-                  book={searchBooks[key]}
+                  book={searchedBooks[key]}
                   index={index}
                   clickEvent={onClickBook}
                 ></BookList>
