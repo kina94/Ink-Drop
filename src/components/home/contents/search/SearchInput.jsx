@@ -1,7 +1,7 @@
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
-import LocalStorage from '../../../../common/utils/local_storage'
+import { removeAllLocalStorageItems } from '../../../../common/utils/local_storage'
 import { bookActions } from '../../../../modules/actions'
 import './Search.css'
 
@@ -19,7 +19,7 @@ function SearchInput() {
   const initSearch = () => {
     dispatch(bookActions.setNewSearchPage())
     dispatch(bookActions.initSearchBooks())
-    LocalStorage.removeAllItems()
+    removeAllLocalStorageItems()
   }
 
   //엔터 누르면 원하는 도서 검색

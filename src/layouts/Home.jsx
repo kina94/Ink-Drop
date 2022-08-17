@@ -8,7 +8,6 @@ import Sidebar from "../components/home/common/sidebar/Sidebar";
 import MobileNavbar from "../components/mobile/navbar/MobileNavbar";
 import LoadingSpinner from "../common/utils/LoadingSpinner";
 import MoveTop from "../components/home/common/move_top/MoveTop";
-import LocalStorage from "../common/utils/local_storage";
 import { useDispatch, useSelector } from "react-redux";
 import { bookActions } from "../modules/actions";
 import "./Container.css";
@@ -16,13 +15,12 @@ import { getSavedBooksFromDB } from "../service/bookService";
 import { isNewUser, setNewUserToDB } from "../service/userService";
 import { onAuthChange } from "../service/authService";
 import { setUser } from "../modules/user";
+import { removeAllLocalStorageItems } from "../common/utils/local_storage";
 
 function MainContainer(props) {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const location = useLocation();
   const user = useSelector((store) => store.userReducer.user);
-  // 첫 로그인 시 유저 정보를 세팅합니다.
   const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
@@ -30,7 +28,8 @@ function MainContainer(props) {
       if (user) {
         const { uid, displayName, email } = user;
         const userInfo = { uid, displayName, email };
-        isNewUser(uid) && setNewUserToDB(uid, userInfo);
+        // 새로운 유저인 경우 DB에 세팅
+        isNewUser(uid) && setNewUserToDB(uid, userInfo); 
         dispatch(setUser(userInfo));
       } else {
         navigate("/");
@@ -38,20 +37,6 @@ function MainContainer(props) {
     });
   }, []);
 
-  const onClickSearchNav = () => {
-    if (location.pathname.includes("search/")) {
-      navigate("/home/search");
-      LocalStorage.removeAllItems();
-      document.querySelector("input").value = "";
-    } else {
-      dispatch(bookActions.initSearchParams());
-      const savedParams = JSON.parse(localStorage.getItem("params"));
-      const serachURL = savedParams
-        ? `/home/search/${savedParams.query}`
-        : "/home/search";
-      navigate(serachURL);
-    }
-  };
 
   const getSavedUserBooks = async () => {
     setIsLoading(true);

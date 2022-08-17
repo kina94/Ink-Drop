@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import LocalStorage from '../../common/utils/local_storage';
+import { removeAllLocalStorageItems } from '../../common/utils/local_storage';
 import * as authService from '../../service/authService';
 import Footer from './footer/Footer';
 import Header from './header/Header';
@@ -16,7 +16,7 @@ const Login = () => {
   };
 
   const onLogin = (event) => {
-    LocalStorage.removeAllItems()
+    removeAllLocalStorageItems()
     console.log(event.currentTarget.value)
     authService //
       .login(event.currentTarget.value)

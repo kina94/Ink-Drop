@@ -1,10 +1,4 @@
-const LocalStorage = {
-    removeAllItems: () => {
-        const items = ['params', 'books', 'scroll']
-        items.map(item=> localStorage.removeItem(item))
-    }
+export const removeAllLocalStorageItems = () =>{
+    const items = ['params', 'books', 'scroll']
+    items.forEach(item=> localStorage.removeItem(item))
 }
-
-export default LocalStorage
-
-
