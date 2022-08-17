@@ -31,7 +31,7 @@ function Search() {
   //SearchParams의 page가 변경될 때마다 getBookSearchResults 요청
   //params를 로컬스토리지에 저장
   useEffect(() => {
-    if (currentSearchQuery !== "") {
+    if (searchParams.query !== "") {
       getBookSearchResults();
       localStorage.setItem("params", JSON.stringify(searchParams));
     }

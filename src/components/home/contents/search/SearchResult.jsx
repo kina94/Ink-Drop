@@ -6,10 +6,8 @@ import BookSave from "../../common/book/BookSave";
 import Modal from "../../common/modal/Modal";
 import animationData from "../../../../assets/animation/85557-empty.json";
 import { useDispatch, useSelector } from "react-redux";
-import { setSearchedBooks, setSearchParamsAll } from "../../../../modules/book";
-import { isEndOfPage, useInfiniteScrollEffect } from "../../../../common/utils/bookSearch";
-import { callSearchBookApi } from "../../../../service/bookService";
-import { useNavigate, useParams } from "react-router-dom";
+import { setSearchParamsAll } from "../../../../modules/book";
+import { useInfiniteScrollEffect } from "../../../../common/utils/bookSearch";
 let timeForThrottle;
 
 function BookResult(props) {
@@ -17,15 +15,13 @@ function BookResult(props) {
   const { bookSearchResults: searchedBooks, searchParams } = useSelector(
     (store) => store.bookReducer
   );
-  const navigate = useNavigate();
-  const { "*": currentSearchQuery } = useParams();
-  const user = useSelector((store) => store.userReducer.user);
-
+  const savedParams = JSON.parse(localStorage.getItem("params"));
 
   // 하단까지 스크롤 시 페이지 증가
   const addPageNum = () => {
-    const nextPage = searchParams.page + 1;
-    dispatch(setSearchParamsAll(searchParams.query, nextPage));
+    const nextPage = savedParams ? savedParams.page + 1 : searchParams.page + 1;
+    const nextQuery = savedParams ? savedParams.query : searchParams.query;
+    dispatch(setSearchParamsAll(nextQuery, nextPage));
   };
 
   useInfiniteScrollEffect((scrollHeight, scrollTop, clientHeight) => {
