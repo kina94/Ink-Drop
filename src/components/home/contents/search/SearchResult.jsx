@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import ShowMessage from "../../common/alert/ShowMessage";
 import BookBasicInfo from "../../common/book/BookBasicInfo";
 import BookList from "../../common/book/BookList";
@@ -6,8 +6,8 @@ import BookSave from "../../common/book/BookSave";
 import Modal from "../../common/modal/Modal";
 import animationData from "../../../../assets/animation/85557-empty.json";
 import { useDispatch, useSelector } from "react-redux";
-import { toggleActions } from "../../../../modules/actions";
-import { getSelectedBook, setSearchParamsAll } from "../../../../modules/book";
+import { setSearchParamsAll } from "../../../../modules/book";
+import { useInfiniteScrollEffect } from "../../../../common/utils/bookSearch";
 let timeForThrottle;
 
 function BookResult(props) {
@@ -23,49 +23,23 @@ function BookResult(props) {
     dispatch(setSearchParamsAll(searchParams.query, nextPage));
   };
 
-  // 검색 결과창에서 원하는 책 클릭 시 모달 토글을 위해 state 설정
-  const onClickBook = (e) => {
-    const id = e.target.closest("li").id;
-    const book = searchedBooks[id];
-    dispatch(toggleActions.toggleModal(true));
-    dispatch(getSelectedBook(book));
-  };
-
-  //무한스크롤
-  const infiniteScroll = () => {
-    if (!timeForThrottle) {
-      timeForThrottle = setTimeout(() => {
-        const scrollHeight = document.querySelector(".content").scrollHeight;
-        const scrollTop = document.querySelector(".content").scrollTop;
-        const clientHeight = document.querySelector(".content").clientHeight;
-        document.querySelector(".book-list") &&
-          localStorage.setItem("scroll", scrollTop);
-        if (
-          Math.ceil(scrollTop + clientHeight) >= scrollHeight &&
-          scrollTop != 0
-        ) {
+  useInfiniteScrollEffect((scrollHeight, scrollTop, clientHeight) => {
+    if (
+      Math.ceil(scrollTop + clientHeight) >= scrollHeight &&
+      scrollTop !== 0
+    ) {
+      if (!timeForThrottle) {
+        timeForThrottle = setTimeout(() => {
           addPageNum();
-        }
-        timeForThrottle = null;
-      }, 1000);
+          timeForThrottle = null;
+        }, 300);
+      }
     }
-  };
-
-  useEffect(() => {
-    document
-      .querySelector(".content")
-      .addEventListener("scroll", infiniteScroll);
-    return () => {
-      document.querySelector(".content") &&
-        document
-          .querySelector(".content")
-          .removeEventListener("scroll", infiniteScroll);
-    };
   });
 
   return (
     <>
-      {searchedBooks && searchedBooks.length === 0 ? (
+      {searchedBooks?.length === 0 ? (
         <ShowMessage
           animationData={animationData}
           width="400px"
@@ -76,13 +50,12 @@ function BookResult(props) {
         <section className="show-search-result">
           <span>{props.message}</span>
           <ul className="book-list">
-            {Object.keys(searchedBooks).map((key, index) => {
+            {Object.values(searchedBooks).map((book, index) => {
               return (
                 <BookList
                   key={index}
-                  book={searchedBooks[key]}
+                  selectedBook={book}
                   index={index}
-                  clickEvent={onClickBook}
                 ></BookList>
               );
             })}

@@ -1,3 +1,5 @@
+import { useEffect } from "react";
+
 export const isEndOfPage = (response) => {
   if (
     response.data.meta.is_end &&
@@ -6,4 +8,23 @@ export const isEndOfPage = (response) => {
   ) {
     return true;
   }
+};
+
+export const useInfiniteScrollEffect = (listner) => {
+  const onScroll = () => {
+    const scrollHeight = document.querySelector(".content").scrollHeight;
+    const scrollTop = document.querySelector(".content").scrollTop; 
+    const clientHeight = document.querySelector(".content").clientHeight; 
+    listner(scrollHeight, scrollTop, clientHeight);
+  };
+  
+  useEffect(() => {
+    document.querySelector(".content").addEventListener("scroll", onScroll);
+    return () => {
+      document.querySelector(".content") &&
+        document
+          .querySelector(".content")
+          .removeEventListener("scroll", onScroll);
+    };
+  });
 };
