@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import {
+  Navigate,
   Route,
   Routes,
   useLocation,
@@ -7,9 +8,9 @@ import {
   useParams,
 } from "react-router-dom";
 import Navbar from "../components/home/common/navbar/Navbar";
-import SearchContainer from "./SearchContainer";
-import LibraryContainer from "./LibraryContainer";
-import HistoryContainer from "./HistoryContainer";
+import SearchContainer from "../views/SearchContainer";
+import LibraryContainer from "../views/LibraryContainer";
+import HistoryContainer from "../views/HistoryContainer";
 import Sidebar from "../components/home/common/sidebar/Sidebar";
 import MobileNavbar from "../components/mobile/navbar/MobileNavbar";
 import LoadingSpinner from "../common/utils/LoadingSpinner";
@@ -28,7 +29,6 @@ import { onAuthChange } from "../service/authService";
 
 function MainContainer(props) {
   const dispatch = useDispatch();
-  const savedBooks = useSelector((store) => store.bookStore.savedBooks);
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -75,7 +75,7 @@ function MainContainer(props) {
     }
   };
 
-  const FetchSavedBooks = async () => {
+  const getSavedUserBooks = async () => {
     setIsLoading(true);
     const books = await getSavedBooksFromDB(userInfo.userId);
     dispatch(bookActions.getSavedBooks(books));
@@ -83,7 +83,7 @@ function MainContainer(props) {
   };
 
   useEffect(() => {
-    FetchSavedBooks();
+    getSavedUserBooks();
   }, [userInfo.userId]);
 
   return (
@@ -96,7 +96,6 @@ function MainContainer(props) {
       <section className="content">
         <Routes>
           <Route
-            exact={true}
             path="search/*"
             element={
               <SearchContainer
@@ -106,12 +105,10 @@ function MainContainer(props) {
             }
           />
           <Route
-            exact={true}
             path="library/*"
             element={<LibraryContainer userInfo={userInfo} />}
           />
           <Route
-            exact={true}
             path="history/*"
             element={<HistoryContainer userInfo={userInfo} />}
           />
