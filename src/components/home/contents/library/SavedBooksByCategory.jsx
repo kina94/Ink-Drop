@@ -17,6 +17,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 // 카테고리에 저장된 책 보여주기
 function SavedBooksByCategory(props) {
+  const user = useSelector(store=>store.userReducer.user)
   const dispatch = useDispatch()
   const imModalShow = useSelector(store=>store.toggleStore.modalToggle)
   const navigate = useNavigate()
@@ -66,7 +67,7 @@ function SavedBooksByCategory(props) {
         <button className='saved-book-back' onClick={() => navigate('/home/library')}>
           <i id='icon' className="fas fa-chevron-left"></i>
         </button>
-        {props.userInfo.userName}님의 {option[params.category]} 목록 ({props.filteredBooks ? Object.keys(props.filteredBooks).length : 0}권)
+        {user.displayName}님의 {option[params.category]} 목록 ({props.filteredBooks ? Object.keys(props.filteredBooks).length : 0}권)
       </div>
       {
         !props.filteredBooks || props.filteredBooks.length === 0 ?
@@ -103,7 +104,7 @@ function SavedBooksByCategory(props) {
       }
       <Modal>
         <BookBasicInfo />
-        <SavedBookContents userInfo={props.userInfo} />
+        <SavedBookContents/>
       </Modal>
     </section>
   )

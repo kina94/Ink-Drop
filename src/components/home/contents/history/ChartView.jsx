@@ -7,10 +7,11 @@ import {
   Tooltip,
 } from 'chart.js';
 import { Bar } from 'react-chartjs-2';
+import { useSelector } from 'react-redux';
 
 function ChartView(props) {
+  const user = useSelector(store=>store.userReudcer.user)
   //데이터 관련 정의
-
   const [countBook, setCountBook] = useState()
 
   const endDate = props.completeBooks.map(item => {
@@ -75,7 +76,7 @@ function ChartView(props) {
     <section className='chart-view'>
       <div className='title'>
         <i id='icon' className="fas fa-chart-bar"></i>
-        {props.userInfo.userName}님의 독서 차트
+        {user.displayName}님의 독서 차트
           <select name='year' onChange={onChangeYear}>
             {
               uniqueYear.map(year => {

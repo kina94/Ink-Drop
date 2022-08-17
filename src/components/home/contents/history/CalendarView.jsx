@@ -3,10 +3,11 @@ import Calendar from 'react-calendar'
 import moment from 'moment';
 import './Calendar.css'
 import Modal from '../../common/modal/Modal'
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { toggleActions } from '../../../../modules/actions';
 
 function CalendarView(props) {
+  const user = useSelector(store=>store.userReducer.user)
   const dispatch = useDispatch()
   const [value, setValue] = useState()
   const [selectedDayBook, setSelectedDayBook] = useState([])
@@ -36,7 +37,7 @@ function CalendarView(props) {
     <section className='calendar-view'>
       <div className='title'>
         <i id='icon' className="fa-solid fa-calendar-days" />
-        <span>{props.userInfo.userName}님의 독서 캘린더</span>
+        <span>{user.displayName}님의 독서 캘린더</span>
         <div id='label'><div id='box'></div>책을 완독한 날</div>
       </div>
       <Calendar onChange={setValue} value={value}

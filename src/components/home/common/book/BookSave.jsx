@@ -8,6 +8,7 @@ import Rating from '../rating/Rating'
 
 //책 저장 및 수정
 function BookSave(props) {
+    const user = useSelector(store=>store.userReducer.user)
     const dispatch = useDispatch()
     const isModifyMode = useSelector(store => store.toggleStore.modifyToggle)
     const isModalShow = useSelector(store => store.toggleStore.modalToggle)
@@ -68,7 +69,7 @@ function BookSave(props) {
                 'startDate': saveBook.startDate ? saveBook.startDate : dateValue,
                 'addDate': isModifyMode ? saveBook.addDate : new Date().toISOString(),
             }
-            dispatch(bookActions.onClickBookUpdateOrAdd(props.userInfo.userId, newBook))
+            dispatch(bookActions.onClickBookUpdateOrAdd(user.uid, newBook))
             alert('저장을 완료했어요.')
             dispatch(bookActions.initSearchParams())
             if (isModifyMode) {

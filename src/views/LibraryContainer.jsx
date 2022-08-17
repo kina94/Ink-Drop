@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useReducer } from 'react'
 import { Routes, Route, useParams } from 'react-router-dom'
 import ShowMessage from '../components/home/common/alert/ShowMessage'
 import LibrarySidebar from '../components/home/contents/library/LibrarySidebar'
@@ -6,7 +6,7 @@ import SavedBooksByCategory from '../components/home/contents/library/SavedBooks
 import animationData from '../assets/animation/72170-books.json'
 import { useSelector } from 'react-redux'
 
-function LibraryContainer(props) {
+function LibraryContainer() {
   const savedBooks = useSelector(store => store.bookStore.savedBooks)
   const params = useParams()
   const category = params['*']
@@ -47,7 +47,6 @@ function LibraryContainer(props) {
           height={'200px'}
         />} />
         <Route exact={true} path=':category' element={<SavedBooksByCategory
-          userInfo={props.userInfo}
           filteredBooks={filteredBooks}
         />} />
       </Routes>

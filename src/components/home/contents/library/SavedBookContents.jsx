@@ -6,13 +6,14 @@ import Rating from '../../common/rating/Rating'
 import SaveOptionButton from '../search/SaveOptionButton'
 
 function SavedBookContents(props) {
+    const user = useSelector(store=>store.userReducer.user)
     const dispatch = useDispatch()
     const selectedBook = useSelector(store => store.bookStore.selectedBook)
     const isModifyMode = useSelector(store => store.toggleStore.modifyToggle)
 
     const onClickDelete = (e) => {
         if (window.confirm('정말 삭제하시겠어요?')) {
-            dispatch(bookActions.onClickBookDelete(e.target.id, props.userInfo.userId))
+            dispatch(bookActions.onClickBookDelete(e.target.id, user.uid))
             alert('삭제가 완료되었습니다.')
             dispatch(toggleActions.toggleModal(false))
         }
@@ -105,7 +106,6 @@ function SavedBookContents(props) {
             {
                 isModifyMode ? <BookSave
                     selectedBook={selectedBook}
-                    userInfo={props.userInfo}
                     updateBookContents={updateBookContents}
                 /> :
                     <section className='save-contents'>

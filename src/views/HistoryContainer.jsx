@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux';
 import CalendarView from '../components/home/contents/history/CalendarView';
 import ChartView from '../components/home/contents/history/ChartView';
 
-function CalendarContainer(props) {
+function CalendarContainer() {
   const savedBooks = useSelector(store=>store.bookStore.savedBooks)
   const [completeBooks, setCompleteBooks] = useState([])
   const getCompleteBooks = async () => {
@@ -20,8 +20,8 @@ function CalendarContainer(props) {
 
   return (
     <section className='history'>
-      <CalendarView completeBooks={completeBooks} userInfo={props.userInfo} />
-      <ChartView completeBooks={completeBooks} userInfo={props.userInfo}/>
+      <CalendarView completeBooks={completeBooks}/>
+      <ChartView completeBooks={completeBooks}/>
     </section>
   )
 }

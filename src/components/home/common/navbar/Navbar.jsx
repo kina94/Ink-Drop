@@ -4,10 +4,12 @@ import { useNavigate } from 'react-router-dom'
 import styles from './Navbar.module.css'
 import DEFAULT_IMAGE from '../../../../assets/images/default_logo.png'
 import * as authService from '../../../../service/authService'
+import { useSelector } from 'react-redux'
 
-const Navbar = (props) => {
+const Navbar = () => {
   const navigate=useNavigate();
-  const {userName, userEmail, photoURL} = {...props.userInfo}
+  const user = useSelector(store=>store.userReducer.user)
+  const {displayName, email, photoURL} = user
   const [userPhoto, setUserPhoto] = useState(photoURL ? photoURL : DEFAULT_IMAGE);
   const onLogout = useCallback(() => {
     authService.logout();
@@ -32,7 +34,7 @@ const Navbar = (props) => {
           marginLeft: '5px',
         }}
       >
-        {userName}<i className="fa-solid fa-angle-down" style={{marginLeft:'5px'}}></i>
+        {displayName}<i className="fa-solid fa-angle-down" style={{marginLeft:'5px'}}></i>
       </a>
     </div>
   ));
@@ -50,8 +52,8 @@ const Navbar = (props) => {
             <section className={styles.info}>
                 <img className={styles.avatar} src={userPhoto} alt='profile' />
               <div className={styles.userInfo}>
-                <span style={{ fontSize: '14px', fontWeight: 'bold', marginBottom: '5px' }}>{userName}</span>
-                {userEmail}
+                <span style={{ fontSize: '14px', fontWeight: 'bold', marginBottom: '5px' }}>{displayName}</span>
+                {email}
               </div>
             </section>
             {onLogout && <button className={styles.button} onClick={onLogout}>Logout</button>}

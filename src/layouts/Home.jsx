@@ -1,10 +1,5 @@
 import React, { useEffect, useState } from "react";
-import {
-  Route,
-  Routes,
-  useLocation,
-  useNavigate,
-} from "react-router-dom";
+import { Route, Routes, useLocation, useNavigate } from "react-router-dom";
 import Navbar from "../components/home/common/navbar/Navbar";
 import SearchContainer from "../views/SearchContainer";
 import LibraryContainer from "../views/LibraryContainer";
@@ -18,10 +13,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { bookActions } from "../modules/actions";
 import "./Container.css";
 import { getSavedBooksFromDB } from "../service/bookService";
-import {
-  isNewUser,
-  setNewUserToDB,
-} from "../service/userService";
+import { isNewUser, setNewUserToDB } from "../service/userService";
 import { onAuthChange } from "../service/authService";
 import { setUser } from "../modules/user";
 
@@ -39,7 +31,7 @@ function MainContainer(props) {
         const { uid, displayName, email } = user;
         const userInfo = { uid, displayName, email };
         isNewUser(uid) && setNewUserToDB(uid, userInfo);
-        dispatch(setUser(userInfo))
+        dispatch(setUser(userInfo));
       } else {
         navigate("/");
       }
@@ -75,7 +67,7 @@ function MainContainer(props) {
   return (
     <section className="main">
       {isLoading && <LoadingSpinner></LoadingSpinner>}
-      <Navbar userInfo={user} {...props} />
+      <Navbar />
       <Sidebar onClickSearchNav={onClickSearchNav} />
       <MobileNavbar onClickSearchNav={onClickSearchNav} {...props} />
       <MoveTop />
@@ -83,20 +75,15 @@ function MainContainer(props) {
         <Routes>
           <Route
             path="search/*"
-            element={
-              <SearchContainer
-                userInfo={user}
-                setIsLoading={setIsLoading}
-              />
-            }
+            element={<SearchContainer setIsLoading={setIsLoading} />}
           />
           <Route
             path="library/*"
-            element={<LibraryContainer userInfo={user} />}
+            element={<LibraryContainer/>}
           />
           <Route
             path="history/*"
-            element={<HistoryContainer userInfo={user} />}
+            element={<HistoryContainer/>}
           />
         </Routes>
       </section>
