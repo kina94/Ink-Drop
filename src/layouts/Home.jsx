@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Route, Routes, useNavigate } from "react-router-dom";
 import Navbar from "../components/home/common/navbar/Navbar";
 import Search from "../views/Search";
-import LibraryContainer from "../views/LibraryContainer";
+import Library from "../views/Library";
 import HistoryContainer from "../views/HistoryContainer";
 import Sidebar from "../components/home/common/sidebar/Sidebar";
 import MobileNavbar from "../components/mobile/navbar/MobileNavbar";
@@ -53,7 +53,7 @@ function Home() {
       <Navbar />
       <Sidebar />
       {/* 수정필요 */}
-      <MobileNavbar/> 
+      <MobileNavbar />
       <MoveTop />
       <section className="content">
         <Routes>
@@ -61,7 +61,7 @@ function Home() {
             path="search/*"
             element={<Search setIsLoading={setIsLoading} />}
           />
-          <Route path="library/*" element={<LibraryContainer />} />
+          <Route path="library/*" element={<Library />} />
           <Route path="history/*" element={<HistoryContainer />} />
         </Routes>
       </section>

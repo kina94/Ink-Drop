@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import SaveOptionButton from '../../contents/search/SaveOptionButton'
-import { option } from '../../../../common/utils/common_var'
+import { savedBookCategory } from '../../../../common/utils/common_var'
 import { useLocation, useNavigate } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { toggleActions } from '../../../../modules/actions'
@@ -61,7 +61,7 @@ function BookSave(props) {
             bookKey = Object.keys(savedBooks).find(key => key === selectedBook.isbn)
         }
         if (bookKey && !isModifyMode) {
-            alert(`이미 저장된 책이에요. ${option[savedBooks[bookKey].type]}을 확인해보세요.`)
+            alert(`이미 저장된 책이에요. ${savedBookCategory[savedBooks[bookKey].type]}을 확인해보세요.`)
         } else {
             const newBook = {
                 ...saveBook,
@@ -155,10 +155,10 @@ function BookSave(props) {
         <section className='save-contents'>
             <section className='option-button-container'>
                 {
-                    Object.keys(option).map((key, index) => {
+                    Object.keys(savedBookCategory).map((key, index) => {
                         if (key === 'all') return
                         return (
-                            <SaveOptionButton key={index} option={key} name={option[key]}
+                            <SaveOptionButton key={index} option={key} name={savedBookCategory[key]}
                                 onClick={onClickOption} selectedOption={selectedOption} />
                         )
                     })
