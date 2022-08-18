@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react'
 import Calendar from 'react-calendar'
 import moment from 'moment';
-import '../styles/Calendar.css'
 import { useDispatch, useSelector } from 'react-redux';
 import Modal from '../../../components/home/common/modal/Modal';
 import { toggleActions } from '../../../modules/actions';
+import '../styles/Calendar.css'
 
 function CalendarView(props) {
   const user = useSelector(store=>store.userReducer.user)
@@ -16,7 +16,7 @@ function CalendarView(props) {
     return item.endDate
   })
 
-  const onClickDate = () => {
+  const handleDateClick = () => {
     const date = moment(value).format('YYYY-MM-DD')
     const books = props.completeBooks.filter(item => item.endDate === date)
     if (books.length === 0) {
@@ -29,7 +29,7 @@ function CalendarView(props) {
 
   useEffect(() => {
     if (value != undefined) {
-      onClickDate()
+      handleDateClick()
     }
   }, [value])
 
