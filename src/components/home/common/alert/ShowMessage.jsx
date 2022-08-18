@@ -1,5 +1,5 @@
 import React from 'react'
-import Animation from '../../../../common/utils/Animation'
+import Animation from '../../../Animation'
 
 function ShowMessage(props) {
   return (

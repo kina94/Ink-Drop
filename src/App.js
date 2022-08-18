@@ -2,8 +2,8 @@ import "./App.css";
 import "@fortawesome/fontawesome-free/js/all.js";
 import { useEffect } from "react";
 import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
-import Login from "./views/Login";
-import Home from "./views/Home";
+import Login from "./pages/login/Login";
+import Home from "./pages/home/Home";
 
 function App() {
   useEffect(() => {
