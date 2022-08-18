@@ -2,11 +2,11 @@ import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { toggleActions } from '../../../modules/actions'
 import { setSelectedBook, onClickBookDelete } from '../../../modules/book'
-import BookSave from '../../../components/home/common/book/BookSave'
-import SaveOptionButton from '../../../components/home/contents/search/SaveOptionButton'
-import Rating from '../../../components/home/common/rating/Rating'
+import SaveOptionButton from '../../../components/SaveOptionButton'
+import Rating from '../../../components/Rating'
+import BookSave from '../../../components/BookSave'
 
-function SavedBookContents(props) {
+function SavedBookContents() {
     const user = useSelector(store=>store.userReducer.user)
     const dispatch = useDispatch()
     const selectedBook = useSelector(store => store.bookReducer.selectedBook)

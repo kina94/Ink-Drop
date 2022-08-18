@@ -1,16 +1,16 @@
 import React, { useEffect, useState } from "react";
-import BookBasicInfo from "../../../components/home/common/book/BookBasicInfo";
-import SavedBookContents from "./SavedBookContents";
+import BookInformation from "../../../components/BookInformation";
+import SelectedBook from "./SelectedBook";
 import { savedBookCategory } from "../../../common/utils/common_var";
-import { useParams } from "react-router-dom";
-import ShowMessage from "../../../components/home/common/alert/ShowMessage";
+import { useNavigate, useParams } from "react-router-dom";
+import ShowMessage from "../../../components/ShowMessage";
 import animationData from "../../../assets/animation/85557-empty.json";
-import Modal from "../../../components/home/common/modal/Modal";
+import Modal from "../../../components/Modal";
 import { useSelector } from "react-redux";
 import "../styles/Library.css";
-import BookListHeader from "./BookListHeader";
 import SavedBookHeader from "./SavedBookHeader";
-import BookList from '../../../components/home/common/book/BookList'
+import BookCard from "../../../components/BookCard";
+import SavedBooksHeader from "./SavedBooksHeader";
 
 function SavedBookList() {
   const user = useSelector((store) => store.userReducer.user);
@@ -45,10 +45,10 @@ function SavedBookList() {
 
   return (
     <section className="saved-book-list">
-      <BookListHeader>
+      <SavedBooksHeader>
         {user.displayName}님의 {savedBookCategory[currentCategoryKey]} 목록 (
-        {filteredBooks?.length}권)
-      </BookListHeader>
+        {filteredBooks?.length}권){" "}
+        </SavedBooksHeader>
       {!filteredBooks || filteredBooks.length === 0 ? (
         <ShowMessage
           value={"책 검색하기를 통해 책장을 채워주세요."}
@@ -58,17 +58,17 @@ function SavedBookList() {
         />
       ) : (
         <ul className="book-list">
-        {filteredBooks.map((book, index) => (
-          <>
-            <SavedBookHeader book={book} />
-            <BookList key={index} selectedBook={book} index={index} />
-          </>
-        ))}
-      </ul>
+          {filteredBooks.map((book, index) => (
+            <li key={index}>
+              <SavedBookHeader book={book} />
+              <BookCard key={index} book={book} index={index} />
+            </li>
+          ))}
+        </ul>
       )}
       <Modal>
-        <BookBasicInfo />
-        <SavedBookContents />
+        <BookInformation />
+        <SelectedBook />
       </Modal>
     </section>
   );

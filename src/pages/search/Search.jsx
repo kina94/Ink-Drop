@@ -1,14 +1,15 @@
 import React, { useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import ShowMessage from "../../components/home/common/alert/ShowMessage";
+import ShowMessage from "../../components/ShowMessage";
 import SearchHeader from "./components/SearchHeader";
-import SearchContents from "./components/SearchContents";
+import SearchResults from "./components/SearchResults";
 import animationData from "../../assets/animation/72170-books.json";
 import "../Container.css";
 import { useDispatch, useSelector } from "react-redux";
 import { setSearchedBooks } from "../../modules/book";
 import { isEndOfPage } from "../../common/utils/bookSearch";
 import { callSearchBookApi } from "../../service/bookService";
+
 function Search() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -63,7 +64,7 @@ function Search() {
           value="원하는 책을 검색하고 저장해보세요."
         />
       ) : (
-        <SearchContents message={`'${currentSearchQuery}'에 대한 검색 결과`} />
+        <SearchResults/>
       )}
     </section>
   );

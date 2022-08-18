@@ -2,7 +2,7 @@ import React from "react";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
-function BookListHeader(props) {
+function SavedBooksHeader(props) {
   const navigate = useNavigate();
   const imModalShow = useSelector((store) => store.toggleStore.modalToggle);
   return (
@@ -24,4 +24,4 @@ function BookListHeader(props) {
   );
 }
 
-export default BookListHeader;
+export default SavedBooksHeader;

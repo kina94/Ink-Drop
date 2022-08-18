@@ -21,10 +21,10 @@ function History() {
   }, [savedBooks]);
 
   return (
-    <>
+    <section className="history">
       <Calendar completeBooks={completeBooks} />
       <BarChart completeBooks={completeBooks} />
-    </>
+    </section>
   );
 }
 

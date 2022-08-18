@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react'
-import SaveOptionButton from '../../contents/search/SaveOptionButton'
-import { savedBookCategory } from '../../../../common/utils/common_var'
+import SaveOptionButton from './SaveOptionButton'
+import { savedBookCategory } from '../common/utils/common_var'
 import { useLocation, useNavigate } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
-import { toggleActions } from '../../../../modules/actions'
-import Rating from '../rating/Rating'
-import { initSearchParams, onClickBookUpdateOrAdd } from '../../../../modules/book'
+import { toggleActions } from '../modules/actions'
+import Rating from './Rating'
+import { initSearchParams, onClickBookUpdateOrAdd } from '../modules/book'
 
 //책 저장 및 수정
 function BookSave(props) {
@@ -60,6 +60,8 @@ function BookSave(props) {
         if (savedBooks) {
             bookKey = Object.keys(savedBooks).find(key => key === selectedBook.isbn)
         }
+
+
         if (bookKey && !isModifyMode) {
             alert(`이미 저장된 책이에요. ${savedBookCategory[savedBooks[bookKey].type]}을 확인해보세요.`)
         } else {

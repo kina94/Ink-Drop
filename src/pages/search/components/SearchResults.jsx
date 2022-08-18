@@ -1,17 +1,17 @@
 import React from "react";
-import ShowMessage from "../../../components/home/common/alert/ShowMessage";
-import BookBasicInfo from "../../../components/home/common/book/BookBasicInfo";
-import BookList from "../../../components/home/common/book/BookList";
-import BookSave from "../../../components/home/common/book/BookSave";
-import Modal from "../../../components/home/common/modal/Modal";
+import ShowMessage from "../../../components/ShowMessage";
+import BookCard from "../../../components/BookCard";
+import BookSave from "../../../components/BookSave";
+import Modal from "../../../components/Modal";
 import animationData from "../../../assets/animation/85557-empty.json";
 import { useDispatch, useSelector } from "react-redux";
 import { setSearchParamsAll } from "../../../modules/book";
 import { useInfiniteScrollEffect } from "../../../common/utils/bookSearch";
 import { useParams } from "react-router-dom";
+import BookInformation from "../../../components/BookInformation";
 let timeForThrottle;
 
-function SearchContents() {
+function SearchResults() {
   const dispatch = useDispatch();
   const { "*": currentSearchQuery } = useParams();
   const { bookSearchResults: searchedBooks, searchParams } = useSelector(
@@ -53,23 +53,19 @@ function SearchContents() {
         <section className="show-search-result">
           <span>{`'${currentSearchQuery}'에 대한 검색 결과`}</span>
           <ul className="book-list">
-            {Object.values(searchedBooks).map((book, index) => {
-              return (
-                <BookList
-                  key={index}
-                  selectedBook={book}
-                  index={index}
-                ></BookList>
-              );
-            })}
+            {Object.values(searchedBooks).map((book, index) => (
+              <li key={index}>
+                <BookCard book={book} index={index}></BookCard>
+              </li>
+            ))}
           </ul>
         </section>
       )}
       <Modal>
-        <BookBasicInfo/>
+        <BookInformation />
         <BookSave></BookSave>
       </Modal>
     </>
   );
 }
-export default SearchContents;
+export default SearchResults;

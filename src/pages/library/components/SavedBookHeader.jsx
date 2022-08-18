@@ -1,8 +1,8 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React from "react";
 import { savedBookCategory } from "../../../common/utils/common_var";
-import Rating from "../../../components/home/common/rating/Rating";
-import SaveOptionButton from "../../../components/home/contents/search/SaveOptionButton";
+import Rating from "../../../components/Rating";
+import SaveOptionButton from "../../../components/SaveOptionButton";
 
 function SavedBookHeader(props) {
   const countDayFromStartReading = (startDate) => {

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import Calendar from 'react-calendar'
 import moment from 'moment';
 import { useDispatch, useSelector } from 'react-redux';
-import Modal from '../../../components/home/common/modal/Modal';
+import Modal from '../../../components/Modal';
 import { toggleActions } from '../../../modules/actions';
 import '../styles/Calendar.css'
 

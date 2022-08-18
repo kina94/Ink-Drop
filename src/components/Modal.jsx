@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { toggleActions } from '../../../../modules/actions'
+import { toggleActions } from '../modules/actions'
 import './Modal.css'
 
 function Modal(props) {
