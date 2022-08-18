@@ -1,15 +1,15 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { removeAllLocalStorageItems } from "../../../../common/utils/local_storage";
+import { removeAllLocalStorageItems } from "../../common/utils/local_storage";
 import {
   initSearchBooks,
   setNewSearchPage,
   setSearchParamsQuery,
-} from "../../../../modules/book";
+} from "../../modules/book";
 import "./Search.css";
 
-function SearchInput() {
+function SearchHeader() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { query } = useSelector((store) => store.bookReducer.searchParams);
@@ -49,4 +49,4 @@ function SearchInput() {
   );
 }
 
-export default SearchInput;
+export default SearchHeader;

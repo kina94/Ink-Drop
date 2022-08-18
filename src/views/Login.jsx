@@ -1,11 +1,10 @@
 import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { removeAllLocalStorageItems } from '../../common/utils/local_storage';
-import * as authService from '../../service/authService';
-import Footer from './footer/Footer';
-import Header from './header/Header';
+import { removeAllLocalStorageItems } from '../common/utils/local_storage';
+import * as authService from '../service/authService';
+import LoginFooter from '../components/footer/LoginFooter';
+import LoginHeader from '../components/header/LoginHeader';
 import styles from './Login.module.css';
-
 
 const Login = () => {
   const navigate = useNavigate();
@@ -30,7 +29,7 @@ const Login = () => {
   });
   return (
     <section className={styles.main}>
-      <Header></Header>
+      <LoginHeader/>
       <section className={styles.section}>
         <h1 className={styles.login}>Sign In</h1>
         <p className={styles.span}>다독다독과 함께 독서 습관을 길러보세요.</p>
@@ -47,7 +46,7 @@ const Login = () => {
           </ul>
         </div>
 
-        <Footer></Footer>
+        <LoginFooter/>
       </section>
       <canvas className={styles.background}></canvas>
     </section>

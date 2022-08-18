@@ -1,7 +1,7 @@
 import React, {memo} from 'react';
 import styles from './header.module.css';
 
-const Header = memo(() => {
+const LoginHeader = memo(() => {
   return(
   <header className={styles.header}>
     <h1 className={styles.name}>
@@ -11,4 +11,4 @@ const Header = memo(() => {
   )
 })
 
-export default Header;
+export default LoginHeader;

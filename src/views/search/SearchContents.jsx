@@ -1,16 +1,16 @@
-import React, { useEffect } from "react";
-import ShowMessage from "../../common/alert/ShowMessage";
-import BookBasicInfo from "../../common/book/BookBasicInfo";
-import BookList from "../../common/book/BookList";
-import BookSave from "../../common/book/BookSave";
-import Modal from "../../common/modal/Modal";
-import animationData from "../../../../assets/animation/85557-empty.json";
+import React from "react";
+import ShowMessage from "../../components/home/common/alert/ShowMessage";
+import BookBasicInfo from "../../components/home/common/book/BookBasicInfo";
+import BookList from "../../components/home/common/book/BookList";
+import BookSave from "../../components/home/common/book/BookSave";
+import Modal from "../../components/home/common/modal/Modal";
+import animationData from "../../assets/animation/85557-empty.json";
 import { useDispatch, useSelector } from "react-redux";
-import { setSearchParamsAll } from "../../../../modules/book";
-import { useInfiniteScrollEffect } from "../../../../common/utils/bookSearch";
+import { setSearchParamsAll } from "../../modules/book";
+import { useInfiniteScrollEffect } from "../../common/utils/bookSearch";
 let timeForThrottle;
 
-function BookResult(props) {
+function SearchContents(props) {
   const dispatch = useDispatch();
   const { bookSearchResults: searchedBooks, searchParams } = useSelector(
     (store) => store.bookReducer
@@ -64,10 +64,10 @@ function BookResult(props) {
         </section>
       )}
       <Modal>
-        <BookBasicInfo />
+        <BookBasicInfo/>
         <BookSave></BookSave>
       </Modal>
     </>
   );
 }
-export default BookResult;
+export default SearchContents;

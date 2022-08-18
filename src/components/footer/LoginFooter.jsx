@@ -1,7 +1,7 @@
 import React, { memo } from 'react';
 import styles from './footer.module.css';
 
-const Footer = memo(() => {
+const LoginFooter = memo(() => {
   return (
     <footer>
       <p className={styles.info}>다독다독은 포트폴리오용 웹사이트로 깃허브와 구글을 통해서만 로그인이 가능하며,
@@ -11,4 +11,4 @@ const Footer = memo(() => {
   )
 });
 
-export default Footer;
+export default LoginFooter;

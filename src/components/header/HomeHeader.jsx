@@ -2,11 +2,11 @@ import React, { useState, useCallback } from 'react'
 import { Dropdown } from 'react-bootstrap'
 import { useNavigate } from 'react-router-dom'
 import styles from './Navbar.module.css'
-import DEFAULT_IMAGE from '../../../../assets/images/default_logo.png'
-import * as authService from '../../../../service/authService'
+import DEFAULT_IMAGE from '../../assets/images/default_logo.png'
+import * as authService from '../../service/authService'
 import { useSelector } from 'react-redux'
 
-const Navbar = () => {
+const HomeHeader = () => {
   const navigate=useNavigate();
   const user = useSelector(store=>store.userReducer.user)
   const {displayName, email, photoURL} = user
@@ -77,4 +77,4 @@ const Navbar = () => {
   )
 }
 
-export default Navbar
+export default HomeHeader

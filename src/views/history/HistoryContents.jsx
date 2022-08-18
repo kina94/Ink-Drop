@@ -1,11 +1,12 @@
-import React, { useEffect, useState } from 'react'
-import { useSelector } from 'react-redux';
-import CalendarView from '../components/home/contents/history/CalendarView';
-import ChartView from '../components/home/contents/history/ChartView';
+import React, { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
+import CalendarView from "../../components/home/contents/history/CalendarView";
+import ChartView from "../../components/home/contents/history/ChartView";
 
-function CalendarContainer() {
+function HistoryContents() {
   const savedBooks = useSelector(store=>store.bookReducer.savedBooks)
   const [completeBooks, setCompleteBooks] = useState([])
+
   const getCompleteBooks = async () => {
     if (savedBooks != null) {
       const processedBooks = Object.keys(savedBooks).filter(key => savedBooks[key].type === 'complete')
@@ -17,13 +18,13 @@ function CalendarContainer() {
   useEffect(() => {
     getCompleteBooks()
   }, [savedBooks])
-
+  
   return (
-    <section className='history'>
-      <CalendarView completeBooks={completeBooks}/>
-      <ChartView completeBooks={completeBooks}/>
-    </section>
-  )
+    <>
+      <CalendarView completeBooks={completeBooks} />
+      <ChartView completeBooks={completeBooks} />
+    </>
+  );
 }
 
-export default CalendarContainer
+export default HistoryContents;

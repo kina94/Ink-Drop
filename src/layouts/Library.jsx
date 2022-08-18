@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Routes, Route, useParams } from "react-router-dom";
 import ShowMessage from "../components/home/common/alert/ShowMessage";
 import LibrarySidebar from "../components/home/contents/library/LibrarySidebar";
-import SavedBooksByCategory from "../components/home/contents/library/SavedBooksByCategory";
+import LibraryContents from "../views/library/LibraryContents";
 import animationData from "../assets/animation/72170-books.json";
 import { useSelector } from "react-redux";
 
@@ -19,7 +19,7 @@ function Library() {
           height={"200px"}
         />
       ) : (
-        <SavedBooksByCategory />
+        <LibraryContents />
       )}
     </section>
   );

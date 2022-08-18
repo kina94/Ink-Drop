@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { Route, Routes, useNavigate } from "react-router-dom";
-import Navbar from "../components/home/common/navbar/Navbar";
-import Search from "../views/Search";
-import Library from "../views/Library";
-import HistoryContainer from "../views/HistoryContainer";
+import HomeHeader from "../components/header/HomeHeader";
+import Search from "../layouts/Search";
+import Library from "../layouts/Library";
+import History from "../layouts/History";
 import Sidebar from "../components/home/common/sidebar/Sidebar";
 import MobileNavbar from "../components/mobile/navbar/MobileNavbar";
 import LoadingSpinner from "../common/utils/LoadingSpinner";
@@ -50,7 +50,7 @@ function Home() {
   return (
     <section className="main">
       {isLoading && <LoadingSpinner></LoadingSpinner>}
-      <Navbar />
+      <HomeHeader />
       <Sidebar />
       {/* 수정필요 */}
       <MobileNavbar />
@@ -62,7 +62,7 @@ function Home() {
             element={<Search setIsLoading={setIsLoading} />}
           />
           <Route path="library/*" element={<Library />} />
-          <Route path="history/*" element={<HistoryContainer />} />
+          <Route path="history/*" element={<History />} />
         </Routes>
       </section>
     </section>
