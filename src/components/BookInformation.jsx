@@ -11,28 +11,20 @@ function BookInformation() {
   let { thumbnail, authors, contents, publisher, title, url } = selectedBook;
   return (
     <>
-      <section className="title">
-        <span>{title}</span>
-        <button className="close">
-          <i className="fas fa-times"></i>
-        </button>
+      <section>
+        <img src={thumbnail} alt="thumbnail"></img>
+        <p>
+          {authors && authors.join(" ")} / {publisher}
+        </p>
       </section>
-      <section className="information">
-        <section>
-          <img src={thumbnail} alt="thumbnail"></img>
-          <p>
-            {authors && authors.join(" ")} / {publisher}
-          </p>
-        </section>
-        <section>
-          <p>책 소개</p>
-          <p id="contents">{contents}</p>
-          <p>
-            <a id="link" href={url} target="_blank">
-              더 보러가기
-            </a>
-          </p>
-        </section>
+      <section>
+        <p>책 소개</p>
+        <p id="contents">{contents}</p>
+        <p>
+          <a id="link" href={url} target="_blank">
+            더 보러가기
+          </a>
+        </p>
       </section>
     </>
   );

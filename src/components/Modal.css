@@ -31,54 +31,9 @@
 }
 
 
-/*타이틀*/
-.content-wrapper .title{
-  padding:15px;
-  background-color:white;
-  position:fixed;
-  width:100%;
-  box-shadow: rgba(0, 0, 0, 0.05) 0px 3px 5px;
-  top:0;
-  display:flex;
-  color:var(--color-black);
-  font-weight:bold;
-  text-align:left;
-  word-break:keep-all;
-}
-  
-.content-wrapper .title span{
-    display:-webkit-box; 
-    word-wrap:break-word; 
-    font-size: 1.1em;
-  }
-  
-.content-wrapper .close{
-    margin-left:auto;
-    background-color:transparent;
-    border : none;
-    color:var(--color-hotpink);
-    height:100%;
-    text-align:right;
-  }
-  
-.content-wrapper .close:hover{
-    transform:scale(1.2)
-  }
-  
-.content-wrapper .information{
-  margin-top:3.5em;
-    padding: 3em 35px 10px 35px;
-    display:flex;
-    color:var(--color-black)
-  }
   
 .content-wrapper img{
     min-width:200px;
     border: 1px solid whitesmoke;
     box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
   }
-
-/* 모달 내용 */
-.content-wrapper .information{
-    text-align:left;
-}

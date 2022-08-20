@@ -1,20 +1,11 @@
 import React from "react";
-import { useDispatch } from "react-redux";
-import { toggleActions } from "../modules/actions";
-import { setSelectedBook } from "../modules/book";
 
 //책 검색 결과
 function BookCard(props) {
   const { book, index } = props;
-  const dispatch = useDispatch();
-
-  const handleBookClick = () => {
-    dispatch(toggleActions.toggleModal(true));
-    dispatch(setSelectedBook(book));
-  };
 
   return (
-    <div className='book-card' id={index} onClick={handleBookClick}>
+    <div className='book-card' id={index}>
       <img src={book.thumbnail} loading="lazy"></img>
       <div>
         <p className="title">{book.title}</p>

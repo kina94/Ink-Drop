@@ -3,12 +3,11 @@ import SaveOptionButton from './SaveOptionButton'
 import { savedBookCategory } from '../common/utils/common_var'
 import { useLocation, useNavigate } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
-import { toggleActions } from '../modules/actions'
 import Rating from './Rating'
 import { initSearchParams, onClickBookUpdateOrAdd } from '../modules/book'
 
 //책 저장 및 수정
-function BookSave(props) {
+function SaveBook(props) {
     const user = useSelector(store=>store.userReducer.user)
     const dispatch = useDispatch()
     const isModifyMode = useSelector(store => store.toggleStore.modifyToggle)
@@ -78,7 +77,7 @@ function BookSave(props) {
             if (isModifyMode) {
                 props.updateBookContents(newBook)
             } else {
-                dispatch(toggleActions.toggleModal(false))
+                // dispatch(toggleActions.toggleModal(false))
             }
         }
     }
@@ -176,4 +175,4 @@ function BookSave(props) {
     )
 }
 
-export default BookSave
+export default SaveBook
