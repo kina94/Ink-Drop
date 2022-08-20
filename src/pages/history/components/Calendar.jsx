@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import Calendar from "react-calendar";
 import moment from "moment";
 import { useDispatch, useSelector } from "react-redux";
-import Modal from "../../../components/Modal";
+import Modal from "../../../components/modal/Modal";
 import useModal from "../../../hooks/useModal";
 import "../styles/Calendar.css";
 import { ModalTitle } from "react-bootstrap";

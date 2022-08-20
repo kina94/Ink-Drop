@@ -19,7 +19,7 @@ function useModal() {
     });
 
     window.addEventListener("click", (e) => {
-      if (e.target.className === "modal") {
+      if (e.target.id === "modal-wrapper") {
         setModalOpen(false);
       }
     });

@@ -2,15 +2,15 @@ import React from "react";
 import ShowMessage from "../../../components/ShowMessage";
 import BookCard from "../../../components/BookCard";
 import SaveBook from "../../../components/SaveBook";
-import Modal from "../../../components/Modal";
+import Modal from "../../../components/modal/Modal";
 import animationData from "../../../assets/animation/85557-empty.json";
 import { useDispatch, useSelector } from "react-redux";
 import { setSearchParamsAll, setSelectedBook } from "../../../modules/book";
 import { useInfiniteScrollEffect } from "../../../common/utils/bookSearch";
 import { useParams } from "react-router-dom";
 import BookInformation from "../../../components/BookInformation";
-import ModalTitle from "../../../components/Modal/ModalTitle";
-import ModalBody from "../../../components/Modal/ModalBody";
+import ModalTitle from "../../../components/modal/ModalTitle";
+import ModalBody from "../../../components/modal/ModalBody";
 import useModal from "../../../hooks/useModal";
 let timeForThrottle;
 

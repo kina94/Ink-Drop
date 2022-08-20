@@ -5,15 +5,15 @@ import { savedBookCategory } from "../../../common/utils/common_var";
 import { useNavigate, useParams } from "react-router-dom";
 import ShowMessage from "../../../components/ShowMessage";
 import animationData from "../../../assets/animation/85557-empty.json";
-import Modal from "../../../components/Modal";
+import Modal from "../../../components/modal/Modal";
 import { useDispatch, useSelector } from "react-redux";
 import "../styles/Library.css";
 import SavedBookHeader from "./SavedBookHeader";
 import BookCard from "../../../components/BookCard";
 import SavedBooksHeader from "./SavedBooksHeader";
 import useModal from "../../../hooks/useModal";
-import ModalBody from "../../../components/Modal/ModalBody";
-import ModalTitle from "../../../components/Modal/ModalTitle";
+import ModalBody from "../../../components/modal/ModalBody";
+import ModalTitle from "../../../components/modal/ModalTitle";
 import { setSelectedBook } from "../../../modules/book";
 
 function SavedBookList() {

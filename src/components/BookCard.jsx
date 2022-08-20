@@ -3,7 +3,6 @@ import React from "react";
 //책 검색 결과
 function BookCard(props) {
   const { book, index } = props;
-
   return (
     <div className='book-card' id={index}>
       <img src={book.thumbnail} loading="lazy"></img>

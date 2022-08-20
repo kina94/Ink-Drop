@@ -5,9 +5,6 @@ import "./Book.css";
 // 책 기본 정보 보여주기
 function BookInformation() {
   const selectedBook = useSelector((store) => store.bookReducer.selectedBook);
-  useEffect(() => {
-    document.querySelector(".content-wrapper").scrollTo(0, 0);
-  }, []);
   let { thumbnail, authors, contents, publisher, title, url } = selectedBook;
   return (
     <>
