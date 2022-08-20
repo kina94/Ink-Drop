@@ -3,8 +3,8 @@ import { useSelector } from 'react-redux'
 import './Rating.css'
 
 function Rating(props) {
-    const isModifyMode = useSelector(store => store.toggleStore.modifyToggle)
-    const isModalShow = useSelector(store => store.toggleStore.modalToggle)
+    // const isModifyMode = useSelector(store => store.toggleStore.modifyToggle)
+    // const isModalShow = useSelector(store => store.toggleStore.modalToggle)
     const initStars = new Array(5).fill(false)
     const savedStars = initStars.fill(true, 0, props.stars)
     const [clicked, setClicked] = useState(props.book && props.stars!=undefined ? savedStars : initStars)
@@ -17,21 +17,21 @@ function Rating(props) {
         setClicked(update)
     }
 
-    useEffect(()=>{
-        if(!isModifyMode){
-            setClicked(savedStars)
-        }
-    },[props.book])
+    // useEffect(()=>{
+    //     if(!isModifyMode){
+    //         setClicked(savedStars)
+    //     }
+    // },[props.book])
 
     useEffect(() => {
         props.handleRate && props.handleRate(clicked.filter(item => item == true).length)
     }, [clicked])
 
-    useEffect(() => {
-        if (!isModifyMode) {
-            props.handleRate && setClicked(new Array(5).fill(false))
-        }
-    }, [isModalShow])
+    // useEffect(() => {
+    //     if (!isModifyMode) {
+    //         props.handleRate && setClicked(new Array(5).fill(false))
+    //     }
+    // }, [isModalShow])
 
     return (
         <ul className='rate'>

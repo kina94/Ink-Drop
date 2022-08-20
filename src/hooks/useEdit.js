@@ -1,13 +1,17 @@
 import React, { useState } from 'react'
 
 function useEdit() {
-    const [edit, setEdit] = useState()
+    const [editMode, setEditMode] = useState(false)
 
     const handleEditMode = () => {
-        setEdit(!edit)
+        if(editMode){
+            setEditMode(false)
+        } else {
+            setEditMode(true)
+        }
     }
 
-    return {edit, setEdit}
+    return {editMode, handleEditMode}
 }
 
 export default useEdit

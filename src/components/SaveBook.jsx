@@ -8,21 +8,21 @@ import { initSearchParams, onClickBookUpdateOrAdd } from '../modules/book'
 
 //책 저장 및 수정
 function SaveBook(props) {
+    const {editMode} = props;
     const user = useSelector(store=>store.userReducer.user)
     const dispatch = useDispatch()
-    const isModifyMode = useSelector(store => store.toggleStore.modifyToggle)
-    const isModalShow = useSelector(store => store.toggleStore.modalToggle)
+    // const isModalShow = useSelector(store => store.toggleStore.modalToggle)
     const savedBooks = useSelector(store => store.bookReducer.savedBooks)
     const selectedBook = useSelector(store => store.bookReducer.selectedBook)
     const [selectedOption, setSelectedOption] = useState(!selectedBook.type ? 'complete' : selectedBook.type)
     const [saveBook, setSaveBook] = useState([])
     const dateValue = new Date().toISOString().substring(0, 10)
 
-    useEffect(()=>{
-        if(!isModalShow){
-            setSelectedOption('complete')
-        }
-    },[isModalShow])
+    // useEffect(()=>{
+    //     if(!isModalShow){
+    //         setSelectedOption('complete')
+    //     }
+    // },[isModalShow])
 
     useEffect(() => {
         setSaveBook(selectedBook)
@@ -61,7 +61,7 @@ function SaveBook(props) {
         }
 
 
-        if (bookKey && !isModifyMode) {
+        if (bookKey && !editMode) {
             alert(`이미 저장된 책이에요. ${savedBookCategory[savedBooks[bookKey].type]}을 확인해보세요.`)
         } else {
             const newBook = {
@@ -69,12 +69,12 @@ function SaveBook(props) {
                 'type': selectedOption,
                 'endDate': saveBook.endDate ? saveBook.endDate : dateValue,
                 'startDate': saveBook.startDate ? saveBook.startDate : dateValue,
-                'addDate': isModifyMode ? saveBook.addDate : new Date().toISOString(),
+                'addDate': editMode ? saveBook.addDate : new Date().toISOString(),
             }
             dispatch(onClickBookUpdateOrAdd(user.uid, newBook))
             alert('저장을 완료했어요.')
             dispatch(initSearchParams())
-            if (isModifyMode) {
+            if (editMode) {
                 props.updateBookContents(newBook)
             } else {
                 // dispatch(toggleActions.toggleModal(false))

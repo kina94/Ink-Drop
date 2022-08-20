@@ -1,22 +1,23 @@
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-// import { toggleActions } from '../../../modules/actions'
 import { setSelectedBook, onClickBookDelete } from '../../../modules/book'
 import SaveOptionButton from '../../../components/SaveOptionButton'
 import Rating from '../../../components/Rating'
 import SaveBook from '../../../components/SaveBook'
+import useEdit from '../../../hooks/useEdit'
 
-function SavedBookContents() {
+function SavedBookContents(props) {
+    const {handleModalClose} = props;
+    const {editMode, handleEditMode} = useEdit()
     const user = useSelector(store=>store.userReducer.user)
     const dispatch = useDispatch()
     const selectedBook = useSelector(store => store.bookReducer.selectedBook)
-    const isModifyMode = useSelector(store => store.toggleStore.modifyToggle)
 
     const onClickDelete = (e) => {
         if (window.confirm('정말 삭제하시겠어요?')) {
             dispatch(onClickBookDelete(e.target.id, user.uid))
             alert('삭제가 완료되었습니다.')
-            // dispatch(toggleActions.toggleModal(false))
+            handleModalClose()
         }
     }
 
@@ -99,13 +100,14 @@ function SavedBookContents() {
 
     const updateBookContents = (newBook) => {
         dispatch(setSelectedBook(newBook))
-        // dispatch(toggleActions.toggleModifyMode(false))
+        handleEditMode()
     }
 
     return (
         <>
             {
-                isModifyMode ? <SaveBook
+                editMode ? <SaveBook
+                editMode={editMode}
                     selectedBook={selectedBook}
                     updateBookContents={updateBookContents}
                 /> :
@@ -113,7 +115,7 @@ function SavedBookContents() {
                         <section className='selected-display'>
                             {viewChangeByType(selectedBook.type)}
                             <div className='button-container'>
-                                {/* <button className='modify' onClick={() => dispatch(toggleActions.toggleModifyMode(true))}>수정</button> */}
+                                <button className='modify' onClick={handleEditMode}>수정</button>
                                 <button className='delete' id={selectedBook.isbn} onClick={onClickDelete}>삭제</button>
                             </div>
                         </section>
