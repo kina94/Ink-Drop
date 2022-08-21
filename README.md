@@ -270,7 +270,7 @@ export const login = (providerName) => {
     }
   };
 ```
-> * 무한 스크롤에서 How와 What을 발라내서 구분했다. 리팩토링 전의 코드를 보면 해당 함수가 어떤 역할을 하는지 내부 구현 요소를 한 줄 한 줄 읽어야 이해할 수 있다. How에 해당하는 상세 구현부를 useInfiniteScrollEffect이란 함수로 따로 발라내고 컴포넌트에는 What에 해당하는 부분만 남겨 콜백함수로 구현했다. 무한 스크롤을 사용하는 컴포넌트인 SearchResults.jsx에서는 단순하게 useInfiniteScrollEffect를 사용하고 조건만 넘겨주면 간단하게 사용할 수 있다.
+> * 무한 스크롤에서 How와 What을 구분했다. 리팩토링 전의 코드를 보면 해당 함수가 어떤 역할을 하는지 내부 구현 요소를 한 줄 한 줄 읽어야 이해할 수 있다. How에 해당하는 상세 구현부를 useInfiniteScrollEffect이란 함수로 따로 발라내고 컴포넌트에는 What에 해당하는 부분만 남겨 콜백함수로 구현했다. 무한 스크롤을 사용하는 컴포넌트인 SearchResults.jsx에서는 단순하게 useInfiniteScrollEffect를 사용하고 조건만 넘겨주면 간단하게 사용할 수 있다.
 
 ```javascript
 // 리팩토링 전
