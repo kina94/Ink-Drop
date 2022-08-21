@@ -1,0 +1,137 @@
+/*책 리스트*/
+.book-list {
+  width: 100%;
+  list-style: none;
+  text-align: left;
+  margin: 0;
+  padding: 0;
+  color: var(--color-black);
+}
+
+.book-card {
+  overflow: auto;
+  cursor: pointer;
+  display: flex;
+  padding: 15px;
+  border-bottom: 1px solid lightgrey;
+  max-height: 250px;
+}
+
+.book-card:hover {
+  opacity: 0.7;
+}
+
+.book-card div {
+  margin-left: 15px;
+  min-width: 0;
+}
+
+.book-list p {
+  margin: 2px;
+}
+
+.book-list .title {
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.book-list .authors,
+.book-list .infos {
+  color: grey;
+}
+
+.book-list .contents {
+  margin-top: 5px;
+  line-height: 30px;
+  display: -webkit-box;
+  word-wrap: break-word;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+#link {
+  color: var(--color-blue);
+  text-decoration: none;
+}
+
+#link:hover {
+  font-weight: bold;
+}
+
+/*SaveBook*/
+
+#saved-book-view .rate li {
+  cursor: auto;
+}
+
+#icon {
+  padding-right: 5px;
+  color: var(--color-hotpink);
+}
+
+.option-container {
+  display: flex;
+  min-height: 45px;
+  max-height: 100%;
+  align-items: center;
+  border: 1px solid #e9e9e9;
+  border-radius: 5px;
+  margin-bottom: 10px;
+  padding: 5px 15px 5px 15px;
+}
+
+.option-container #view {
+  color: var(--color-black);
+  font-weight: normal;
+  word-break: break-all;
+  padding: 0.5em 0 0.5em 0;
+  margin: 0;
+}
+
+.option-container input {
+  padding: 0 !important;
+  margin: 0 !important;
+  width: 100%;
+  height: 40px !important;
+  border: none;
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+  color: var(--color-black);
+  background-color: white;
+}
+
+form p {
+  margin-top: 20px;
+  font-weight: bold;
+  margin-bottom: 10px;
+  display: inline-block;
+}
+
+form #icon {
+  color: var(--color-black);
+}
+
+form .option-button-container button {
+  cursor: auto;
+}
+
+form .option-button-container button:hover {
+  opacity: 1;
+}
+
+form .option-container span {
+  margin-right: 20px;
+  color: var(--color-blue);
+  font-weight: bold;
+}
+
+@keyframes fadein {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}

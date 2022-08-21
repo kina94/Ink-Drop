@@ -1,6 +1,6 @@
 import React from "react";
 import { useLocation, useNavigate } from "react-router-dom";
-import { removeAllLocalStorageItems } from "../../../common/utils/local_storage";
+import { removeAllLocalStorageItems } from "../../../common/utils/localStorage";
 import styles from "../styles/Sidebar.module.css";
 
 const HomeSidebar = () => {

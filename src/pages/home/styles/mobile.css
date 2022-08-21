@@ -56,11 +56,6 @@
     display: none;
   }
 
-  .before-search {
-    left: 0;
-    bottom: 3em;
-  }
-
   .show-search-result {
     padding: 70px 0 80px 0;
   }
@@ -164,10 +159,6 @@
     height: fit-content;
   }
 
-  .library .before-search {
-    display: none;
-  }
-
   .saved-book-list-header {
     position: fixed;
     z-index: 15;
@@ -182,11 +173,6 @@
   .saved-book-list {
     padding-top: 50px;
   }
-
-  .saved-book-list .before-search {
-    display: flex;
-  }
-
   .hide {
     display: none;
   }

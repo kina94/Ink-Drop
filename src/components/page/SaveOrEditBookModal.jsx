@@ -1,18 +1,18 @@
 import React, { useState } from "react";
 import BookInformation from "./BookInformation";
-import Modal from "./modal/Modal";
-import ModalBody from "./modal/ModalBody";
-import ModalTitle from "./modal/ModalTitle";
-import ModalFooter from "./modal/ModalFooter";
-import { bookCategory } from "../common/utils/common_var.js";
+import Modal from "../modal/Modal";
+import ModalBody from "../modal/ModalBody";
+import ModalTitle from "../modal/ModalTitle";
+import ModalFooter from "../modal/ModalFooter";
+import { bookCategory } from "../../common/utils/commonVar.js";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
-import Rating from "./Rating";
+import Rating from "../rating/Rating";
 import BookCategoryButton from "./BookCategoryButton";
 import styled from "styled-components";
-import Button from "./button/Button";
-import { initSearchParams, onClickBookUpdateOrAdd } from "../modules/book";
-import { setEditToggle, setModalToggle } from "../modules/toggle";
+import Button from "../button/Button";
+import { initSearchParams, onClickBookUpdateOrAdd } from "../../modules/book";
+import { setEditToggle, setModalToggle } from "../../modules/toggle";
 const TODAY = new Date().toISOString().substring(0, 10);
 
 function SaveOrEditBookModal(props) {
@@ -51,9 +51,20 @@ function SaveOrEditBookModal(props) {
     setNewBook({ ...newBook, [e.target.id]: e.target.value });
   };
 
+  const handleCancleClick = () => {
+    dispatch(setModalToggle(false));
+  };
+
   const checkIsAlreadySavedBooks = () => {
     const isSaved = Object.keys(savedBooks).includes(selectedBook.isbn);
     return isSaved;
+  };
+
+  const completeSaveBook = (saveNewBook) => {
+    alert(`저장이 완료되었습니다.`);
+    dispatch(onClickBookUpdateOrAdd(user.uid, saveNewBook));
+    dispatch(setEditToggle(false));
+    dispatch(setModalToggle(false));
   };
 
   const handleSaveBookButton = () => {
@@ -68,18 +79,13 @@ function SaveOrEditBookModal(props) {
       if (checkIsAlreadySavedBooks()) {
         alert(`이미 저장된 책이에요. 내 서재를 확인해보세요.`);
       } else {
-        alert(`저장이 완료되었습니다.`);
-        dispatch(onClickBookUpdateOrAdd(user.uid, saveNewBook));
         dispatch(initSearchParams());
-        dispatch(setModalToggle(false));
+        completeSaveBook(saveNewBook);
       }
     }
 
     if (isEditMode) {
-      alert(`저장이 완료되었습니다.`);
-      dispatch(onClickBookUpdateOrAdd(user.uid, saveNewBook));
-      dispatch(setModalToggle(false));
-      dispatch(setEditToggle(false));
+      completeSaveBook(saveNewBook);
     }
   };
 
@@ -120,6 +126,7 @@ function SaveOrEditBookModal(props) {
             </div>
             <p style={{ width: "100%", textAlign: "center" }}>나의 평점은?</p>
             <Rating
+              fontSize="25px;"
               book={selectedBook}
               stars={selectedBook.rate}
               handleRate={handleRate}
@@ -199,13 +206,18 @@ function SaveOrEditBookModal(props) {
         <Button variant="puple" onClick={handleSaveBookButton}>
           저장하기
         </Button>
-        <Button variant="grey">취소하기</Button>
+        <Button variant="grey" onClick={handleCancleClick}>
+          취소하기
+        </Button>
       </ModalFooter>
     </Modal>
   );
 }
 
 const OptionButtonWrapper = styled.ul`
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  column-gap: 5px;
   height: 50px;
   padding: 0;
   margin: 1em 0;

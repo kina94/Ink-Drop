@@ -72,6 +72,9 @@ const InfoDiv = styled.div`
       -webkit-box-orient: vertical;
       overflow: hidden;
       text-overflow: ellipsis;
+      @media screen and (max-height: 1400px) and (max-width: 1024px) {
+        line-height: 25px;
+      }
     }
   }
 `;

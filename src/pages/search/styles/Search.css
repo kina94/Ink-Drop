@@ -1,63 +1,46 @@
-
 .search-input-container {
-    z-index:3;
-    background-color: var(--color-lightgrey);
-    height:80px;
-    display:flex;
-    align-items:center;
-    position:fixed;
-    width:100%;
-    padding: 0px 250px 0px 0px;
-    color: var(--color-black)
+  z-index: 3;
+  background-color: var(--color-lightgrey);
+  height: 80px;
+  display: flex;
+  align-items: center;
+  position: fixed;
+  width: 100%;
+  padding: 0px 250px 0px 0px;
+  color: var(--color-black);
 }
 
-.search-icon{
-    display:flex;
-    align-items:center;
-    margin-left:10px;
-    padding-left:15px;
-    background-color:white;
-    height:50px;
-    border-top-left-radius:5px;
-    border-bottom-left-radius:5px;
-    color:var(--color-hotpink);
+.search-icon {
+  display: flex;
+  align-items: center;
+  margin-left: 10px;
+  padding-left: 15px;
+  background-color: white;
+  height: 50px;
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
+  color: var(--color-hotpink);
 }
 
-.search input{
-    width:100%;
-    height:50px;
-    padding:10px 10px 10px 15px;
-    margin:10px 10px 10px 0;
-    border:none;
-    border-top-right-radius:5px;
-    border-bottom-right-radius:5px;
-    color: var(--color-black)
+.search input {
+  width: 100%;
+  height: 50px;
+  padding: 10px 10px 10px 15px;
+  margin: 10px 10px 10px 0;
+  border: none;
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+  color: var(--color-black);
 }
 
-.search input:focus{
-    outline:none;
+.search input:focus {
+  outline: none;
 }
 
-
-.before-search{
-    height:100%;
-    width:100%;
-    display:flex;
-    position:absolute;
-    bottom:1em;
-    left:7em;
-    flex-direction:column;
-    align-items:center;
-    justify-content:center;
-    color:var(--color-black);
-    font-weight:bold;
+.show-search-result {
+  padding: 110px 50px 50px 50px;
 }
 
-.show-search-result{
-    padding:110px 50px 50px 50px
-}
-
-.show-search-result span:first-child{
-    font-weight:bold;
-    ;
+.show-search-result span:first-child {
+  font-weight: bold;
 }

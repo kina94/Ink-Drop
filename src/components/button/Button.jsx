@@ -2,9 +2,9 @@ import React from "react";
 import styled from "styled-components";
 
 function Button(props) {
-  const { children, variant, onClick } = props;
+  const { children, variant, onClick, clickEvent } = props;
   return (
-    <StyledButton onClick={onClick} variant={variant}>
+    <StyledButton clickEvent={clickEvent} onClick={onClick} variant={variant}>
       {children}
     </StyledButton>
   );
@@ -27,7 +27,7 @@ const StyledButton = styled.button`
     }
   }};
   &:hover {
-    opacity: 0.9;
+    opacity: ${(props) => (props.clickEvent ? "0.9;" : "1;")};
   }
 `;
 

@@ -1,12 +1,12 @@
 import React from "react";
-import ShowMessage from "../../../components/ShowMessage";
-import BookCard from "../../../components/BookCard";
+import AnimationMessage from "../../../components/lottie/AnimationMessage";
+import BookCard from "../../../components/card/BookCard";
 import animationData from "../../../assets/animation/85557-empty.json";
 import { useDispatch, useSelector } from "react-redux";
 import { setSearchParamsAll, setSelectedBook } from "../../../modules/book";
 import { useInfiniteScrollEffect } from "../../../common/utils/bookSearch";
 import { useParams } from "react-router-dom";
-import SaveOrEditBookModal from "../../../components/SaveOrEditBookModal";
+import SaveOrEditBookModal from "../../../components/page/SaveOrEditBookModal";
 import { setModalToggle } from "../../../modules/toggle";
 let timeForThrottle;
 
@@ -47,12 +47,13 @@ function SearchResults() {
   return (
     <>
       {searchedBooks?.length === 0 ? (
-        <ShowMessage
+        <AnimationMessage
           animationData={animationData}
           width="400px"
           height="300px"
-          value="검색 결과를 찾을 수 없어요."
-        />
+        >
+          검색 결과를 찾을 수 없어요.
+        </AnimationMessage>
       ) : (
         <section className="show-search-result">
           <span>{`'${currentSearchQuery}'에 대한 검색 결과`}</span>

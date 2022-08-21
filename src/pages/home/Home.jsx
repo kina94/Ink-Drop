@@ -14,7 +14,8 @@ import HomeSidebar from "./components/HomeSidebar";
 import Search from "../search/Search";
 import Library from "../library/Library";
 import History from "../history/History";
-import LoadingSpinner from "../../components/LoadingSpinner";
+import LoadingSpinner from "../../components/loading/LoadingSpinner";
+import { setModalToggle } from "../../modules/toggle";
 
 function Home() {
   const dispatch = useDispatch();
@@ -41,6 +42,7 @@ function Home() {
     const response = await getSavedBooksFromDB(user.uid);
     dispatch(setSavedBooks(response));
     setIsLoading(false);
+    console.log("abc");
   };
 
   useEffect(() => {

@@ -1,20 +1,19 @@
-
 * {
   box-sizing: border-box;
-  word-break:keep-all;
+  word-break: keep-all;
   scroll-behavior: smooth;
 }
 
-:root{
-  --color-yellow : #fbda84;
+:root {
+  --color-yellow: #fbda84;
   --color-light-yellow: #f7f5f0;
-  --color-pink : #fd7576;
-  --color-hotpink : #ea4c89;
-  --color-lightpink : #f5b6c9;
-  --color-brown : #5c4127;
+  --color-pink: #fd7576;
+  --color-hotpink: #ea4c89;
+  --color-lightpink: #f5b6c9;
+  --color-brown: #5c4127;
   --color-light-brown: #a37556;
-  --color-blue : #4f3ccc;
-  --color-black : #464646;
+  --color-blue: #4f3ccc;
+  --color-black: #464646;
   --color-white: white;
   --color-mint: #8ac3c6;
   --color-lightgrey: #f4f3f2;
@@ -25,12 +24,10 @@
   overflow: hidden;
 }
 
-input:focus{
-  outline:none;
+input:focus {
+  outline: none;
 }
 
-ul{
-  list-style:none;
+ul {
+  list-style: none;
 }
-
-

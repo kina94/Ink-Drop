@@ -1,10 +1,11 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React from "react";
-import { bookCategory } from "../../../common/utils/common_var";
-import Rating from "../../../components/Rating";
-import BookCategoryButton from "../../../components/BookCategoryButton";
+import { bookCategory } from "../../../common/utils/commonVar";
+import Rating from "../../../components/rating/Rating";
+import styled from "styled-components";
 
 function SavedBookHeader(props) {
+  const { book } = props;
   const countDayFromStartReading = (startDate) => {
     const setStartDate = new Date(startDate);
     const now = new Date();
@@ -18,8 +19,13 @@ function SavedBookHeader(props) {
       case "complete":
         return (
           <>
+            <StyledBadge>
+              <FontAwesomeIcon icon="fas fa-flag" id="icon" />
+              {bookCategory[book.type]}
+            </StyledBadge>
             <span>평점</span>
             <Rating
+              fontSize="10px;"
               book={book}
               stars={book.rate}
               onClick={(e) => e.preventDefault()}
@@ -31,6 +37,25 @@ function SavedBookHeader(props) {
       case "reading":
         return (
           <>
+            <StyledBadge>
+              <FontAwesomeIcon id="icon" icon="fas fa-book-open" />
+              {bookCategory[book.type]}
+            </StyledBadge>
+            <span>시작일</span>
+            {book.startDate.slice(0, 10)}
+            <span>
+              <FontAwesomeIcon icon="fa-book-open-reader" />
+            </span>
+            {countDayFromStartReading(book.startDate)}일차
+          </>
+        );
+      case "want":
+        return (
+          <>
+            <StyledBadge>
+              <FontAwesomeIcon id="icon" icon="fas fa-heart" />
+              {bookCategory[book.type]}
+            </StyledBadge>
             <span>시작일</span>
             {book.startDate.slice(0, 10)}
             <span>
@@ -44,15 +69,12 @@ function SavedBookHeader(props) {
     }
   };
 
-  return (
-    <div className="saved-book-top">
-      <BookCategoryButton
-        name={bookCategory[props.book.type]}
-        onClick={(e) => e.preventDefault()}
-      />
-      {switchHeaderContents(props.book)}
-    </div>
-  );
+  return <div className="saved-book-top">{switchHeaderContents(book)}</div>;
 }
+
+const StyledBadge = styled.div`
+  color: var(--color-hotpink);
+  font-weight: 700;
+`;
 
 export default SavedBookHeader;

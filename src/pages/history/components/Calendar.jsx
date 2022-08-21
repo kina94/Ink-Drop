@@ -3,7 +3,6 @@ import Calendar from "react-calendar";
 import moment from "moment";
 import { useDispatch, useSelector } from "react-redux";
 import Modal from "../../../components/modal/Modal";
-import useModal from "../../../hooks/useModal";
 import "../styles/Calendar.css";
 import { setModalToggle } from "../../../modules/toggle";
 import ModalTitle from "../../../components/modal/ModalTitle";

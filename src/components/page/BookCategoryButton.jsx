@@ -3,7 +3,7 @@ import styled from "styled-components";
 import React from "react";
 
 function BookCategoryButton(props) {
-  const { option, selectedOption, onClick, name } = props;
+  const { option, selectedOption, onClick, name, clickEvent } = props;
   const switchButtonContent = (name) => {
     switch (name) {
       case "읽은 책":
@@ -30,15 +30,20 @@ function BookCategoryButton(props) {
     }
   };
   return (
-    <StyledButton active={selectedOption === option} onClick={onClick}>
+    <StyledButton
+      clickEvent={false}
+      active={selectedOption === option}
+      onClick={onClick}
+    >
       {switchButtonContent(name)}
     </StyledButton>
   );
 }
 
 const StyledButton = styled.button`
-  width: 30%;
-  margin-right: 10px;
+cursor: ${(props) => (props.clickEvent ? "pointer;" : "auto;")}
+min-width:100%;
+margin-right: 10px;
   height: 100%;
   border: none;
   background-color: ${(props) =>
@@ -48,7 +53,7 @@ const StyledButton = styled.button`
   box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 3px 0px,
     rgba(0, 0, 0, 0.06) 0px 1px 2px 0px;
   &:hover {
-    opacity: 0.8;
+    opacity: ${(props) => (props.clickEvent ? "0.8;" : "1;")}
   }
   #icon {
     padding-right: 5px;

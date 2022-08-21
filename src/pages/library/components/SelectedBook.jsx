@@ -1,19 +1,19 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import BookCategoryButton from "../../../components/BookCategoryButton";
-import Rating from "../../../components/Rating";
+import BookCategoryButton from "../../../components/page/BookCategoryButton";
+import Rating from "../../../components/rating/Rating";
 import styled from "styled-components";
 import Modal from "../../../components/modal/Modal";
 import ModalTitle from "../../../components/modal/ModalTitle";
 import ModalBody from "../../../components/modal/ModalBody";
-import BookInformation from "../../../components/BookInformation";
+import BookInformation from "../../../components/page/BookInformation";
 import ModalFooter from "../../../components/modal/ModalFooter";
 import Button from "../../../components/button/Button";
-import { bookCategory } from "../../../common/utils/common_var";
+import { bookCategory } from "../../../common/utils/commonVar";
 import { setEditToggle, setModalToggle } from "../../../modules/toggle";
 import { onClickBookDelete } from "../../../modules/book";
 
-function SavedBookContents(props) {
+function SavedBookContents() {
   const dispatch = useDispatch();
   const user = useSelector((store) => store.userReducer.user);
   const selectedBook = useSelector((store) => store.bookReducer.selectedBook);
@@ -24,7 +24,7 @@ function SavedBookContents(props) {
 
   const handleDeleteButton = () => {
     if (window.confirm("정말 삭제하시겠어요?")) {
-      dispatch(onClickBookDelete(selectedBook.id, user.uid));
+      dispatch(onClickBookDelete(selectedBook.isbn, user.uid));
       alert("삭제가 완료되었습니다.");
       dispatch(setModalToggle(false));
     }
@@ -53,6 +53,7 @@ function SavedBookContents(props) {
             </div>
             <p style={{ width: "100%", textAlign: "center" }}>내가 남긴 평점</p>
             <Rating
+              fontSize="25px;"
               book={selectedBook}
               stars={selectedBook.rate}
               onClick={(e) => e.preventDefault()}
@@ -99,11 +100,11 @@ function SavedBookContents(props) {
         <BookInformation />
         <OptionButtonWrapper>
           <BookCategoryButton
+            clickEvent={false}
             key={selectedBook.id}
             option={selectedBook.type}
             name={bookCategory[selectedBook.type]}
             selectedOption={selectedBook.type}
-            onClick={(e) => e.preventDefault()}
           />
         </OptionButtonWrapper>
         {viewChangeByType(selectedBook.type)}
@@ -121,9 +122,11 @@ function SavedBookContents(props) {
 }
 
 const OptionButtonWrapper = styled.ul`
+  text-align: center;
+  width: 300px;
   height: 50px;
   padding: 0;
-  margin: 1em 0;
+  margin: 1em auto;
 `;
 
 export default SavedBookContents;

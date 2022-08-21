@@ -1,7 +1,7 @@
 import React from "react";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
-import { bookCategory } from "../../../common/utils/common_var";
-import './SubSidebar.css'
+import { bookCategory } from "../../../common/utils/commonVar";
+import "./SubSidebar.css";
 
 function LibrarySidebar() {
   const currentMenu = useParams()["*"];

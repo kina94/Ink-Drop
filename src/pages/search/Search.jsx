@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import ShowMessage from "../../components/ShowMessage";
+import AnimationMessage from "../../components/lottie/AnimationMessage";
 import SearchHeader from "./components/SearchHeader";
 import SearchResults from "./components/SearchResults";
 import animationData from "../../assets/animation/72170-books.json";
@@ -57,14 +57,15 @@ function Search() {
     <section className="search">
       <SearchHeader />
       {currentSearchQuery === "" ? (
-        <ShowMessage
+        <AnimationMessage
           animationData={animationData}
           width="300px"
           height="300px"
-          value="원하는 책을 검색하고 저장해보세요."
-        />
+        >
+          원하는 책을 검색하고 저장해보세요.
+        </AnimationMessage>
       ) : (
-        <SearchResults/>
+        <SearchResults />
       )}
     </section>
   );
