@@ -3,12 +3,12 @@ import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
 function SavedBooksHeader(props) {
+  const isModalOpen = useSelector((store) => store.toggleReducer.modalToggle);
   const navigate = useNavigate();
-  const imModalShow = useSelector((store) => store.toggleStore.modalToggle);
   return (
     <div
       className={
-        imModalShow
+        isModalOpen
           ? "saved-book-list-header mobile-hide"
           : "saved-book-list-header"
       }

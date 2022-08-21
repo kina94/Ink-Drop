@@ -1,14 +1,13 @@
 import React from "react";
 import ShowMessage from "../../../components/ShowMessage";
 import BookCard from "../../../components/BookCard";
-import BookSave from "../../../components/BookSave";
-import Modal from "../../../components/Modal";
 import animationData from "../../../assets/animation/85557-empty.json";
 import { useDispatch, useSelector } from "react-redux";
-import { setSearchParamsAll } from "../../../modules/book";
+import { setSearchParamsAll, setSelectedBook } from "../../../modules/book";
 import { useInfiniteScrollEffect } from "../../../common/utils/bookSearch";
 import { useParams } from "react-router-dom";
-import BookInformation from "../../../components/BookInformation";
+import SaveOrEditBookModal from "../../../components/SaveOrEditBookModal";
+import { setModalToggle } from "../../../modules/toggle";
 let timeForThrottle;
 
 function SearchResults() {
@@ -40,6 +39,11 @@ function SearchResults() {
     }
   });
 
+  const handleBookClick = (book) => {
+    dispatch(setSelectedBook(book));
+    dispatch(setModalToggle(true));
+  };
+
   return (
     <>
       {searchedBooks?.length === 0 ? (
@@ -54,17 +58,14 @@ function SearchResults() {
           <span>{`'${currentSearchQuery}'에 대한 검색 결과`}</span>
           <ul className="book-list">
             {Object.values(searchedBooks).map((book, index) => (
-              <li key={index}>
+              <li key={index} onClick={() => handleBookClick(book)}>
                 <BookCard book={book} index={index}></BookCard>
               </li>
             ))}
           </ul>
         </section>
       )}
-      <Modal>
-        <BookInformation />
-        <BookSave></BookSave>
-      </Modal>
+      <SaveOrEditBookModal />
     </>
   );
 }

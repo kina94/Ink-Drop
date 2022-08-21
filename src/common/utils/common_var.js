@@ -1,4 +1,4 @@
-export const savedBookCategory = {
+export const bookCategory = {
     'all' : '전체',
     'complete': '읽은 책',
     'reading': '읽고 있는 책',
