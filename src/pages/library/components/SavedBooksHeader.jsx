@@ -1,13 +1,14 @@
 import React from "react";
+import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
 function SavedBooksHeader(props) {
-  const {modalOpen} = props;
+  const isModalOpen = useSelector((store) => store.toggleReducer.modalToggle);
   const navigate = useNavigate();
   return (
     <div
       className={
-        modalOpen
+        isModalOpen
           ? "saved-book-list-header mobile-hide"
           : "saved-book-list-header"
       }

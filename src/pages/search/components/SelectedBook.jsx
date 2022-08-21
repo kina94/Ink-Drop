@@ -93,13 +93,13 @@ function SelectedBook() {
   return (
     <section className="save-contents">
       <section className="option-button-container">
-        {Object.keys(savedBookCategory).map((key, index) => {
+        {Object.keys(bookCategory).map((key, index) => {
           if (key === "all") return;
           return (
-            <SaveOptionButton
+            <BookCategoryButton
               key={index}
               option={key}
-              name={savedBookCategory[key]}
+              name={bookCategory[key]}
               onClick={onClickOption}
               selectedOption={selectedOption}
             />

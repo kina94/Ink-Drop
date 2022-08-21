@@ -1,27 +1,21 @@
 import React from "react";
 import ShowMessage from "../../../components/ShowMessage";
 import BookCard from "../../../components/BookCard";
-import SaveBook from "../../../components/SaveBook";
-import Modal from "../../../components/modal/Modal";
 import animationData from "../../../assets/animation/85557-empty.json";
 import { useDispatch, useSelector } from "react-redux";
 import { setSearchParamsAll, setSelectedBook } from "../../../modules/book";
 import { useInfiniteScrollEffect } from "../../../common/utils/bookSearch";
 import { useParams } from "react-router-dom";
-import BookInformation from "../../../components/BookInformation";
-import ModalTitle from "../../../components/modal/ModalTitle";
-import ModalBody from "../../../components/modal/ModalBody";
-import useModal from "../../../hooks/useModal";
+import SaveOrEditBookModal from "../../../components/SaveOrEditBookModal";
+import { setModalToggle } from "../../../modules/toggle";
 let timeForThrottle;
 
 function SearchResults() {
-  const { modalOpen, handleModalClose, handleModalOpen } = useModal();
   const dispatch = useDispatch();
   const { "*": currentSearchQuery } = useParams();
   const { bookSearchResults: searchedBooks, searchParams } = useSelector(
     (store) => store.bookReducer
   );
-  const selectedBook = useSelector((store) => store.bookReducer.selectedBook);
   const savedParams = JSON.parse(localStorage.getItem("params"));
 
   // 하단까지 스크롤 시 페이지 증가
@@ -46,8 +40,8 @@ function SearchResults() {
   });
 
   const handleBookClick = (book) => {
-    handleModalOpen();
     dispatch(setSelectedBook(book));
+    dispatch(setModalToggle(true));
   };
 
   return (
@@ -71,15 +65,7 @@ function SearchResults() {
           </ul>
         </section>
       )}
-      <Modal modalOpen={modalOpen}>
-        <ModalTitle handleModalClose={handleModalClose}>
-          {selectedBook.title}
-        </ModalTitle>
-        <ModalBody>
-          <BookInformation />
-        </ModalBody>
-        <SaveBook />
-      </Modal>
+      <SaveOrEditBookModal />
     </>
   );
 }

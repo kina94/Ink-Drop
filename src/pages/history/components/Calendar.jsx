@@ -5,10 +5,11 @@ import { useDispatch, useSelector } from "react-redux";
 import Modal from "../../../components/modal/Modal";
 import useModal from "../../../hooks/useModal";
 import "../styles/Calendar.css";
-import { ModalTitle } from "react-bootstrap";
+import { setModalToggle } from "../../../modules/toggle";
+import ModalTitle from "../../../components/modal/ModalTitle";
+import ModalBody from "../../../components/modal/ModalBody";
 
 function CalendarView(props) {
-  const { modalOpen, handleModalOpen, handleModalClose } = useModal();
   const user = useSelector((store) => store.userReducer.user);
   const dispatch = useDispatch();
   const [value, setValue] = useState();
@@ -26,7 +27,7 @@ function CalendarView(props) {
       return;
     }
     setSelectedDayBook(books);
-    handleModalOpen();
+    dispatch(setModalToggle(true));
   };
 
   useEffect(() => {
@@ -54,33 +55,35 @@ function CalendarView(props) {
         }}
       />
 
-      <Modal modalOpen={modalOpen}>
-        <ModalTitle handleModalClose={handleModalClose}>
+      <Modal>
+        <ModalTitle>
           <span id="day">{moment(value).format("YYYY-MM-DD")}일에 읽은 책</span>
         </ModalTitle>
-        <section className="day-read-book">
-          <ul>
-            {selectedDayBook.map((book, index) => {
-              return (
-                <li key={index}>
-                  <div id="item">
-                    <img
-                      className="complete-book-img"
-                      src={book.thumbnail}
-                    ></img>
-                  </div>
-                  <div className="complete-book-contents">
-                    <span>{book.title}</span>
-                    <span>
-                      {book.authors[0]} / {book.publisher}
-                    </span>
-                    <span>{book.review}</span>
-                  </div>
-                </li>
-              );
-            })}
-          </ul>
-        </section>
+        <ModalBody>
+          <section className="day-read-book">
+            <ul>
+              {selectedDayBook.map((book, index) => {
+                return (
+                  <li key={index}>
+                    <div id="item">
+                      <img
+                        className="complete-book-img"
+                        src={book.thumbnail}
+                      ></img>
+                    </div>
+                    <div className="complete-book-contents">
+                      <span>{book.title}</span>
+                      <span>
+                        {book.authors[0]} / {book.publisher}
+                      </span>
+                      <span>{book.review}</span>
+                    </div>
+                  </li>
+                );
+              })}
+            </ul>
+          </section>
+        </ModalBody>
       </Modal>
     </section>
   );

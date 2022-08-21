@@ -1,6 +1,6 @@
 import React from "react";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
-import { savedBookCategory } from "../../../common/utils/common_var";
+import { bookCategory } from "../../../common/utils/common_var";
 import './SubSidebar.css'
 
 function LibrarySidebar() {
@@ -20,13 +20,13 @@ function LibrarySidebar() {
       }`}
     >
       <ul>
-        {Object.keys(savedBookCategory).map((key, index) => (
+        {Object.keys(bookCategory).map((key, index) => (
           <li
             className={key === currentMenu ? "active" : ""}
             key={index}
             onClick={() => onClickCategory(key)}
           >
-            {savedBookCategory[key]}
+            {bookCategory[key]}
             <i id="icon" className="fa-solid fa-angle-right"></i>
           </li>
         ))}

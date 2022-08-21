@@ -1,24 +1,21 @@
 import React, { useEffect, useState } from "react";
-import BookInformation from "../../../components/BookInformation";
 import SelectedBook from "./SelectedBook";
-import { savedBookCategory } from "../../../common/utils/common_var";
-import { useNavigate, useParams } from "react-router-dom";
+import { bookCategory } from "../../../common/utils/common_var";
+import { useParams } from "react-router-dom";
 import ShowMessage from "../../../components/ShowMessage";
 import animationData from "../../../assets/animation/85557-empty.json";
-import Modal from "../../../components/modal/Modal";
 import { useDispatch, useSelector } from "react-redux";
 import "../styles/Library.css";
 import SavedBookHeader from "./SavedBookHeader";
 import BookCard from "../../../components/BookCard";
 import SavedBooksHeader from "./SavedBooksHeader";
-import useModal from "../../../hooks/useModal";
-import ModalBody from "../../../components/modal/ModalBody";
-import ModalTitle from "../../../components/modal/ModalTitle";
 import { setSelectedBook } from "../../../modules/book";
+import SaveOrEditBookModal from "../../../components/SaveOrEditBookModal";
+import { setModalToggle } from "../../../modules/toggle";
 
 function SavedBookList() {
-  const dispatch = useDispatch()
-  const { modalOpen, handleModalOpen, handleModalClose } = useModal();
+  const dispatch = useDispatch();
+  const isEditMode = useSelector((store) => store.toggleReducer.editToggle);
   const { selectedBook, savedBooks } = useSelector(
     (store) => store.bookReducer
   );
@@ -47,19 +44,19 @@ function SavedBookList() {
     });
   };
 
+  const handleBookClick = (book) => {
+    dispatch(setModalToggle(true));
+    dispatch(setSelectedBook(book));
+  };
+
   useEffect(() => {
     savedBooks != null && filteredBooksByCategory();
   }, [savedBooks, currentCategoryKey]);
 
-  const handleBookClick = (book) => {
-    handleModalOpen();
-    dispatch(setSelectedBook(book));
-  };
-  
   return (
     <section className="saved-book-list">
-      <SavedBooksHeader modalOpen={modalOpen}>
-        {user.displayName}님의 {savedBookCategory[currentCategoryKey]} 목록 (
+      <SavedBooksHeader>
+        {user.displayName}님의 {bookCategory[currentCategoryKey]} 목록 (
         {filteredBooks?.length}권){" "}
       </SavedBooksHeader>
       {!filteredBooks || filteredBooks.length === 0 ? (
@@ -72,22 +69,14 @@ function SavedBookList() {
       ) : (
         <ul className="book-list">
           {filteredBooks.map((book, index) => (
-            <li key={index} onClick={()=>handleBookClick(book)}>
+            <li key={index} onClick={() => handleBookClick(book)}>
               <SavedBookHeader book={book} />
               <BookCard key={index} book={book} index={index} />
             </li>
           ))}
         </ul>
       )}
-      <Modal modalOpen={modalOpen}>
-        <ModalTitle handleModalClose={handleModalClose}>
-          {selectedBook?.title}
-        </ModalTitle>
-        <ModalBody>
-          <BookInformation />
-        </ModalBody>
-        <SelectedBook handleModalClose={handleModalClose} />
-      </Modal>
+      {isEditMode ? <SaveOrEditBookModal /> : <SelectedBook />}
     </section>
   );
 }

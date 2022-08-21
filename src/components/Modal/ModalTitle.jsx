@@ -1,20 +1,29 @@
 import React from "react";
+import { useDispatch } from "react-redux";
 import styled from "styled-components";
+import { setEditToggle, setModalToggle } from "../../modules/toggle";
 
 function ModalTitle(props) {
-  const { children, handleModalClose } = props;
+  const dispatch = useDispatch();
+
+  const handleCloseButton = () => {
+    dispatch(setModalToggle(false));
+    dispatch(setEditToggle(false));
+  };
+
+  const { children } = props;
 
   return (
     <ModalTitleWrapper>
       <Title>{children}</Title>
-      <CloseButton onClick={handleModalClose}>
+      <CloseButton onClick={handleCloseButton}>
         <i className="fas fa-times"></i>
       </CloseButton>
     </ModalTitleWrapper>
   );
 }
 
-const ModalTitleWrapper = styled.div`
+const ModalTitleWrapper = styled.section`
   padding: 15px;
   background-color: white;
   position: fixed;

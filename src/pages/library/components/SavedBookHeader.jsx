@@ -1,8 +1,8 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React from "react";
-import { savedBookCategory } from "../../../common/utils/common_var";
+import { bookCategory } from "../../../common/utils/common_var";
 import Rating from "../../../components/Rating";
-import SaveOptionButton from "../../../components/SaveOptionButton";
+import BookCategoryButton from "../../../components/BookCategoryButton";
 
 function SavedBookHeader(props) {
   const countDayFromStartReading = (startDate) => {
@@ -46,8 +46,8 @@ function SavedBookHeader(props) {
 
   return (
     <div className="saved-book-top">
-      <SaveOptionButton
-        name={savedBookCategory[props.book.type]}
+      <BookCategoryButton
+        name={bookCategory[props.book.type]}
         onClick={(e) => e.preventDefault()}
       />
       {switchHeaderContents(props.book)}
