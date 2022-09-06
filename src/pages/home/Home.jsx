@@ -4,7 +4,6 @@ import HomeHeader from "./components/HomeHeader";
 import MoveTopButton from "./components/MoveTopButton";
 import MobileNavbar from "./components/MobileNavbar";
 import { useDispatch, useSelector } from "react-redux";
-import "./Container.css";
 import { getSavedBooksFromDB } from "../../service/bookService";
 import { isNewUser, setNewUserToDB } from "../../service/userService";
 import { onAuthChange } from "../../service/authService";
@@ -15,7 +14,6 @@ import Search from "../search/Search";
 import Library from "../library/Library";
 import History from "../history/History";
 import LoadingSpinner from "../../components/loading/LoadingSpinner";
-import { setModalToggle } from "../../modules/toggle";
 
 function Home() {
   const dispatch = useDispatch();
