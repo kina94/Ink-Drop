@@ -7,13 +7,13 @@ const GlobalStyle = createGlobalStyle`
     /* 1rem == 10px */
     html{
         font-size:62.5%;
+        overflow: hidden;
     }
     body{
         font-size:1.6rem;
         font-family: 'Pretendard';
         -webkit-font-smoothing: antialiased;
         -moz-osx-font-smoothing: grayscale;
-        overflow: hidden;
     }
     html,body,#__next{
         height:100%;

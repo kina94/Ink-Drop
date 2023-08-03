@@ -1,7 +1,8 @@
-import Dropdown from "components/Dropdown";
-import * as SC from "./Header.styles";
-import DEFAULT_IMAGE from "assets/images/default_logo.png";
 import { useCallback } from "react";
+
+import * as SC from "./Header.styles";
+import { Dropdown, Button } from "components";
+import DEFAULT_IMAGE from "assets/images/default_logo.png";
 
 const Header = (props) => {
   const { userName, userEmail, photoURL } = { ...props.userInfo };
@@ -14,11 +15,9 @@ const Header = (props) => {
       <Dropdown
         button={
           <SC.User>
-            <SC.UserImage>
-              <img src={photoURL ? photoURL : DEFAULT_IMAGE} />
-            </SC.UserImage>
+            <img src={photoURL ? photoURL : DEFAULT_IMAGE} />
             <SC.UserSummary>
-              <span>다독이</span>
+              <SC.Grade>다독이</SC.Grade>
               <SC.UserName>
                 <span>{userName}</span>
                 <i className="fa-solid fa-angle-down" />
@@ -29,10 +28,12 @@ const Header = (props) => {
         menu={
           <SC.DropdownContent>
             <SC.UserInfo>
-              <span>{userName}</span>
+              <SC.UserName>{userName}</SC.UserName>
               <span>{userEmail}</span>
             </SC.UserInfo>
-            <SC.LogoutButton onClick={logout}>Logout</SC.LogoutButton>
+            <Button variant="slate" onClick={logout}>
+              Logout
+            </Button>
           </SC.DropdownContent>
         }
       />

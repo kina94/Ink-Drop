@@ -18,6 +18,7 @@ export const Header = styled.header`
 `;
 
 export const User = styled.div`
+  cursor: pointer;
   display: flex;
   width: 100%;
   gap: 0.5rem;
@@ -26,20 +27,46 @@ export const User = styled.div`
     height: 3em;
     border-radius: 50%;
   }
+
+  &:hover {
+    opacity: 0.8;
+  }
 `;
 
-export const UserImage = styled.div``;
+export const UserSummary = styled.div`
+  font-weight: bold;
+`;
 
-export const UserSummary = styled.div``;
+export const Grade = styled.span`
+  color: var(--color-blue);
+  font-size: 1.2rem;
+`;
 
 export const UserName = styled.div`
   display: flex;
   gap: 0.5rem;
   align-items: center;
+  font-weight: bold;
 `;
 
-export const DropdownContent = styled.div``;
+export const DropdownContent = styled.div`
+  display: flex;
+  align-items: center;
+  background-color: white;
+  flex-direction: column;
+  justify-content: center;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 3px 0px,
+    rgba(0, 0, 0, 0.06) 0px 1px 2px 0px;
+  border-radius: 0.4rem;
+  padding: 1.5rem 1rem;
+  gap: 1rem;
+  margin-top: 0.5rem;
+  font-size: 1.4rem;
+`;
 
-export const UserInfo = styled.div``;
-
-export const LogoutButton = styled.button``;
+export const UserInfo = styled.div`
+  display: flex;
+  flex-direction: column;
+  border-bottom: 1px solid whitesmoke;
+  padding: 0 1rem 1rem 1rem;
+`;

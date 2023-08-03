@@ -16,7 +16,6 @@ import LocalStorage from "../common/utils/local_storage";
 import { useDispatch, useSelector } from "react-redux";
 import { bookActions } from "../modules/actions";
 import "./Container.css";
-// import Sidebar from "components/home/common/sidebar/Sidebar";
 import Sidebar from "views/Sidebar";
 import Header from "views/Header";
 

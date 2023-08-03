@@ -12,6 +12,10 @@ export const Sidebar = styled.aside`
   gap: 2rem;
   justify-content: space-between;
   padding: 1.5rem 0;
+
+  @media screen and (max-height: 1400px) and (max-width: 1024px) {
+    display: none;
+  }
 `;
 
 export const MenuList = styled.ul`
