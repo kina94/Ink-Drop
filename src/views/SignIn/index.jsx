@@ -1,8 +1,7 @@
 import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
-import Footer from "./Footer";
-import Header from "./Header";
+import Logo from "components/Logo";
 import * as SC from "./SignIn.styles";
 import LocalStorage from "common/utils/local_storage";
 
@@ -28,7 +27,7 @@ const SignIn = ({ authService }) => {
 
   return (
     <SC.SignIn>
-      <Header />
+      <Logo />
       <SC.Contents>
         <div>
           <SC.Title>Sign In</SC.Title>
@@ -51,7 +50,13 @@ const SignIn = ({ authService }) => {
           </SC.SignInOptions>
         </SC.SubmitContainer>
 
-        <Footer></Footer>
+        <SC.Copyright>
+          <p>
+            다독다독은 포트폴리오용 웹사이트로 깃허브와 구글을 통해서만 로그인이
+            가능하며, 로그인에 사용된 개인정보는 오직 인증만을 위해 사용됩니다.
+          </p>
+          <p>Copyrightⓒ2022 by kina</p>
+        </SC.Copyright>
       </SC.Contents>
       <SC.Canvas />
     </SC.SignIn>

@@ -1,9 +1,8 @@
-import React, { memo } from "react";
-import * as SC from "./Header.styles.js";
+import * as SC from "./Logo.styles";
 
-const Header = memo(() => {
+const Logo = ({ onClick }) => {
   return (
-    <SC.Logo>
+    <SC.Logo onClick={onClick}>
       <i
         className="fas fa-book fa-xs"
         style={{ color: "var(--color-pink)", paddingRight: "8px" }}
@@ -11,6 +10,6 @@ const Header = memo(() => {
       다독다독
     </SC.Logo>
   );
-});
+};
 
-export default Header;
+export default Logo;

@@ -37,7 +37,7 @@ export const Title = styled.h1`
   margin-bottom: 5px;
 `;
 
-export const SubTitle = styled.h1`
+export const SubTitle = styled.p`
   color: grey;
   font-size: 14px;
 `;
@@ -45,11 +45,11 @@ export const SubTitle = styled.h1`
 export const SubmitContainer = styled.div`
   display: flex;
   flex-direction: column;
+  gap: 0.5rem;
 `;
 
 export const SubmitTitle = styled.p`
   color: var(--color-hotpink);
-  margin-bottom: 5px;
   text-align: center;
   font-weight: bold;
 `;
@@ -85,4 +85,14 @@ export const Canvas = styled.canvas`
   left: 0;
   right: 0;
   z-index: -1;
+`;
+
+export const Copyright = styled.p`
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  color: grey;
+  word-break: keep-all;
+  text-align: center;
+  font-size: 1rem;
 `;

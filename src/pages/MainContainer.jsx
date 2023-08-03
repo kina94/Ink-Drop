@@ -10,7 +10,6 @@ import Navbar from "../components/home/common/navbar/Navbar";
 import SearchContainer from "./SearchContainer";
 import LibraryContainer from "./LibraryContainer";
 import HistoryContainer from "./HistoryContainer";
-import Sidebar from "../components/home/common/sidebar/Sidebar";
 import MobileNavbar from "../components/mobile/navbar/MobileNavbar";
 import LoadingSpinner from "../common/utils/LoadingSpinner";
 import MoveTop from "../components/home/common/move_top/MoveTop";
@@ -18,6 +17,8 @@ import LocalStorage from "../common/utils/local_storage";
 import { useDispatch, useSelector } from "react-redux";
 import { bookActions } from "../modules/actions";
 import "./Container.css";
+// import Sidebar from "components/home/common/sidebar/Sidebar";
+import Sidebar from "views/Sidebar";
 
 function MainContainer(props) {
   const dispatch = useDispatch();
@@ -87,7 +88,7 @@ function MainContainer(props) {
     <section className="main">
       {isLoading && <LoadingSpinner />}
       <Navbar userInfo={userInfo} {...props} />
-      <Sidebar onClickSearchNav={onClickSearchNav} />
+      <Sidebar />
       <MobileNavbar onClickSearchNav={onClickSearchNav} {...props} />
       <MoveTop />
       <section className="content">

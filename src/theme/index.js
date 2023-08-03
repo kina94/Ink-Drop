@@ -9,7 +9,7 @@ const GlobalStyle = createGlobalStyle`
         font-size:62.5%;
     }
     body{
-        font-size:1.4rem;
+        font-size:1.6rem;
         font-family: 'Pretendard';
         -webkit-font-smoothing: antialiased;
         -moz-osx-font-smoothing: grayscale;
