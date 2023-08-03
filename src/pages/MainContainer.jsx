@@ -6,7 +6,6 @@ import {
   useNavigate,
   useParams,
 } from "react-router-dom";
-import Navbar from "../components/home/common/navbar/Navbar";
 import SearchContainer from "./SearchContainer";
 import LibraryContainer from "./LibraryContainer";
 import HistoryContainer from "./HistoryContainer";
@@ -19,6 +18,7 @@ import { bookActions } from "../modules/actions";
 import "./Container.css";
 // import Sidebar from "components/home/common/sidebar/Sidebar";
 import Sidebar from "views/Sidebar";
+import Header from "views/Header";
 
 function MainContainer(props) {
   const dispatch = useDispatch();
@@ -87,7 +87,7 @@ function MainContainer(props) {
   return (
     <section className="main">
       {isLoading && <LoadingSpinner />}
-      <Navbar userInfo={userInfo} {...props} />
+      <Header userInfo={userInfo} {...props} />
       <Sidebar />
       <MobileNavbar onClickSearchNav={onClickSearchNav} {...props} />
       <MoveTop />
