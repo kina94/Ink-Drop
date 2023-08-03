@@ -354,3 +354,34 @@ useInfiniteScrollEffect((scrollHeight, scrollTop, clientHeight) => {
 ```
 </details>
 
+
+<details>
+<summary>2차 리팩토링 (23.8.03 ~ update🏃)</summary>
+  
+> #### 1) 폴더 구조 리팩토링
+> * src/components -> 공용 컴포넌트 디렉토리 관리 (버튼, 드롭다운, 모달 .. ect)
+> * src/pages -> 페이지별 Rotue 및 layout 관리
+> * src/views -> 페이지별 컴포넌트 관리
+> * src/common/hooks -> 커스텀 훅 관리
+> * src/common/utils -> 함수 관리
+
+> #### 2) styeld-components 적용
+> * Global Styles, Theme Provider 적용을 통한 공통 스타일 속성 관리
+
+> #### 3) react-bootstrap 제거
+> * 기존 라이브러리를 통해 임포트해서 사용하던 컴포넌트를 커스텀 컴포넌트로 교체
+
+> #### 4) TypeScript
+> * 타입스크립트로 마이그레이션
+
+> #### 5) Recoil
+> * 보일러 플레이트 제거를 위해 리코일로 교체
+
+> #### 5) Custom Hook
+> * useIntersectionObserver
+>   * 하드코딩 되어있던 무한 스크롤링에 적용
+> * useOutsideClick
+>   * 외부 클릭 시 모달 및 드롭다운 제거에 적용
+
+> #### 6) 절대경로 설정
+> * jsconfig.json 설정으로 임포트 정리
