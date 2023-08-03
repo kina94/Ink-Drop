@@ -6,9 +6,9 @@ import {
   useNavigate,
   useParams,
 } from "react-router-dom";
-import SearchContainer from "./SearchContainer";
-import LibraryContainer from "./LibraryContainer";
-import HistoryContainer from "./HistoryContainer";
+import SearchContainer from "./Search";
+import LibraryContainer from "./Library";
+import HistoryContainer from "./History";
 import MobileNavbar from "../components/mobile/navbar/MobileNavbar";
 import LoadingSpinner from "../common/utils/LoadingSpinner";
 import MoveTop from "../components/home/common/move_top/MoveTop";
@@ -19,7 +19,7 @@ import "./Container.css";
 import Sidebar from "views/Sidebar";
 import Header from "views/Header";
 
-function MainContainer(props) {
+function Home(props) {
   const dispatch = useDispatch();
   const savedBooks = useSelector((store) => store.bookStore.savedBooks);
   const navigate = useNavigate();
@@ -119,4 +119,4 @@ function MainContainer(props) {
   );
 }
 
-export default MainContainer;
+export default Home;

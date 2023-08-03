@@ -1,7 +1,7 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import "./App.css";
 import "@fortawesome/fontawesome-free/js/all.js";
-import MainContainer from "./pages/MainContainer";
+import Home from "./pages/Home";
 import { useEffect } from "react";
 import SignIn from "views/SignIn";
 
@@ -18,7 +18,7 @@ function App({ userRepository, authService, bookRepository }) {
           <Route
             path="/home/*"
             element={
-              <MainContainer
+              <Home
                 authService={authService}
                 userRepository={userRepository}
                 bookRepository={bookRepository}
