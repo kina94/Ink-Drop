@@ -359,7 +359,7 @@ useInfiniteScrollEffect((scrollHeight, scrollTop, clientHeight) => {
 <summary>2차 리팩토링 (23.8.03 ~ update🏃)</summary>
   
 > #### 1) 폴더 구조 리팩토링
-> * src/components -> 공용 컴포넌트 디렉토리 관리 (버튼, 드롭다운, 모달 .. ect)
+> * src/components -> 공용 컴포넌트 관리 (버튼, 드롭다운, 모달 .. ect)
 > * src/pages -> 페이지별 Rotue 및 layout 관리
 > * src/views -> 페이지별 컴포넌트 관리
 > * src/common/hooks -> 커스텀 훅 관리
